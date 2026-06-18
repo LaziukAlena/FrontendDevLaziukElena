@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Елена Лазюк — Frontend разработчик | Верстка сайтов, React, Vue | Беларусь
+    </title>
+    <meta
+      name="description"
+      content="Фриланс frontend-разработчик из Беларуси. Верстка сайтов под ключ по макетам Figma, HTML/CSS/JS, React, Vue. Лендинги от 150 BYN. Исправление багов, адаптивная верстка, Битрикс24."
+    />
+    <meta
+      name="keywords"
+      content="frontend разработчик беларусь, верстка сайтов, лендинг под ключ, react vue разработчик, фриланс верстальщик, солигорск, figma to code, адаптивная верстка"
+    />
+    <meta name="author" content="Елена Лазюк" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://laziukalena.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://laziukalena.github.io/" />
+    <meta
+      property="og:title"
+      content="Елена Лазюк — Frontend разработчик | Верстка сайтов"
+    />
+    <meta
+      property="og:description"
+      content="Верстка сайтов под ключ по макетам Figma. HTML/CSS/JS, React, Vue. Лендинги от 150 BYN."
+    />
+    <meta
+      property="og:image"
+      content="https://laziukalena.github.io/img/og-preview.jpg"
+    />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Елена Лазюк",
+        "jobTitle": "Frontend Developer",
+        "url": "https://laziukalena.github.io/",
+        "sameAs": ["https://github.com/LaziukAlena", "https://t.me/Le_nka1988"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Солигорск",
+          "addressCountry": "BY"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ХЕДЕР -->
+    <header class="header" role="banner">
+      <div class="header__container">
+        <a href="#" class="logo" aria-label="Елена Лазюк — на главную"
+          >E. LAZIUK</a
+        >
+        <nav
+          class="nav"
+          role="navigation"
+          aria-label="Основное меню"
+          id="main-nav"
+        >
+          <a
+            href="#services"
+            class="nav__link"
+            data-ru="Услуги"
+            data-en="Services"
+            >Услуги</a
+          >
+          <a href="#process" class="nav__link" data-ru="Этапы" data-en="Process"
+            >Этапы</a
+          >
+          <a
+            href="#portfolio"
+            class="nav__link"
+            data-ru="Проекты"
+            data-en="Projects"
+            >Проекты</a
+          >
+          <a href="#faq" class="nav__link" data-ru="Вопросы" data-en="FAQ"
+            >Вопросы</a
+          >
+          <a
+            href="#contacts"
+            class="nav__link"
+            data-ru="Контакты"
+            data-en="Contacts"
+            >Контакты</a
+          >
+        </nav>
+        <div class="header__right">
+          <div class="lang-switcher" role="group" aria-label="Выбор языка">
+            <button class="lang-btn active" id="btn-ru">RU</button>
+            <span class="lang-divider" aria-hidden="true">/</span>
+            <button class="lang-btn" id="btn-en">EN</button>
+          </div>
+          <button
+            class="burger"
+            id="burger-btn"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- МОБИЛЬНОЕ МЕНЮ -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <nav class="mobile-nav">
+        <a
+          href="#services"
+          class="mobile-nav__link"
+          data-ru="Услуги"
+          data-en="Services"
+          >Услуги</a
+        >
+        <a
+          href="#process"
+          class="mobile-nav__link"
+          data-ru="Этапы"
+          data-en="Process"
+          >Этапы</a
+        >
+        <a
+          href="#portfolio"
+          class="mobile-nav__link"
+          data-ru="Проекты"
+          data-en="Projects"
+          >Проекты</a
+        >
+        <a href="#faq" class="mobile-nav__link" data-ru="Вопросы" data-en="FAQ"
+          >Вопросы</a
+        >
+        <a
+          href="#contacts"
+          class="mobile-nav__link"
+          data-ru="Контакты"
+          data-en="Contacts"
+          >Контакты</a
+        >
+      </nav>
+      <div class="mobile-menu__contacts">
+        <a
+          href="https://t.me/Le_nka1988"
+          target="_blank"
+          rel="noopener"
+          class="m-link m-link--tg"
+          data-ru="Telegram"
+          data-en="Telegram"
+          >Telegram</a
+        >
+        <a
+          href="viber://chat?number=%2B375295784449"
+          class="m-link m-link--vb"
+          data-ru="Viber"
+          data-en="Viber"
+          >Viber</a
+        >
+      </div>
+    </div>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero-split" aria-label="Главный экран">
+        <div class="hero-split__container">
+          <div class="hero-split__left">
+            <div
+              class="hero-marquee"
+              id="hero-marquee"
+              data-ru="FRONTEND РАЗРАБОТЧИК // ВЕРСТКА ПОД КЛЮЧ // REACT &amp; VUE // БЭМ // АДАПТИВ // FIGMA TO CODE //"
+              data-en="FRONTEND DEVELOPER // PIXEL-PERFECT LAYOUT // REACT &amp; VUE // BEM // RESPONSIVE // FIGMA TO CODE //"
+            >
+              FRONTEND РАЗРАБОТЧИК // ВЕРСТКА ПОД КЛЮЧ // REACT &amp; VUE // БЭМ
+              // АДАПТИВ // FIGMA TO CODE //
+            </div>
+            <h1
+              class="hero-title reveal-text"
+              data-ru="Создаю сайты,&lt;br&gt;которые работают&lt;br&gt;на вас."
+              data-en="Crafting websites&lt;br&gt;that work&lt;br&gt;for you."
+            >
+              Создаю сайты,<br />которые работают<br />на вас.
+            </h1>
+            <p
+              class="hero-lead"
+              data-ru="Верстаю с нуля по макетам Figma, исправляю баги и довожу сайты до идеала. HTML / CSS / JS / React / Vue — работаю аккуратно и в срок."
+              data-en="I build from scratch from your Figma files, fix bugs, and bring sites to their best. HTML / CSS / JS / React / Vue — clean code, on time."
+            >
+              Верстаю с нуля по макетам Figma, исправляю баги и довожу сайты до
+              идеала. HTML / CSS / JS / React / Vue — работаю аккуратно и в
+              срок.
+            </p>
+            <div class="hero-trust">
+              <div class="trust-item">
+                <span class="trust-num" data-counter="30" data-suffix="+"
+                  >30+</span
+                >
+                <span class="trust-label" data-ru="проектов" data-en="projects"
+                  >проектов</span
+                >
+              </div>
+              <div class="trust-divider" aria-hidden="true"></div>
+              <div class="trust-item">
+                <span class="trust-num" data-counter="3" data-suffix="г."
+                  >3г.</span
+                >
+                <span class="trust-label" data-ru="опыта" data-en="experience"
+                  >опыта</span
+                >
+              </div>
+              <div class="trust-divider" aria-hidden="true"></div>
+              <div class="trust-item">
+                <span class="trust-num">2ч</span>
+                <span class="trust-label" data-ru="ответ" data-en="response"
+                  >ответ</span
+                >
+              </div>
+            </div>
+            <div class="hero-actions">
+              <a
+                href="#portfolio"
+                class="btn-journal magnetic"
+                data-ru="Смотреть проекты"
+                data-en="View Projects"
+                >Смотреть проекты</a
+              >
+              <a
+                href="#contacts"
+                class="btn-journal btn-journal--transparent magnetic"
+                data-ru="Начать проект"
+                data-en="Start Project"
+                >Начать проект</a
+              >
+            </div>
+          </div>
+          <div class="hero-split__right">
+            <div class="hero-fx-box" id="hero-photo-box">
+              <div class="hero-fx-noise" aria-hidden="true"></div>
+              <div class="hero-fx-shadow" aria-hidden="true"></div>
+              <div class="hero-fx-frame">
+                <img
+                  src="./img/foto.jpg"
+                  alt="Елена Лазюк — frontend разработчик из Беларуси"
+                  class="hero-fx-img"
+                  width="460"
+                  height="650"
+                  loading="eager"
+                  onerror="this.parentElement.classList.add('no-photo')"
+                />
+              </div>
+              <div class="hero-status" aria-label="Статус">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span
+                  data-ru="Доступна для проектов"
+                  data-en="Available for projects"
+                  >Доступна для проектов</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Декоративные зерна фона -->
+        <div class="hero-grain" aria-hidden="true"></div>
+      </section>
+
+      <!-- УСЛУГИ -->
+      <section
+        id="services"
+        class="services-modern"
+        aria-labelledby="services-title"
+      >
+        <div class="container-fluid">
+          <span
+            class="section-num"
+            data-ru="01 / УСЛУГИ И ЦЕНЫ"
+            data-en="01 / SERVICES &amp; PRICING"
+            id="services-title"
+            >01 / УСЛУГИ И ЦЕНЫ</span
+          >
+          <p
+            class="section-lead"
+            data-ru="Выберите то, что подходит вашему проекту. Все цены фиксированные — никаких сюрпризов после старта."
+            data-en="Choose what fits your project. All prices are fixed — no surprises after we start."
+          >
+            Выберите то, что подходит вашему проекту. Все цены фиксированные —
+            никаких сюрпризов после старта.
+          </p>
+          <div class="services-list" role="list">
+            <article class="service-strip" role="listitem">
+              <div class="service-strip__left">
+                <span class="service-idx">01</span>
+                <h2
+                  class="service-title"
+                  data-ru="Сайты на конструкторах"
+                  data-en="No-Code Platforms"
+                >
+                  Сайты на конструкторах
+                </h2>
+                <ul class="service-tags">
+                  <li>Tilda</li>
+                  <li>Wix</li>
+                  <li>Тур</li>
+                </ul>
+              </div>
+              <div class="service-strip__center">
+                <p
+                  data-ru="Tilda, Wix, Тур — готовый сайт за 3–5 дней. Идеально для малого бизнеса, кафе, студий и тестирования ниши. Полная настройка под ключ: домен, форма, SEO-базис."
+                  data-en="Tilda, Wix, Tour — a ready site in 3–5 days. Perfect for small businesses, cafés, studios, and niche testing. Full setup: domain, forms, basic SEO."
+                >
+                  Tilda, Wix, Тур — готовый сайт за 3–5 дней. Идеально для
+                  малого бизнеса, кафе, студий и тестирования ниши. Полная
+                  настройка под ключ: домен, форма, SEO-базис.
+                </p>
+              </div>
+              <div class="service-strip__right">
+                <span class="price-tag" data-ru="от 80 BYN" data-en="from $25"
+                  >от 80 BYN</span
+                >
+                <span class="price-time" data-ru="3–5 дней" data-en="3–5 days"
+                  >3–5 дней</span
+                >
+              </div>
+            </article>
+
+            <article class="service-strip" role="listitem">
+              <div class="service-strip__left">
+                <span class="service-idx">02</span>
+                <h2
+                  class="service-title"
+                  data-ru="Landing Page на коде"
+                  data-en="Custom Landing Page"
+                >
+                  Landing Page на коде
+                </h2>
+                <ul class="service-tags">
+                  <li>HTML/CSS</li>
+                  <li>JS</li>
+                  <li>React</li>
+                </ul>
+              </div>
+              <div class="service-strip__center">
+                <p
+                  data-ru="Лендинг под ваш бренд — пиксель в пиксель по макету Figma. Никаких шаблонов, только ваш дизайн. Быстрая загрузка, чистый БЭМ-код, уникальные анимации."
+                  data-en="A landing page built to your brand — pixel-perfect from your Figma file. No templates, only your design. Fast load, clean BEM markup, custom interactions."
+                >
+                  Лендинг под ваш бренд — пиксель в пиксель по макету Figma.
+                  Никаких шаблонов, только ваш дизайн. Быстрая загрузка, чистый
+                  БЭМ-код, уникальные анимации.
+                </p>
+              </div>
+              <div class="service-strip__right">
+                <span class="price-tag" data-ru="от 150 BYN" data-en="from $50"
+                  >от 150 BYN</span
+                >
+                <span class="price-time" data-ru="5–10 дней" data-en="5–10 days"
+                  >5–10 дней</span
+                >
+              </div>
+            </article>
+
+            <article
+              class="service-strip service-strip--featured"
+              role="listitem"
+            >
+              <div class="service-strip__left">
+                <span class="service-idx">03</span>
+                <h2
+                  class="service-title"
+                  data-ru="Корпоративный сайт / SPA"
+                  data-en="Corporate Site / SPA"
+                >
+                  Корпоративный сайт / SPA
+                </h2>
+                <ul class="service-tags">
+                  <li>React</li>
+                  <li>Vue</li>
+                  <li>SEO</li>
+                </ul>
+              </div>
+              <div class="service-strip__center">
+                <p
+                  data-ru="Многостраничные сайты и веб-приложения для бизнеса. Чистая архитектура на React или Vue, семантическая разметка и структура, оптимизированная для поисковых систем."
+                  data-en="Multi-page sites and web applications for business. Clean architecture on React or Vue, semantic markup, and structure built for SEO from day one."
+                >
+                  Многостраничные сайты и веб-приложения для бизнеса. Чистая
+                  архитектура на React или Vue, семантическая разметка и
+                  структура, оптимизированная для поисковых систем.
+                </p>
+              </div>
+              <div class="service-strip__right">
+                <span class="price-tag" data-ru="от 300 BYN" data-en="from $100"
+                  >от 300 BYN</span
+                >
+                <span
+                  class="price-time"
+                  data-ru="2–4 недели"
+                  data-en="2–4 weeks"
+                  >2–4 недели</span
+                >
+              </div>
+            </article>
+
+            <article class="service-strip" role="listitem">
+              <div class="service-strip__left">
+                <span class="service-idx">04</span>
+                <h2
+                  class="service-title"
+                  data-ru="Интернет-магазин"
+                  data-en="E-commerce &amp; Catalogue"
+                >
+                  Интернет-магазин
+                </h2>
+                <ul class="service-tags">
+                  <li>Каталог</li>
+                  <li>Корзина</li>
+                  <li>Фильтры</li>
+                </ul>
+              </div>
+              <div class="service-strip__center">
+                <p
+                  data-ru="Каталог, корзина, динамические фильтры и живой поиск — всё на чистом JavaScript без тяжёлых платформ. Быстро, легко, без лишних плагинов."
+                  data-en="Catalogue, cart, dynamic filters and live search — all in clean JavaScript, no bloated platforms. Fast, lightweight, no unnecessary plugins."
+                >
+                  Каталог, корзина, динамические фильтры и живой поиск — всё на
+                  чистом JavaScript без тяжёлых платформ. Быстро, легко, без
+                  лишних плагинов.
+                </p>
+              </div>
+              <div class="service-strip__right">
+                <span class="price-tag" data-ru="от 450 BYN" data-en="from $150"
+                  >от 450 BYN</span
+                >
+                <span
+                  class="price-time"
+                  data-ru="3–5 недель"
+                  data-en="3–5 weeks"
+                  >3–5 недель</span
+                >
+              </div>
+            </article>
+
+            <article class="service-strip" role="listitem">
+              <div class="service-strip__left">
+                <span class="service-idx">05</span>
+                <h2
+                  class="service-title"
+                  data-ru="Доработка и баги"
+                  data-en="Fixes &amp; Updates"
+                >
+                  Доработка и баги
+                </h2>
+                <ul class="service-tags">
+                  <li>Баги</li>
+                  <li>Адаптив</li>
+                  <li>Битрикс</li>
+                </ul>
+              </div>
+              <div class="service-strip__center">
+                <p
+                  data-ru="Поехала верстка? Не работает скрипт? Нужен новый блок? Быстро диагностирую проблему и исправляю. Работаю с Битрикс24 и amoCRM. Оплата за результат."
+                  data-en="Layout broke? Script not working? Need a new section? I diagnose fast and fix cleanly. I work with Bitrix24 and amoCRM. You pay for results."
+                >
+                  Поехала верстка? Не работает скрипт? Нужен новый блок? Быстро
+                  диагностирую проблему и исправляю. Работаю с Битрикс24 и
+                  amoCRM. Оплата за результат.
+                </p>
+              </div>
+              <div class="service-strip__right">
+                <span
+                  class="price-tag"
+                  data-ru="от 35 BYN/ч"
+                  data-en="from $15/hr"
+                  >от 35 BYN/ч</span
+                >
+                <span class="price-time" data-ru="от 1 дня" data-en="from 1 day"
+                  >от 1 дня</span
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ЭТАПЫ -->
+      <section
+        id="process"
+        class="process-modern"
+        aria-labelledby="process-title"
+      >
+        <div class="container-fluid">
+          <span
+            class="section-num"
+            data-ru="02 / КАК МЫ РАБОТАЕМ"
+            data-en="02 / THE PROCESS"
+            id="process-title"
+            >02 / КАК МЫ РАБОТАЕМ</span
+          >
+          <p
+            class="section-lead"
+            data-ru="Прозрачный процесс от первого сообщения до запуска. Никаких сюрпризов."
+            data-en="A clear process from first message to launch. No surprises."
+          >
+            Прозрачный процесс от первого сообщения до запуска. Никаких
+            сюрпризов.
+          </p>
+          <div class="process-strips" role="list">
+            <div class="p-strip" role="listitem">
+              <span class="p-strip__num">01</span>
+              <h3 data-ru="Заявка и анализ" data-en="Brief &amp; Analysis">
+                Заявка и анализ
+              </h3>
+              <p
+                data-ru="Пишете в Telegram или Viber. Я изучаю задачу, задаю уточняющие вопросы и предлагаю оптимальное решение под ваш бюджет."
+                data-en="You message me on Telegram or Viber. I study the brief, ask key questions, and propose the best solution for your budget."
+              >
+                Пишете в Telegram или Viber. Я изучаю задачу, задаю уточняющие
+                вопросы и предлагаю оптимальное решение под ваш бюджет.
+              </p>
+            </div>
+            <div class="p-strip" role="listitem">
+              <span class="p-strip__num">02</span>
+              <h3
+                data-ru="Стоимость и предоплата"
+                data-en="Price &amp; Advance"
+              >
+                Стоимость и предоплата
+              </h3>
+              <p
+                data-ru="Фиксируем бюджет и дедлайн. Работаю официально как самозанятая (НПД). Предоплата 30–50% — вы получаете официальный чек с QR-кодом."
+                data-en="We lock in the budget and deadline. I work officially as self-employed (NPD). Advance 30–50% — you receive an official receipt with a QR code."
+              >
+                Фиксируем бюджет и дедлайн. Работаю официально как самозанятая
+                (НПД). Предоплата 30–50% — вы получаете официальный чек с
+                QR-кодом.
+              </p>
+            </div>
+            <div class="p-strip" role="listitem">
+              <span class="p-strip__num">03</span>
+              <h3
+                data-ru="Разработка с демо"
+                data-en="Development &amp; Preview"
+              >
+                Разработка с демо
+              </h3>
+              <p
+                data-ru="Пишу чистый код и сразу разворачиваю демо-ссылку. Вы видите прогресс в реальном времени и можете вносить правки до финала."
+                data-en="I write clean code and deploy a live preview link right away. You track progress in real time and can suggest edits before the final."
+              >
+                Пишу чистый код и сразу разворачиваю демо-ссылку. Вы видите
+                прогресс в реальном времени и можете вносить правки до финала.
+              </p>
+            </div>
+            <div class="p-strip" role="listitem">
+              <span class="p-strip__num">04</span>
+              <h3 data-ru="Сдача и поддержка" data-en="Launch &amp; Support">
+                Сдача и поддержка
+              </h3>
+              <p
+                data-ru="Финальное тестирование на всех устройствах, загрузка на ваш хостинг и 7 дней бесплатной поддержки после запуска."
+                data-en="Final testing on all devices, deployment to your hosting, and 7 days of free post-launch support."
+              >
+                Финальное тестирование на всех устройствах, загрузка на ваш
+                хостинг и 7 дней бесплатной поддержки после запуска.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ПОРТФОЛИО -->
+      <section
+        id="portfolio"
+        class="portfolio-fullscreen"
+        aria-labelledby="portfolio-title"
+      >
+        <div class="container-fluid">
+          <div class="portfolio__wrapper">
+            <span
+              class="section-num"
+              data-ru="03 / ПРОЕКТЫ"
+              data-en="03 / PROJECTS"
+              id="portfolio-title"
+              >03 / ПРОЕКТЫ</span
+            >
+            <p
+              class="section-lead section-lead--light"
+              data-ru="Учебные и коммерческие работы — каждый проект решал реальную задачу."
+              data-en="Academic and commercial work — each project solved a real problem."
+            >
+              Учебные и коммерческие работы — каждый проект решал реальную
+              задачу.
+            </p>
+
+            <article class="portfolio-poster">
+              <div class="poster-image-side" aria-hidden="true">
+                <div class="poster-stub">PRETTY PAW</div>
+                <div class="poster-img-overlay"></div>
+              </div>
+              <div class="poster-info-side">
+                <span class="project-tag-modern"
+                  >JavaScript / Adaptive / CSS Animations</span
+                >
+                <h2
+                  data-ru="Ветеринарный центр «PrettyPaw»"
+                  data-en="Veterinary Center 'PrettyPaw'"
+                >
+                  Ветеринарный центр «PrettyPaw»
+                </h2>
+                <p
+                  class="poster-desc"
+                  data-ru="Многостраничный коммерческий сайт с адаптивной сеткой, кастомными анимациями и валидацией форм на чистом JavaScript. Верстка под мобильные, планшет и десктоп."
+                  data-en="Multi-page commercial website with a responsive grid, custom animations, and JS form validation. Fully responsive across mobile, tablet, and desktop."
+                >
+                  Многостраничный коммерческий сайт с адаптивной сеткой,
+                  кастомными анимациями и валидацией форм на чистом JavaScript.
+                  Верстка под мобильные, планшет и десктоп.
+                </p>
+                <ul class="poster-skills">
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>JavaScript</li>
+                  <li>БЭМ</li>
+                  <li>Flexbox</li>
+                </ul>
+                <div class="poster-actions">
+                  <a
+                    href="https://laziukalena.github.io/prettyPaw/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-link magnetic"
+                    data-ru="Открыть проект ↗"
+                    data-en="View Project ↗"
+                    >Открыть проект ↗</a
+                  >
+                  <a
+                    href="https://github.com/LaziukAlena"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-git"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="portfolio-poster portfolio-poster--alt">
+              <div class="poster-info-side">
+                <span class="project-tag-modern">React / API / Responsive</span>
+                <h2
+                  data-ru="React-проект — скоро"
+                  data-en="React Project — coming soon"
+                >
+                  React-проект — скоро
+                </h2>
+                <p
+                  class="poster-desc"
+                  data-ru="Скоро здесь появится новый проект. Следите за обновлениями на GitHub."
+                  data-en="A new project is coming soon. Follow updates on GitHub."
+                >
+                  Скоро здесь появится новый проект. Следите за обновлениями на
+                  GitHub.
+                </p>
+                <ul class="poster-skills">
+                  <li>React</li>
+                  <li>JavaScript</li>
+                  <li>CSS Modules</li>
+                </ul>
+                <div class="poster-actions">
+                  <a
+                    href="https://github.com/LaziukAlena"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-link"
+                    data-ru="Смотреть GitHub ↗"
+                    data-en="View GitHub ↗"
+                    >Смотреть GitHub ↗</a
+                  >
+                </div>
+              </div>
+              <div class="poster-image-side" aria-hidden="true">
+                <div class="poster-stub">REACT APP</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="faq-modern" aria-labelledby="faq-title">
+        <div class="container-fluid">
+          <span
+            class="section-num"
+            data-ru="04 / ЧАСТЫЕ ВОПРОСЫ"
+            data-en="04 / FAQ"
+            id="faq-title"
+            >04 / ЧАСТЫЕ ВОПРОСЫ</span
+          >
+          <p
+            class="section-lead"
+            data-ru="Собрала самые популярные вопросы от клиентов. Если не нашли ответ — пишите напрямую."
+            data-en="The most common questions from clients. If you don't find your answer — just message me directly."
+          >
+            Собрала самые популярные вопросы от клиентов. Если не нашли ответ —
+            пишите напрямую.
+          </p>
+          <div class="faq-layout-modern">
+            <div class="faq-item-modern">
+              <button class="faq-trigger-modern" aria-expanded="false">
+                <span
+                  data-ru="Сколько времени занимает разработка?"
+                  data-en="How long does development take?"
+                  >Сколько времени занимает разработка?</span
+                >
+                <div class="faq-icon-line" aria-hidden="true"></div>
+              </button>
+              <div class="faq-panel-modern">
+                <p
+                  data-ru="Лендинг на конструкторе — 3–5 дней. Лендинг на коде — 5–10 дней. Корпоративный сайт или магазин — 2–5 недель. Срок фиксируем до старта и я его держу."
+                  data-en="A no-code landing — 3–5 days. A coded landing — 5–10 days. A corporate site or store — 2–5 weeks. We fix the deadline before starting and I keep it."
+                >
+                  Лендинг на конструкторе — 3–5 дней. Лендинг на коде — 5–10
+                  дней. Корпоративный сайт или магазин — 2–5 недель. Срок
+                  фиксируем до старта и я его держу.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item-modern">
+              <button class="faq-trigger-modern" aria-expanded="false">
+                <span
+                  data-ru="Вы работаете официально? Как происходит оплата?"
+                  data-en="Do you work legally? How does payment work?"
+                  >Вы работаете официально? Как происходит оплата?</span
+                >
+                <div class="faq-icon-line" aria-hidden="true"></div>
+              </button>
+              <div class="faq-panel-modern">
+                <p
+                  data-ru="Да, работаю официально как плательщик Налога на профессиональный доход (НПД) в Беларуси. После предоплаты (30–50%) отправляю официальный чек с QR-кодом от налоговой — подходит для любой бухгалтерии."
+                  data-en="Yes, I work legally in Belarus as a professional income tax (NPD) payer. After the advance (30–50%) I send an official receipt with a QR code from the Tax Authority — accepted by any accountant."
+                >
+                  Да, работаю официально как плательщик Налога на
+                  профессиональный доход (НПД) в Беларуси. После предоплаты
+                  (30–50%) отправляю официальный чек с QR-кодом — подходит для
+                  любой бухгалтерии.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item-modern">
+              <button class="faq-trigger-modern" aria-expanded="false">
+                <span
+                  data-ru="Нужен ли мне макет в Figma для старта?"
+                  data-en="Do I need a Figma design to get started?"
+                  >Нужен ли мне макет в Figma для старта?</span
+                >
+                <div class="faq-icon-line" aria-hidden="true"></div>
+              </button>
+              <div class="faq-panel-modern">
+                <p
+                  data-ru="Нет, макет не обязателен. Если у вас есть только идея или примеры понравившихся сайтов — этого достаточно для начала. Я помогу сформулировать задачу и предложу референсы по стилю."
+                  data-en="No, a design file is not required. If you only have an idea or examples of sites you like — that's enough to start. I'll help shape the brief and suggest style references."
+                >
+                  Нет, макет не обязателен. Если у вас есть только идея или
+                  примеры понравившихся сайтов — этого достаточно для начала. Я
+                  помогу сформулировать задачу и предложу референсы по стилю.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item-modern">
+              <button class="faq-trigger-modern" aria-expanded="false">
+                <span
+                  data-ru="Что если после запуска обнаружатся ошибки?"
+                  data-en="What if bugs appear after launch?"
+                  >Что если после запуска обнаружатся ошибки?</span
+                >
+                <div class="faq-icon-line" aria-hidden="true"></div>
+              </button>
+              <div class="faq-panel-modern">
+                <p
+                  data-ru="Каждый проект получает 7 дней бесплатной гарантийной поддержки. Если что-то сломается на каком-то устройстве или браузере — исправлю бесплатно и оперативно."
+                  data-en="Every project includes 7 days of free warranty support. If anything breaks on any device or browser within a week — I'll fix it immediately, at no extra charge."
+                >
+                  Каждый проект получает 7 дней бесплатной гарантийной
+                  поддержки. Если что-то сломается на каком-то устройстве или
+                  браузере — исправлю бесплатно и оперативно.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item-modern">
+              <button class="faq-trigger-modern" aria-expanded="false">
+                <span
+                  data-ru="Работаете ли вы с зарубежными клиентами?"
+                  data-en="Do you work with international clients?"
+                  >Работаете ли вы с зарубежными клиентами?</span
+                >
+                <div class="faq-icon-line" aria-hidden="true"></div>
+              </button>
+              <div class="faq-panel-modern">
+                <p
+                  data-ru="Да, работаю с клиентами из Беларуси, России и Европы. Общаюсь на русском и английском языках. Расчёт возможен в BYN, USD или EUR."
+                  data-en="Yes, I work with clients from Belarus, Russia, and Europe. I communicate in Russian and English. Payment is possible in BYN, USD, or EUR."
+                >
+                  Да, работаю с клиентами из Беларуси, России и Европы. Общаюсь
+                  на русском и английском языках. Расчёт возможен в BYN, USD или
+                  EUR.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item-modern">
+              <button class="faq-trigger-modern" aria-expanded="false">
+                <span
+                  data-ru="Смогу ли я сам редактировать сайт после сдачи?"
+                  data-en="Can I edit the site myself after launch?"
+                  >Смогу ли я сам редактировать сайт после сдачи?</span
+                >
+                <div class="faq-icon-line" aria-hidden="true"></div>
+              </button>
+              <div class="faq-panel-modern">
+                <p
+                  data-ru="На конструкторах (Tilda, Wix) — легко, там всё визуально. Для сайтов на коде я пишу понятную структуру и оставляю инструкцию по редактированию текстов. Для больших проектов можем подключить CMS."
+                  data-en="On no-code platforms (Tilda, Wix) — easily, it's all visual. For coded sites I write clear structure and provide an editing guide. For larger projects we can integrate a CMS."
+                >
+                  На конструкторах (Tilda, Wix) — легко, там всё визуально. Для
+                  сайтов на коде я пишу понятную структуру и оставляю инструкцию
+                  по редактированию текстов. Для больших проектов можем
+                  подключить CMS.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- КОНТАКТЫ -->
+      <section
+        id="contacts"
+        class="manifesto-section"
+        aria-labelledby="contacts-title"
+      >
+        <div class="container">
+          <div class="manifesto-grid">
+            <div class="manifesto-left">
+              <h2
+                class="manifesto-big-text"
+                id="contacts-title"
+                data-ru="Есть проект?&lt;br&gt;Давайте обсудим."
+                data-en="Got a project?&lt;br&gt;Let's talk."
+              >
+                Есть проект?<br />Давайте обсудим.
+              </h2>
+            </div>
+            <div class="manifesto-right">
+              <p
+                data-ru="Пишите в Telegram или Viber — отвечаю в течение 2 часов. Работаю с клиентами из Беларуси, России и Европы."
+                data-en="Message me on Telegram or Viber — I reply within 2 hours. Working with clients from Belarus, Russia, and Europe."
+              >
+                Пишите в Telegram или Viber — отвечаю в течение 2 часов. Работаю
+                с клиентами из Беларуси, России и Европы.
+              </p>
+              <address class="manifesto-contacts">
+                <p class="manifesto-legal">
+                  E. Laziuk &nbsp;·&nbsp; Soligorsk, Belarus &nbsp;·&nbsp; НПД
+                </p>
+                <a
+                  href="https://github.com/LaziukAlena"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="manifesto-gh"
+                  >GitHub: LaziukAlena ↗</a
+                >
+              </address>
+              <div class="manifesto-buttons">
+                <a
+                  href="https://t.me/Le_nka1988"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="m-link m-link--tg magnetic"
+                  data-ru="Написать в Telegram"
+                  data-en="Message on Telegram"
+                  >Написать в Telegram</a
+                >
+                <a
+                  href="viber://chat?number=%2B375295784449"
+                  class="m-link m-link--vb magnetic"
+                  data-ru="Написать в Viber"
+                  data-en="Message on Viber"
+                  >Написать в Viber</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ФУТЕР — КОМПАКТНЫЙ (без дублирующего CTA) -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <a href="#" class="footer-logo">E. LAZIUK</a>
+        <nav class="footer-nav" aria-label="Футер навигация">
+          <a href="#services" data-ru="Услуги" data-en="Services">Услуги</a>
+          <a href="#portfolio" data-ru="Проекты" data-en="Projects">Проекты</a>
+          <a href="#contacts" data-ru="Контакты" data-en="Contacts">Контакты</a>
+          <a
+            href="https://github.com/LaziukAlena"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+        </nav>
+        <span class="footer-copy"
+          >© <span id="footer-year"></span> Elena Laziuk · Frontend Developer ·
+          НПД</span
+        >
+      </div>
+    </footer>
+
+    <!-- Кастомный курсор-стрелка со следом -->
+    <canvas id="cursor-trail" aria-hidden="true"></canvas>
+
+    <script src="script.js"></script>
+  </body>
+</html>
