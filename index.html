@@ -92,6 +92,7 @@
           >
         </nav>
         <div class="header__right">
+          <a href="tel:+375295784449" class="header-phone">+375 29 578-44-49</a>
           <div class="lang-switcher" role="group" aria-label="Выбор языка">
             <button class="lang-btn active" id="btn-ru">RU</button>
             <span class="lang-divider" aria-hidden="true">/</span>
@@ -162,6 +163,9 @@
           >Viber</a
         >
       </div>
+      <a href="tel:+375295784449" class="mobile-menu__phone"
+        >+375 29 578-44-49</a
+      >
     </div>
 
     <main>
@@ -178,10 +182,12 @@
               FRONTEND РАЗРАБОТЧИК // ВЕРСТКА ПОД КЛЮЧ // REACT &amp; VUE // БЭМ
               // АДАПТИВ // FIGMA TO CODE //
             </div>
+            <!-- БАГ #5 ИСПРАВЛЕН: data-атрибуты содержат чистый текст без тегов,
+                 word-reveal будет перезапускаться при смене языка через JS -->
             <h1
               class="hero-title reveal-text"
-              data-ru="Создаю сайты,&lt;br&gt;которые работают&lt;br&gt;на вас."
-              data-en="Crafting websites&lt;br&gt;that work&lt;br&gt;for you."
+              data-ru="Создаю сайты, которые работают на вас."
+              data-en="Crafting websites that work for you."
             >
               Создаю сайты,<br />которые работают<br />на вас.
             </h1>
@@ -221,25 +227,25 @@
               </div>
             </div>
             <div class="hero-actions">
-              <a
-                href="#portfolio"
-                class="btn-journal magnetic"
-                data-ru="Смотреть проекты"
-                data-en="View Projects"
-                >Смотреть проекты</a
+              <a href="#portfolio" class="btn-journal magnetic"
+                ><span data-ru="Смотреть проекты" data-en="View Projects"
+                  >Смотреть проекты</span
+                ></a
               >
               <a
-                href="#contacts"
+                href="https://t.me/Le_nka1988"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="btn-journal btn-journal--transparent magnetic"
-                data-ru="Начать проект"
-                data-en="Start Project"
-                >Начать проект</a
+                ><span data-ru="Написать мне" data-en="Message Me"
+                  >Написать мне</span
+                ></a
               >
             </div>
           </div>
           <div class="hero-split__right">
             <div class="hero-fx-box" id="hero-photo-box">
-              <div class="hero-fx-noise" aria-hidden="true"></div>
+              <!-- БАГ #10 ИСПРАВЛЕН: убран .hero-fx-noise — нет стилей, пустой элемент -->
               <div class="hero-fx-shadow" aria-hidden="true"></div>
               <div class="hero-fx-frame">
                 <img
@@ -263,23 +269,23 @@
             </div>
           </div>
         </div>
-        <!-- Декоративные зерна фона -->
         <div class="hero-grain" aria-hidden="true"></div>
       </section>
 
       <!-- УСЛУГИ -->
+      <!-- БАГ #4 ИСПРАВЛЕН: section-num стал h2, service-title стал h3 -->
       <section
         id="services"
         class="services-modern"
         aria-labelledby="services-title"
       >
         <div class="container-fluid">
-          <span
+          <h2
             class="section-num"
             data-ru="01 / УСЛУГИ И ЦЕНЫ"
             data-en="01 / SERVICES &amp; PRICING"
             id="services-title"
-            >01 / УСЛУГИ И ЦЕНЫ</span
+            >01 / УСЛУГИ И ЦЕНЫ</h2
           >
           <p
             class="section-lead"
@@ -293,13 +299,13 @@
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">01</span>
-                <h2
+                <h3
                   class="service-title"
                   data-ru="Сайты на конструкторах"
                   data-en="No-Code Platforms"
                 >
                   Сайты на конструкторах
-                </h2>
+                </h3>
                 <ul class="service-tags">
                   <li>Tilda</li>
                   <li>Wix</li>
@@ -329,13 +335,13 @@
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">02</span>
-                <h2
+                <h3
                   class="service-title"
                   data-ru="Landing Page на коде"
                   data-en="Custom Landing Page"
                 >
                   Landing Page на коде
-                </h2>
+                </h3>
                 <ul class="service-tags">
                   <li>HTML/CSS</li>
                   <li>JS</li>
@@ -362,19 +368,23 @@
               </div>
             </article>
 
+            <!-- БАГ #3 ИСПРАВЛЕН: добавлены data-label, data-label-ru, data-label-en -->
             <article
               class="service-strip service-strip--featured"
               role="listitem"
+              data-label="Популярное"
+              data-label-ru="Популярное"
+              data-label-en="Popular"
             >
               <div class="service-strip__left">
                 <span class="service-idx">03</span>
-                <h2
+                <h3
                   class="service-title"
                   data-ru="Корпоративный сайт / SPA"
                   data-en="Corporate Site / SPA"
                 >
                   Корпоративный сайт / SPA
-                </h2>
+                </h3>
                 <ul class="service-tags">
                   <li>React</li>
                   <li>Vue</li>
@@ -407,13 +417,13 @@
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">04</span>
-                <h2
+                <h3
                   class="service-title"
                   data-ru="Интернет-магазин"
                   data-en="E-commerce &amp; Catalogue"
                 >
                   Интернет-магазин
-                </h2>
+                </h3>
                 <ul class="service-tags">
                   <li>Каталог</li>
                   <li>Корзина</li>
@@ -446,13 +456,13 @@
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">05</span>
-                <h2
+                <h3
                   class="service-title"
                   data-ru="Доработка и баги"
                   data-en="Fixes &amp; Updates"
                 >
                   Доработка и баги
-                </h2>
+                </h3>
                 <ul class="service-tags">
                   <li>Баги</li>
                   <li>Адаптив</li>
@@ -486,18 +496,19 @@
       </section>
 
       <!-- ЭТАПЫ -->
+      <!-- БАГ #4 ИСПРАВЛЕН: section-num стал h2, h3 внутри остались h3 -->
       <section
         id="process"
         class="process-modern"
         aria-labelledby="process-title"
       >
         <div class="container-fluid">
-          <span
+          <h2
             class="section-num"
             data-ru="02 / КАК МЫ РАБОТАЕМ"
             data-en="02 / THE PROCESS"
             id="process-title"
-            >02 / КАК МЫ РАБОТАЕМ</span
+            >02 / КАК МЫ РАБОТАЕМ</h2
           >
           <p
             class="section-lead"
@@ -572,6 +583,7 @@
       </section>
 
       <!-- ПОРТФОЛИО -->
+      <!-- БАГ #4 ИСПРАВЛЕН: section-num стал h2, h2 внутри карточек стали h3 -->
       <section
         id="portfolio"
         class="portfolio-fullscreen"
@@ -579,12 +591,12 @@
       >
         <div class="container-fluid">
           <div class="portfolio__wrapper">
-            <span
+            <h2
               class="section-num"
               data-ru="03 / ПРОЕКТЫ"
               data-en="03 / PROJECTS"
               id="portfolio-title"
-              >03 / ПРОЕКТЫ</span
+              >03 / ПРОЕКТЫ</h2
             >
             <p
               class="section-lead section-lead--light"
@@ -604,12 +616,12 @@
                 <span class="project-tag-modern"
                   >JavaScript / Adaptive / CSS Animations</span
                 >
-                <h2
+                <h3
                   data-ru="Ветеринарный центр «PrettyPaw»"
                   data-en="Veterinary Center 'PrettyPaw'"
                 >
                   Ветеринарный центр «PrettyPaw»
-                </h2>
+                </h3>
                 <p
                   class="poster-desc"
                   data-ru="Многостраничный коммерческий сайт с адаптивной сеткой, кастомными анимациями и валидацией форм на чистом JavaScript. Верстка под мобильные, планшет и десктоп."
@@ -650,12 +662,12 @@
             <article class="portfolio-poster portfolio-poster--alt">
               <div class="poster-info-side">
                 <span class="project-tag-modern">React / API / Responsive</span>
-                <h2
+                <h3
                   data-ru="React-проект — скоро"
                   data-en="React Project — coming soon"
                 >
                   React-проект — скоро
-                </h2>
+                </h3>
                 <p
                   class="poster-desc"
                   data-ru="Скоро здесь появится новый проект. Следите за обновлениями на GitHub."
@@ -690,14 +702,15 @@
       </section>
 
       <!-- FAQ -->
+      <!-- БАГ #4 ИСПРАВЛЕН: section-num стал h2 -->
       <section id="faq" class="faq-modern" aria-labelledby="faq-title">
         <div class="container-fluid">
-          <span
+          <h2
             class="section-num"
             data-ru="04 / ЧАСТЫЕ ВОПРОСЫ"
             data-en="04 / FAQ"
             id="faq-title"
-            >04 / ЧАСТЫЕ ВОПРОСЫ</span
+            >04 / ЧАСТЫЕ ВОПРОСЫ</h2
           >
           <p
             class="section-lead"
@@ -866,6 +879,9 @@
                 с клиентами из Беларуси, России и Европы.
               </p>
               <address class="manifesto-contacts">
+                <a href="tel:+375295784449" class="manifesto-phone"
+                  >+375 29 578-44-49</a
+                >
                 <p class="manifesto-legal">
                   E. Laziuk &nbsp;·&nbsp; Soligorsk, Belarus &nbsp;·&nbsp; НПД
                 </p>
@@ -901,7 +917,7 @@
       </section>
     </main>
 
-    <!-- ФУТЕР — КОМПАКТНЫЙ (без дублирующего CTA) -->
+    <!-- ФУТЕР -->
     <footer class="site-footer" role="contentinfo">
       <div class="footer-inner">
         <a href="#" class="footer-logo">E. LAZIUK</a>
@@ -915,6 +931,7 @@
             rel="noopener noreferrer"
             >GitHub</a
           >
+          <a href="tel:+375295784449">+375 29 578-44-49</a>
         </nav>
         <span class="footer-copy"
           >© <span id="footer-year"></span> Elena Laziuk · Frontend Developer ·
@@ -923,7 +940,10 @@
       </div>
     </footer>
 
-    <!-- Кастомный курсор-стрелка со следом -->
+    <!-- БАГ #1 ИСПРАВЛЕН: кнопка "наверх" теперь в HTML, а не создаётся через JS -->
+    <button id="top-btn" aria-label="Прокрутить наверх">↑</button>
+
+    <!-- Canvas для курсора-следа -->
     <canvas id="cursor-trail" aria-hidden="true"></canvas>
 
     <script src="script.js"></script>

@@ -58,19 +58,21 @@ h3 {
   font-weight: 300;
 }
 
+/* БАГ #4 ИСПРАВЛЕН: section-num теперь h2 — сбрасываем браузерные стили h2 */
 .section-num {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.82rem; /* ~14px */
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   color: var(--color-accent);
   margin-bottom: 16px;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 .section-lead {
   font-family: var(--font-body);
-  font-size: 1.06rem; /* ~18px */
+  font-size: 1.06rem;
   font-weight: 300;
   color: #7a6a66;
   max-width: 580px;
@@ -128,7 +130,7 @@ h3 {
   text-decoration: none;
   color: var(--color-dark);
   font-weight: 400;
-  font-size: 0.94rem; /* ~16px */
+  font-size: 0.94rem;
   letter-spacing: 0.04em;
   opacity: 0.55;
   position: relative;
@@ -155,7 +157,24 @@ h3 {
 .header__right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
+}
+.header-phone {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-dark);
+  text-decoration: none;
+  opacity: 0.7;
+  transition:
+    opacity 0.3s,
+    color 0.3s;
+  white-space: nowrap;
+}
+.header-phone:hover {
+  opacity: 1;
+  color: var(--color-accent);
 }
 .lang-switcher {
   display: flex;
@@ -264,6 +283,22 @@ h3 {
 .mobile-menu__contacts {
   display: flex;
   gap: 16px;
+}
+.mobile-menu__phone {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-dark);
+  text-decoration: none;
+  opacity: 0.65;
+  transition:
+    opacity 0.3s,
+    color 0.3s;
+}
+.mobile-menu__phone:hover {
+  opacity: 1;
+  color: var(--color-accent);
 }
 
 /* ============================================================
@@ -375,7 +410,7 @@ h3 {
 
 .hero-lead {
   font-family: var(--font-body);
-  font-size: 1.12rem; /* ~19px */
+  font-size: 1.12rem;
   font-weight: 300;
   color: #7a6a66;
   margin-bottom: 36px;
@@ -424,7 +459,7 @@ h3 {
 }
 .trust-label {
   font-family: var(--font-body);
-  font-size: 0.78rem; /* метка под цифрой — маленькая OK */
+  font-size: 0.78rem;
   color: #a09590;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -459,7 +494,7 @@ h3 {
   text-decoration: none;
   border-radius: 3px;
   font-weight: 500;
-  font-size: 0.95rem; /* ~16px */
+  font-size: 0.95rem;
   letter-spacing: 0.06em;
   transition: all 0.6s var(--ease-luxury);
   border: 1px solid var(--color-dark);
@@ -537,11 +572,7 @@ h3 {
   z-index: 2;
   box-shadow: 0 32px 72px rgba(26, 18, 16, 0.1);
   transition: all 0.6s var(--ease-luxury);
-  background: linear-gradient(
-    145deg,
-    #e8dfd5,
-    #c9b9a8
-  ); /* fallback пока грузится */
+  background: linear-gradient(145deg, #e8dfd5, #c9b9a8);
 }
 .hero-fx-img {
   width: 100%;
@@ -555,7 +586,6 @@ h3 {
   transform: scale(1.03);
 }
 
-/* SVG-плейсхолдер */
 .hero-fx-svg {
   width: 100%;
   height: 100%;
@@ -663,6 +693,7 @@ h3 {
   border-bottom: 1px solid rgba(120, 89, 79, 0.35);
   background: rgba(120, 89, 79, 0.03);
 }
+/* БАГ #3 ИСПРАВЛЕН: теперь data-label заполнен в HTML, ::before работает корректно */
 .service-strip--featured::before {
   content: attr(data-label);
   position: absolute;
@@ -688,6 +719,7 @@ h3 {
   letter-spacing: 0.1em;
   transition: color 0.3s;
 }
+/* БАГ #4 ИСПРАВЛЕН: .service-title теперь h3, сбрасываем браузерные стили */
 .service-title {
   font-family: var(--font-head);
   font-size: 2rem;
@@ -871,7 +903,8 @@ h3 {
   margin-bottom: 16px;
   display: block;
 }
-.poster-info-side h2 {
+/* БАГ #4 ИСПРАВЛЕН: .poster-info-side h3 вместо h2 */
+.poster-info-side h3 {
   font-family: var(--font-head);
   font-size: 2.7rem;
   font-weight: 300;
@@ -1057,6 +1090,20 @@ h3 {
   font-style: normal;
   margin-bottom: 32px;
 }
+.manifesto-phone {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-sand);
+  text-decoration: none;
+  margin-bottom: 14px;
+  transition: color 0.3s;
+}
+.manifesto-phone:hover {
+  color: var(--color-gold);
+}
 .manifesto-legal {
   font-family: var(--font-body);
   font-size: 0.85rem;
@@ -1080,6 +1127,7 @@ h3 {
   display: flex;
   gap: 14px;
   margin-top: 36px;
+  flex-wrap: wrap;
 }
 .m-link {
   font-family: var(--font-body);
@@ -1105,9 +1153,18 @@ h3 {
   background: #7360f2;
   color: #fff;
 }
+.m-link--call {
+  background: transparent;
+  color: var(--color-sand);
+  border: 1px solid rgba(250, 245, 239, 0.35);
+}
+.m-link--call:hover {
+  background: rgba(250, 245, 239, 0.08);
+  border-color: rgba(250, 245, 239, 0.6);
+}
 
 /* ============================================================
-   ФУТЕР — компактный, контрастный
+   ФУТЕР
    ============================================================ */
 .site-footer {
   background: #120d0c;
@@ -1129,7 +1186,7 @@ h3 {
   font-size: 0.95rem;
   letter-spacing: 0.22em;
   text-decoration: none;
-  color: var(--color-gold); /* золотой — хорошо виден на чёрном */
+  color: var(--color-gold);
   transition: color 0.3s;
 }
 .footer-logo:hover {
@@ -1143,7 +1200,7 @@ h3 {
 .footer-nav a {
   font-family: var(--font-body);
   font-size: 0.95rem;
-  color: #c8b8b0; /* светло-бежевый — читаемый */
+  color: #c8b8b0;
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -1154,7 +1211,7 @@ h3 {
 .footer-copy {
   font-family: var(--font-body);
   font-size: 0.88rem;
-  color: #7a6f6c; /* немного темнее — второстепенный */
+  color: #7a6f6c;
 }
 
 /* ============================================================
@@ -1186,6 +1243,7 @@ h3 {
 
 /* ============================================================
    КНОПКА НАВЕРХ
+   БАГ #1 ИСПРАВЛЕН: кнопка теперь в HTML, стили без изменений
    ============================================================ */
 #top-btn {
   position: fixed;
@@ -1229,8 +1287,19 @@ h3 {
     font-size: 3.6rem;
   }
 }
+@media (max-width: 1100px) {
+  .nav {
+    gap: 22px;
+  }
+}
+
+/* БАГ #9 ИСПРАВЛЕН: телефон скрывается на том же брейкпоинте, что и nav (992px),
+   чтобы не было разрыва между скрытием телефона и появлением бургера */
 @media (max-width: 992px) {
   .nav {
+    display: none;
+  }
+  .header-phone {
     display: none;
   }
   .burger {
@@ -1401,4 +1470,5 @@ h3 {
   #cursor-trail {
     display: none;
   }
+  /* БАГ #6: marquee также должен останавливаться — обрабатывается в JS */
 }

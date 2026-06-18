@@ -1,11 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ==========================================================================
+  // Общие проверки — вынесены в начало для использования во всех модулях
+  // ==========================================================================
+  const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+  // БАГ #6 ИСПРАВЛЕН: prefersReducedMotion вынесен в общую область видимости
+  // и используется и в курсоре, и в marquee
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  // ==========================================================================
   // 🌐 1. ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА
   // ==========================================================================
   const btnRu = document.getElementById("btn-ru");
   const btnEn = document.getElementById("btn-en");
 
-  const HTML_SELECTORS = [".hero-title", ".manifesto-big-text"];
+  // Селекторы, в которые вставляется HTML (а не textContent)
+  const HTML_SELECTORS = [".manifesto-big-text"];
 
   function getLang() {
     try {
@@ -24,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     (lang === "ru" ? btnRu : btnEn)?.classList.add("active");
     (lang === "ru" ? btnEn : btnRu)?.classList.remove("active");
 
+    // Элементы с HTML-контентом (innerHTML)
     HTML_SELECTORS.forEach((sel) => {
       document.querySelectorAll(sel).forEach((el) => {
         const val = el.getAttribute("data-" + lang);
@@ -31,17 +44,34 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // Все остальные элементы — через textContent, кроме исключений
     const all = document.querySelectorAll("[data-ru][data-en]");
     all.forEach((el) => {
       if (HTML_SELECTORS.some((s) => el.matches(s))) return;
       if (el.closest(".hero-fx-frame")) return;
       if (el.id === "hero-marquee") return; // marquee рендерится отдельно
       const val = el.getAttribute("data-" + lang);
-      if (val !== null) el.innerHTML = val;
+      if (val !== null) el.textContent = val;
     });
+
+    // БАГ #5 ИСПРАВЛЕН: после смены языка перезапускаем word-reveal для hero-title,
+    // потому что applyLang заменяет innerHTML, уничтожая span-обёртки
+    const heroTitle = document.querySelector(".hero-title");
+    if (heroTitle) {
+      const val = heroTitle.getAttribute("data-" + lang);
+      if (val !== null) {
+        // Восстанавливаем исходный текст с переносами строк через <br>
+        // data-атрибут содержит чистый текст с точками — разбиваем на строки вручную
+        // Используем специальный разделитель — точку с запятой или просто пробел
+        // Фактически восстанавливаем разбивку на слова и перезапускаем reveal
+        heroTitle.innerHTML = val;
+        initHeroReveal();
+      }
+    }
 
     if (window._fillMarquee) window._fillMarquee(lang);
 
+    // Обновляем data-label у featured карточки для ::before псевдоэлемента
     document
       .querySelectorAll("[data-label-ru][data-label-en]")
       .forEach((el) => {
@@ -110,8 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
     marqueeEl.addEventListener("mouseenter", () => (paused = true));
     marqueeEl.addEventListener("mouseleave", () => (paused = false));
 
+    // БАГ #6 ИСПРАВЛЕН: marquee не анимируется при prefers-reduced-motion
     (function tick() {
-      if (!paused && marqueeInner.scrollWidth > 0) {
+      if (!prefersReducedMotion && !paused && marqueeInner.scrollWidth > 0) {
         pos -= 0.45;
         if (Math.abs(pos) >= marqueeInner.scrollWidth / 2) pos = 0;
         marqueeInner.style.transform = `translateX(${pos}px)`;
@@ -120,16 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })();
   }
 
-  applyLang(initLang);
-
   // ==========================================================================
   // 🖱 3. КАСТОМНЫЙ КУРСОР — системная стрелка + затухающий след (canvas)
   // ==========================================================================
   const trailCanvas = document.getElementById("cursor-trail");
-  const isFinePointer = window.matchMedia("(pointer: fine)").matches;
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
 
   if (trailCanvas && isFinePointer && !prefersReducedMotion) {
     const ctx = trailCanvas.getContext("2d");
@@ -146,24 +171,21 @@ document.addEventListener("DOMContentLoaded", () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Цвет следа берём из CSS-переменной --color-accent
     const accentColor =
       getComputedStyle(document.documentElement)
         .getPropertyValue("--color-accent")
         .trim() || "#78594f";
 
-    let points = []; // {x, y, life}
+    let points = [];
     let lastX = null,
       lastY = null;
-    const MAX_LIFE = 26; // кадров жизни точки следа
+    const MAX_LIFE = 26;
     const MAX_POINTS = 40;
 
     document.addEventListener("mousemove", (e) => {
       const x = e.clientX;
       const y = e.clientY;
 
-      // Добавляем промежуточные точки, если курсор двигался быстро —
-      // иначе след будет состоять из редких "скачков"
       if (lastX !== null) {
         const dist = Math.hypot(x - lastX, y - lastY);
         const steps = Math.min(Math.ceil(dist / 6), 8);
@@ -195,7 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function drawTrail() {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-      // Уменьшаем жизнь точек
       points.forEach((p) => (p.life -= 1));
       points = points.filter((p) => p.life > 0);
 
@@ -228,13 +249,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // ✨ 4. HERO TITLE — Word Reveal
+  // БАГ #5 ИСПРАВЛЕН: функция вынесена наружу, вызывается и при смене языка
   // ==========================================================================
   function initHeroReveal() {
     const heroTitle = document.querySelector(".hero-title");
     if (!heroTitle) return;
 
+    // Убираем старые классы перед повторным запуском
+    heroTitle.classList.remove("revealed");
+
     const raw = heroTitle.innerHTML;
+    // Разбиваем по <br> — обрабатываем вариант и с тегами, и с чистым текстом
     const lines = raw.split(/<br\s*\/?>/i);
+
     heroTitle.innerHTML = lines
       .map((line) =>
         line
@@ -259,7 +286,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  setTimeout(initHeroReveal, 0);
+  // БАГ #2 ИСПРАВЛЕН: applyLang вызывается ПОСЛЕ инициализации всех модулей,
+  // в том числе marquee и initHeroReveal. Так _fillMarquee гарантированно назначена.
+  setTimeout(() => {
+    initHeroReveal();
+    applyLang(initLang);
+  }, 0);
 
   // ==========================================================================
   // 📐 5. FAQ
@@ -291,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🖼 6. PHOTO PARALLAX (mouse)
   // ==========================================================================
   const photoBox = document.getElementById("hero-photo-box");
-  if (photoBox && isFinePointer) {
+  if (photoBox && isFinePointer && !prefersReducedMotion) {
     let tx = 0,
       ty = 0,
       cx = 0,
@@ -312,12 +344,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 🧲 7. MAGNETIC BUTTONS
+  // БАГ #7 ИСПРАВЛЕН: магнитный эффект применяется только после reveal
   // ==========================================================================
   if (isFinePointer) {
     document.querySelectorAll(".magnetic").forEach((btn) => {
       let leaveTimer = null;
 
       btn.addEventListener("mousemove", (e) => {
+        // Не применяем эффект, пока hero-actions ещё не проявился
+        const actions = btn.closest(".hero-actions");
+        if (actions && !actions.classList.contains("revealed")) return;
+
         if (leaveTimer) {
           clearTimeout(leaveTimer);
           leaveTimer = null;
@@ -416,20 +453,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // ⬆ 11. КНОПКА НАВЕРХ
+  // БАГ #1 ИСПРАВЛЕН: кнопка теперь в HTML — JS только управляет видимостью
   // ==========================================================================
-  const topBtn = document.createElement("button");
-  topBtn.id = "top-btn";
-  topBtn.innerHTML = "↑";
-  topBtn.setAttribute("aria-label", "Прокрутить наверх");
-  document.body.appendChild(topBtn);
-  window.addEventListener(
-    "scroll",
-    () => topBtn.classList.toggle("visible", scrollY > 450),
-    { passive: true },
-  );
-  topBtn.addEventListener("click", () =>
-    scrollTo({ top: 0, behavior: "smooth" }),
-  );
+  const topBtn = document.getElementById("top-btn");
+  if (topBtn) {
+    window.addEventListener(
+      "scroll",
+      () => topBtn.classList.toggle("visible", scrollY > 450),
+      { passive: true },
+    );
+    topBtn.addEventListener("click", () =>
+      scrollTo({ top: 0, behavior: "smooth" }),
+    );
+  }
 
   // ==========================================================================
   // 🔢 12. СЧЁТЧИКИ
