@@ -9,7 +9,7 @@
     </title>
     <meta
       name="description"
-      content="Фриланс frontend-разработчик из Беларуси. Верстка сайтов под ключ по макетам Figma, HTML/CSS/JS, React, Vue. Лендинги от 150 BYN. Исправление багов, адаптивная верстка, Битрикс24."
+      content="Фриланс frontend-разработчик из Беларуси. Верстка сайтов под ключ по макетам Figma, HTML/CSS/JS, React, Vue. Лендинги от 450 BYN. Исправление багов, адаптивная верстка, Битрикс24."
     />
     <meta
       name="keywords"
@@ -18,6 +18,10 @@
     <meta name="author" content="Елена Лазюк" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://laziukalena.github.io/" />
+
+    <!-- FIX: preconnect для Google Fonts — ускоряет загрузку шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- FIX: theme-color для мобильных браузеров -->
     <meta name="theme-color" content="#faf5ef" />
@@ -30,7 +34,7 @@
     />
     <meta
       property="og:description"
-      content="Верстка сайтов под ключ по макетам Figma. HTML/CSS/JS, React, Vue. Лендинги от 150 BYN."
+      content="Верстка сайтов под ключ по макетам Figma. HTML/CSS/JS, React, Vue. Лендинги от 450 BYN."
     />
     <!-- ВАЖНО: создай файл img/og-preview.jpg (1200×630) для превью в соцсетях -->
     <meta
@@ -39,6 +43,64 @@
     />
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- FAQPage Schema — расширенные сниппеты в Google -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Сколько времени занимает разработка?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Лендинг на конструкторе — 3–5 дней. Лендинг на коде — 5–10 дней. Корпоративный сайт или магазин — 2–5 недель. Срок фиксируем до старта и я его держу."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Вы работаете официально? Как происходит оплата?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да, работаю официально как плательщик Налога на профессиональный доход (НПД) в Беларуси. После предоплаты (30–50%) отправляю официальный чек с QR-кодом от налоговой."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Нужен ли мне макет в Figma для старта?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Нет, макет не обязателен. Если у вас есть только идея или примеры понравившихся сайтов — этого достаточно для начала."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Что если после запуска обнаружатся ошибки?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Каждый проект получает 7 дней бесплатной гарантийной поддержки. Если что-то сломается на каком-то устройстве или браузере — исправлю бесплатно и оперативно."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Работаете ли вы с зарубежными клиентами?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да, работаю с клиентами из Беларуси, России и Европы. Общаюсь на русском и английском языках. Расчёт возможен в BYN, USD или EUR."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Смогу ли я сам редактировать сайт после сдачи?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "На конструкторах (Tilda, WordPress) — легко, там всё визуально. Для сайтов на коде я пишу понятную структуру и оставляю инструкцию по редактированию текстов. Для больших проектов можем подключить CMS."
+            }
+          }
+        ]
+      }
+    </script>
 
     <script type="application/ld+json">
       {
@@ -310,6 +372,12 @@
             никаких сюрпризов после старта.
           </p>
           <div class="services-list" role="list">
+            <!--
+              ОБНОВЛЕНО: переписан тег-набор (Wix/Тур → WordPress/Joomla),
+              описание уточняет, что на конструкторах делаются не только
+              лендинги, но и визитки, корпоративные сайты и магазины.
+              Цена поднята с 80 до 250 BYN — под актуальный рынок Беларуси 2026.
+            -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">01</span>
@@ -322,23 +390,25 @@
                 </h3>
                 <ul class="service-tags">
                   <li>Tilda</li>
-                  <li>Wix</li>
-                  <li>Тур</li>
+                  <li>WordPress</li>
+                  <li>Joomla</li>
                 </ul>
               </div>
               <div class="service-strip__center">
                 <p
-                  data-ru="Tilda, Wix, Тур — готовый сайт за 3–5 дней. Идеально для малого бизнеса, кафе, студий и тестирования ниши. Полная настройка под ключ: домен, форма, SEO-базис."
-                  data-en="Tilda, Wix, Tour — a ready site in 3–5 days. Perfect for small businesses, cafés, studios, and niche testing. Full setup: domain, forms, basic SEO."
+                  data-ru="Tilda, WordPress, Joomla — готовый сайт за 3–5 дней. Делаю лендинги, сайты-визитки, корпоративные сайты и интернет-магазины. Идеально для малого бизнеса, кафе, студий и тестирования ниши. Полная настройка под ключ: домен, хостинг, форма, SEO-базис."
+                  data-en="Tilda, WordPress, Joomla — a ready site in 3–5 days. I build landing pages, business cards, corporate sites, and online stores. Perfect for small businesses, cafés, studios, and niche testing. Full setup: domain, hosting, forms, basic SEO."
                 >
-                  Tilda, Wix, Тур — готовый сайт за 3–5 дней. Идеально для
-                  малого бизнеса, кафе, студий и тестирования ниши. Полная
-                  настройка под ключ: домен, форма, SEO-базис.
+                  Tilda, WordPress, Joomla — готовый сайт за 3–5 дней. Делаю
+                  лендинги, сайты-визитки, корпоративные сайты и
+                  интернет-магазины. Идеально для малого бизнеса, кафе, студий и
+                  тестирования ниши. Полная настройка под ключ: домен, хостинг,
+                  форма, SEO-базис.
                 </p>
               </div>
               <div class="service-strip__right">
-                <span class="price-tag" data-ru="от 80 BYN" data-en="from $25"
-                  >от 80 BYN</span
+                <span class="price-tag" data-ru="от 250 BYN" data-en="from $80"
+                  >от 250 BYN</span
                 >
                 <span class="price-time" data-ru="3–5 дней" data-en="3–5 days"
                   >3–5 дней</span
@@ -346,6 +416,7 @@
               </div>
             </article>
 
+            <!-- ОБНОВЛЕНО: цена 150 → 450 BYN -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">02</span>
@@ -373,8 +444,8 @@
                 </p>
               </div>
               <div class="service-strip__right">
-                <span class="price-tag" data-ru="от 150 BYN" data-en="from $50"
-                  >от 150 BYN</span
+                <span class="price-tag" data-ru="от 450 BYN" data-en="from $145"
+                  >от 450 BYN</span
                 >
                 <span class="price-time" data-ru="5–10 дней" data-en="5–10 days"
                   >5–10 дней</span
@@ -382,6 +453,7 @@
               </div>
             </article>
 
+            <!-- ОБНОВЛЕНО: цена 300 → 800 BYN -->
             <article
               class="service-strip service-strip--featured"
               role="listitem"
@@ -415,8 +487,8 @@
                 </p>
               </div>
               <div class="service-strip__right">
-                <span class="price-tag" data-ru="от 300 BYN" data-en="from $100"
-                  >от 300 BYN</span
+                <span class="price-tag" data-ru="от 800 BYN" data-en="from $260"
+                  >от 800 BYN</span
                 >
                 <span
                   class="price-time"
@@ -427,6 +499,7 @@
               </div>
             </article>
 
+            <!-- ОБНОВЛЕНО: цена 450 → 1200 BYN -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">04</span>
@@ -454,8 +527,11 @@
                 </p>
               </div>
               <div class="service-strip__right">
-                <span class="price-tag" data-ru="от 450 BYN" data-en="from $150"
-                  >от 450 BYN</span
+                <span
+                  class="price-tag"
+                  data-ru="от 1200 BYN"
+                  data-en="from $390"
+                  >от 1200 BYN</span
                 >
                 <span
                   class="price-time"
@@ -466,6 +542,7 @@
               </div>
             </article>
 
+            <!-- ОБНОВЛЕНО: цена 35 → 50 BYN/ч -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">05</span>
@@ -495,9 +572,9 @@
               <div class="service-strip__right">
                 <span
                   class="price-tag"
-                  data-ru="от 35 BYN/ч"
-                  data-en="from $15/hr"
-                  >от 35 BYN/ч</span
+                  data-ru="от 50 BYN/ч"
+                  data-en="from $17/hr"
+                  >от 50 BYN/ч</span
                 >
                 <span class="price-time" data-ru="от 1 дня" data-en="from 1 day"
                   >от 1 дня</span
@@ -876,13 +953,13 @@
               </button>
               <div class="faq-panel-modern" id="faq-panel-6" role="region">
                 <p
-                  data-ru="На конструкторах (Tilda, Wix) — легко, там всё визуально. Для сайтов на коде я пишу понятную структуру и оставляю инструкцию по редактированию текстов. Для больших проектов можем подключить CMS."
-                  data-en="On no-code platforms (Tilda, Wix) — easily, it's all visual. For coded sites I write clear structure and provide an editing guide. For larger projects we can integrate a CMS."
+                  data-ru="На конструкторах (Tilda, WordPress) — легко, там всё визуально. Для сайтов на коде я пишу понятную структуру и оставляю инструкцию по редактированию текстов. Для больших проектов можем подключить CMS."
+                  data-en="On no-code platforms (Tilda, WordPress) — easily, it's all visual. For coded sites I write clear structure and provide an editing guide. For larger projects we can integrate a CMS."
                 >
-                  На конструкторах (Tilda, Wix) — легко, там всё визуально. Для
-                  сайтов на коде я пишу понятную структуру и оставляю инструкцию
-                  по редактированию текстов. Для больших проектов можем
-                  подключить CMS.
+                  На конструкторах (Tilda, WordPress) — легко, там всё
+                  визуально. Для сайтов на коде я пишу понятную структуру и
+                  оставляю инструкцию по редактированию текстов. Для больших
+                  проектов можем подключить CMS.
                 </p>
               </div>
             </div>

@@ -10,7 +10,7 @@
   --font-body: "DM Sans", -apple-system, sans-serif;
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* FIX: единая переменная для горизонтальных отступов секций.
+  /* единая переменная для горизонтальных отступов секций.
      clamp(24px, 4vw, 40px) — плавно от 24px на мобиле до 40px на десктопе,
      избавляет от разрозненных padding-left/right в медиазапросах. */
   --section-px: clamp(24px, 4vw, 40px);
@@ -90,7 +90,6 @@ h3 {
 
 /* ============================================================
    FOCUS-VISIBLE — клавиатурная навигация
-   FIX: добавлены стили focus-visible для всех интерактивных элементов
    ============================================================ */
 .nav__link:focus-visible,
 .lang-btn:focus-visible,
@@ -361,7 +360,6 @@ h3 {
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
 }
-/* FIX: padding через clamp — согласованное поведение на всех ширинах */
 .hero-split__left {
   padding: 0 clamp(20px, 8%, 80px);
   color: var(--color-dark);
@@ -616,7 +614,6 @@ h3 {
 .hero-fx-box:hover .hero-fx-img {
   transform: scale(1.03);
 }
-/* FIX: удалён мёртвый .hero-fx-svg — элемента нет в HTML */
 .hero-fx-box:hover .hero-fx-frame {
   transform: translate(-14px, -14px);
   box-shadow: 0 48px 96px rgba(26, 18, 16, 0.2);
@@ -674,7 +671,6 @@ h3 {
 
 /* ============================================================
    УСЛУГИ
-   FIX: padding использует --section-px вместо жёстких 40px
    ============================================================ */
 .services-modern {
   background: var(--color-sand);
@@ -1327,7 +1323,6 @@ h3 {
   .hero-split__container {
     grid-template-columns: 1fr;
   }
-  /* FIX: на планшете тоже используем clamp, не магические числа */
   .hero-split__left {
     padding: clamp(24px, 5vw, 48px);
     padding-bottom: 60px;
@@ -1413,7 +1408,6 @@ h3 {
     font-size: 1.35rem;
     padding: 28px 0;
   }
-  /* FIX: padding теперь через --section-px, больше не нужны отдельные overrides */
   .manifesto-buttons {
     flex-direction: column;
   }

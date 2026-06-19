@@ -34,11 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const isRu = lang === "ru";
     btnRu?.classList.toggle("active", isRu);
     btnEn?.classList.toggle("active", !isRu);
-    // FIX: aria-pressed для скринридеров
+    // aria-pressed для скринридеров
     btnRu?.setAttribute("aria-pressed", String(isRu));
     btnEn?.setAttribute("aria-pressed", String(!isRu));
 
-    // FIX: обновляем lang на <html> — важно для SEO и скринридеров
+    // обновляем lang на <html> — важно для SEO и скринридеров
     document.documentElement.lang = lang;
 
     // Элементы с HTML-контентом
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (val !== null) el.textContent = val;
     });
 
-    // FIX: hero-title — восстанавливаем HTML с <br> из data-атрибута,
+    // hero-title — восстанавливаем HTML с <br> из data-атрибута,
     // затем перезапускаем word-reveal.
     // data-атрибуты теперь содержат <br> напрямую — переносы сохраняются.
     const heroTitle = document.querySelector(".hero-title");
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 2. БЕГУЩАЯ СТРОКА
-  // FIX: marquee останавливается когда вкладка скрыта (visibilitychange)
+  // marquee останавливается когда вкладка скрыта (visibilitychange)
   // ==========================================================================
   const marqueeEl = document.getElementById("hero-marquee");
 
@@ -137,14 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const sep = "\u00a0\u00a0//\u00a0\u00a0";
       marqueeInner.innerHTML = (text + sep).repeat(8);
     }
-    // FIX: убираем глобальную утечку window._fillMarquee — используем
-    // замыкание, но оставляем одну точку вызова снаружи через модульный паттерн
     window._fillMarquee = fillMarquee;
     fillMarquee(initLang);
 
     let pos = 0;
     let paused = false;
-    // FIX: останавливаем анимацию когда вкладка скрыта
+    // останавливаем анимацию когда вкладка скрыта
     let tabVisible = !document.hidden;
 
     marqueeEl.addEventListener("mouseenter", () => (paused = true));
@@ -267,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
     heroTitle.classList.remove("revealed");
 
     const raw = heroTitle.innerHTML;
-    // FIX: корректно разбиваем по <br> с любыми вариантами написания
+    // корректно разбиваем по <br> с любыми вариантами написания
     const lines = raw.split(/<br\s*\/?>/i);
 
     heroTitle.innerHTML = lines
@@ -417,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 9. ЛИПКИЙ ХЕДЕР
-  // FIX: используем rAF чтобы не дёргать DOM на каждый пиксель скролла
+  // используем rAF чтобы не дёргать DOM на каждый пиксель скролла
   // ==========================================================================
   const header = document.querySelector(".header");
   if (header) {
@@ -464,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 11. КНОПКА НАВЕРХ
-  // FIX: rAF для scroll-обработчика
+  // rAF для scroll-обработчика
   // ==========================================================================
   const topBtn = document.getElementById("top-btn");
   if (topBtn) {
