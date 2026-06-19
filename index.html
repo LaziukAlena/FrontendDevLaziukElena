@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- FIX: lang обновляется через JS при смене языка -->
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -17,6 +18,10 @@
     <meta name="author" content="Елена Лазюк" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://laziukalena.github.io/" />
+
+    <!-- FIX: theme-color для мобильных браузеров -->
+    <meta name="theme-color" content="#faf5ef" />
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://laziukalena.github.io/" />
     <meta
@@ -27,12 +32,14 @@
       property="og:description"
       content="Верстка сайтов под ключ по макетам Figma. HTML/CSS/JS, React, Vue. Лендинги от 150 BYN."
     />
+    <!-- ВАЖНО: создай файл img/og-preview.jpg (1200×630) для превью в соцсетях -->
     <meta
       property="og:image"
       content="https://laziukalena.github.io/img/og-preview.jpg"
     />
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -94,9 +101,14 @@
         <div class="header__right">
           <a href="tel:+375295784449" class="header-phone">+375 29 578-44-49</a>
           <div class="lang-switcher" role="group" aria-label="Выбор языка">
-            <button class="lang-btn active" id="btn-ru">RU</button>
+            <!-- FIX: добавлены aria-pressed для скринридеров -->
+            <button class="lang-btn active" id="btn-ru" aria-pressed="true">
+              RU
+            </button>
             <span class="lang-divider" aria-hidden="true">/</span>
-            <button class="lang-btn" id="btn-en">EN</button>
+            <button class="lang-btn" id="btn-en" aria-pressed="false">
+              EN
+            </button>
           </div>
           <button
             class="burger"
@@ -182,12 +194,15 @@
               FRONTEND РАЗРАБОТЧИК // ВЕРСТКА ПОД КЛЮЧ // REACT &amp; VUE // БЭМ
               // АДАПТИВ // FIGMA TO CODE //
             </div>
-            <!-- БАГ #5 ИСПРАВЛЕН: data-атрибуты содержат чистый текст без тегов,
-                 word-reveal будет перезапускаться при смене языка через JS -->
+            <!--
+              FIX: data-en теперь содержит <br> — иначе при смене языка
+              initHeroReveal не мог разбить заголовок на строки.
+              data-ru тоже приведён к единому формату с <br>.
+            -->
             <h1
-              class="hero-title reveal-text"
-              data-ru="Создаю сайты, которые работают на вас."
-              data-en="Crafting websites that work for you."
+              class="hero-title"
+              data-ru="Создаю сайты,<br>которые работают<br>на вас."
+              data-en="Crafting websites<br>that work<br>for you."
             >
               Создаю сайты,<br />которые работают<br />на вас.
             </h1>
@@ -245,7 +260,6 @@
           </div>
           <div class="hero-split__right">
             <div class="hero-fx-box" id="hero-photo-box">
-              <!-- БАГ #10 ИСПРАВЛЕН: убран .hero-fx-noise — нет стилей, пустой элемент -->
               <div class="hero-fx-shadow" aria-hidden="true"></div>
               <div class="hero-fx-frame">
                 <img
@@ -273,7 +287,6 @@
       </section>
 
       <!-- УСЛУГИ -->
-      <!-- БАГ #4 ИСПРАВЛЕН: section-num стал h2, service-title стал h3 -->
       <section
         id="services"
         class="services-modern"
@@ -285,8 +298,9 @@
             data-ru="01 / УСЛУГИ И ЦЕНЫ"
             data-en="01 / SERVICES &amp; PRICING"
             id="services-title"
-            >01 / УСЛУГИ И ЦЕНЫ</h2
           >
+            01 / УСЛУГИ И ЦЕНЫ
+          </h2>
           <p
             class="section-lead"
             data-ru="Выберите то, что подходит вашему проекту. Все цены фиксированные — никаких сюрпризов после старта."
@@ -368,7 +382,6 @@
               </div>
             </article>
 
-            <!-- БАГ #3 ИСПРАВЛЕН: добавлены data-label, data-label-ru, data-label-en -->
             <article
               class="service-strip service-strip--featured"
               role="listitem"
@@ -496,7 +509,6 @@
       </section>
 
       <!-- ЭТАПЫ -->
-      <!-- БАГ #4 ИСПРАВЛЕН: section-num стал h2, h3 внутри остались h3 -->
       <section
         id="process"
         class="process-modern"
@@ -508,8 +520,9 @@
             data-ru="02 / КАК МЫ РАБОТАЕМ"
             data-en="02 / THE PROCESS"
             id="process-title"
-            >02 / КАК МЫ РАБОТАЕМ</h2
           >
+            02 / КАК МЫ РАБОТАЕМ
+          </h2>
           <p
             class="section-lead"
             data-ru="Прозрачный процесс от первого сообщения до запуска. Никаких сюрпризов."
@@ -583,7 +596,6 @@
       </section>
 
       <!-- ПОРТФОЛИО -->
-      <!-- БАГ #4 ИСПРАВЛЕН: section-num стал h2, h2 внутри карточек стали h3 -->
       <section
         id="portfolio"
         class="portfolio-fullscreen"
@@ -596,8 +608,9 @@
               data-ru="03 / ПРОЕКТЫ"
               data-en="03 / PROJECTS"
               id="portfolio-title"
-              >03 / ПРОЕКТЫ</h2
             >
+              03 / ПРОЕКТЫ
+            </h2>
             <p
               class="section-lead section-lead--light"
               data-ru="Учебные и коммерческие работы — каждый проект решал реальную задачу."
@@ -702,7 +715,6 @@
       </section>
 
       <!-- FAQ -->
-      <!-- БАГ #4 ИСПРАВЛЕН: section-num стал h2 -->
       <section id="faq" class="faq-modern" aria-labelledby="faq-title">
         <div class="container-fluid">
           <h2
@@ -710,8 +722,9 @@
             data-ru="04 / ЧАСТЫЕ ВОПРОСЫ"
             data-en="04 / FAQ"
             id="faq-title"
-            >04 / ЧАСТЫЕ ВОПРОСЫ</h2
           >
+            04 / ЧАСТЫЕ ВОПРОСЫ
+          </h2>
           <p
             class="section-lead"
             data-ru="Собрала самые популярные вопросы от клиентов. Если не нашли ответ — пишите напрямую."
@@ -721,8 +734,13 @@
             пишите напрямую.
           </p>
           <div class="faq-layout-modern">
+            <!-- FIX: каждая кнопка связана с панелью через aria-controls + id -->
             <div class="faq-item-modern">
-              <button class="faq-trigger-modern" aria-expanded="false">
+              <button
+                class="faq-trigger-modern"
+                aria-expanded="false"
+                aria-controls="faq-panel-1"
+              >
                 <span
                   data-ru="Сколько времени занимает разработка?"
                   data-en="How long does development take?"
@@ -730,7 +748,7 @@
                 >
                 <div class="faq-icon-line" aria-hidden="true"></div>
               </button>
-              <div class="faq-panel-modern">
+              <div class="faq-panel-modern" id="faq-panel-1" role="region">
                 <p
                   data-ru="Лендинг на конструкторе — 3–5 дней. Лендинг на коде — 5–10 дней. Корпоративный сайт или магазин — 2–5 недель. Срок фиксируем до старта и я его держу."
                   data-en="A no-code landing — 3–5 days. A coded landing — 5–10 days. A corporate site or store — 2–5 weeks. We fix the deadline before starting and I keep it."
@@ -743,7 +761,11 @@
             </div>
 
             <div class="faq-item-modern">
-              <button class="faq-trigger-modern" aria-expanded="false">
+              <button
+                class="faq-trigger-modern"
+                aria-expanded="false"
+                aria-controls="faq-panel-2"
+              >
                 <span
                   data-ru="Вы работаете официально? Как происходит оплата?"
                   data-en="Do you work legally? How does payment work?"
@@ -751,7 +773,7 @@
                 >
                 <div class="faq-icon-line" aria-hidden="true"></div>
               </button>
-              <div class="faq-panel-modern">
+              <div class="faq-panel-modern" id="faq-panel-2" role="region">
                 <p
                   data-ru="Да, работаю официально как плательщик Налога на профессиональный доход (НПД) в Беларуси. После предоплаты (30–50%) отправляю официальный чек с QR-кодом от налоговой — подходит для любой бухгалтерии."
                   data-en="Yes, I work legally in Belarus as a professional income tax (NPD) payer. After the advance (30–50%) I send an official receipt with a QR code from the Tax Authority — accepted by any accountant."
@@ -765,7 +787,11 @@
             </div>
 
             <div class="faq-item-modern">
-              <button class="faq-trigger-modern" aria-expanded="false">
+              <button
+                class="faq-trigger-modern"
+                aria-expanded="false"
+                aria-controls="faq-panel-3"
+              >
                 <span
                   data-ru="Нужен ли мне макет в Figma для старта?"
                   data-en="Do I need a Figma design to get started?"
@@ -773,7 +799,7 @@
                 >
                 <div class="faq-icon-line" aria-hidden="true"></div>
               </button>
-              <div class="faq-panel-modern">
+              <div class="faq-panel-modern" id="faq-panel-3" role="region">
                 <p
                   data-ru="Нет, макет не обязателен. Если у вас есть только идея или примеры понравившихся сайтов — этого достаточно для начала. Я помогу сформулировать задачу и предложу референсы по стилю."
                   data-en="No, a design file is not required. If you only have an idea or examples of sites you like — that's enough to start. I'll help shape the brief and suggest style references."
@@ -786,7 +812,11 @@
             </div>
 
             <div class="faq-item-modern">
-              <button class="faq-trigger-modern" aria-expanded="false">
+              <button
+                class="faq-trigger-modern"
+                aria-expanded="false"
+                aria-controls="faq-panel-4"
+              >
                 <span
                   data-ru="Что если после запуска обнаружатся ошибки?"
                   data-en="What if bugs appear after launch?"
@@ -794,7 +824,7 @@
                 >
                 <div class="faq-icon-line" aria-hidden="true"></div>
               </button>
-              <div class="faq-panel-modern">
+              <div class="faq-panel-modern" id="faq-panel-4" role="region">
                 <p
                   data-ru="Каждый проект получает 7 дней бесплатной гарантийной поддержки. Если что-то сломается на каком-то устройстве или браузере — исправлю бесплатно и оперативно."
                   data-en="Every project includes 7 days of free warranty support. If anything breaks on any device or browser within a week — I'll fix it immediately, at no extra charge."
@@ -807,7 +837,11 @@
             </div>
 
             <div class="faq-item-modern">
-              <button class="faq-trigger-modern" aria-expanded="false">
+              <button
+                class="faq-trigger-modern"
+                aria-expanded="false"
+                aria-controls="faq-panel-5"
+              >
                 <span
                   data-ru="Работаете ли вы с зарубежными клиентами?"
                   data-en="Do you work with international clients?"
@@ -815,7 +849,7 @@
                 >
                 <div class="faq-icon-line" aria-hidden="true"></div>
               </button>
-              <div class="faq-panel-modern">
+              <div class="faq-panel-modern" id="faq-panel-5" role="region">
                 <p
                   data-ru="Да, работаю с клиентами из Беларуси, России и Европы. Общаюсь на русском и английском языках. Расчёт возможен в BYN, USD или EUR."
                   data-en="Yes, I work with clients from Belarus, Russia, and Europe. I communicate in Russian and English. Payment is possible in BYN, USD, or EUR."
@@ -828,7 +862,11 @@
             </div>
 
             <div class="faq-item-modern">
-              <button class="faq-trigger-modern" aria-expanded="false">
+              <button
+                class="faq-trigger-modern"
+                aria-expanded="false"
+                aria-controls="faq-panel-6"
+              >
                 <span
                   data-ru="Смогу ли я сам редактировать сайт после сдачи?"
                   data-en="Can I edit the site myself after launch?"
@@ -836,7 +874,7 @@
                 >
                 <div class="faq-icon-line" aria-hidden="true"></div>
               </button>
-              <div class="faq-panel-modern">
+              <div class="faq-panel-modern" id="faq-panel-6" role="region">
                 <p
                   data-ru="На конструкторах (Tilda, Wix) — легко, там всё визуально. Для сайтов на коде я пишу понятную структуру и оставляю инструкцию по редактированию текстов. Для больших проектов можем подключить CMS."
                   data-en="On no-code platforms (Tilda, Wix) — easily, it's all visual. For coded sites I write clear structure and provide an editing guide. For larger projects we can integrate a CMS."
@@ -931,19 +969,16 @@
             rel="noopener noreferrer"
             >GitHub</a
           >
-          <a href="tel:+375295784449">+375 29 578-44-49</a>
         </nav>
+        <!-- FIX: fallback год прямо в HTML — если JS не загрузится, год виден -->
         <span class="footer-copy"
-          >© <span id="footer-year"></span> Elena Laziuk · Frontend Developer ·
-          НПД</span
+          >© <span id="footer-year">2025</span> Elena Laziuk · Frontend
+          Developer · НПД</span
         >
       </div>
     </footer>
 
-    <!-- БАГ #1 ИСПРАВЛЕН: кнопка "наверх" теперь в HTML, а не создаётся через JS -->
     <button id="top-btn" aria-label="Прокрутить наверх">↑</button>
-
-    <!-- Canvas для курсора-следа -->
     <canvas id="cursor-trail" aria-hidden="true"></canvas>
 
     <script src="script.js"></script>

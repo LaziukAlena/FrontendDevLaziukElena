@@ -9,6 +9,11 @@
   --font-head: "Cormorant Garamond", Georgia, serif;
   --font-body: "DM Sans", -apple-system, sans-serif;
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* FIX: единая переменная для горизонтальных отступов секций.
+     clamp(24px, 4vw, 40px) — плавно от 24px на мобиле до 40px на десктопе,
+     избавляет от разрозненных padding-left/right в медиазапросах. */
+  --section-px: clamp(24px, 4vw, 40px);
 }
 
 *,
@@ -49,7 +54,7 @@ body {
 }
 
 /* ============================================================
-   ТИПОГРАФИКА — базовые размеры
+   ТИПОГРАФИКА
    ============================================================ */
 h1,
 h2,
@@ -58,7 +63,7 @@ h3 {
   font-weight: 300;
 }
 
-/* БАГ #4 ИСПРАВЛЕН: section-num теперь h2 — сбрасываем браузерные стили h2 */
+/* section-num — это h2, сбрасываем браузерные стили */
 .section-num {
   display: block;
   font-family: var(--font-body);
@@ -81,6 +86,31 @@ h3 {
 }
 .section-lead--light {
   color: #b0a09a;
+}
+
+/* ============================================================
+   FOCUS-VISIBLE — клавиатурная навигация
+   FIX: добавлены стили focus-visible для всех интерактивных элементов
+   ============================================================ */
+.nav__link:focus-visible,
+.lang-btn:focus-visible,
+.burger:focus-visible,
+.mobile-nav__link:focus-visible,
+.btn-journal:focus-visible,
+.poster-link:focus-visible,
+.poster-git:focus-visible,
+.faq-trigger-modern:focus-visible,
+.m-link:focus-visible,
+.footer-nav a:focus-visible,
+.footer-logo:focus-visible,
+.logo:focus-visible,
+#top-btn:focus-visible,
+.manifesto-phone:focus-visible,
+.manifesto-gh:focus-visible,
+.header-phone:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* ============================================================
@@ -107,7 +137,7 @@ h3 {
 .header__container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 var(--section-px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -331,8 +361,9 @@ h3 {
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
 }
+/* FIX: padding через clamp — согласованное поведение на всех ширинах */
 .hero-split__left {
-  padding: 0 8%;
+  padding: 0 clamp(20px, 8%, 80px);
   color: var(--color-dark);
   min-width: 0;
 }
@@ -585,16 +616,7 @@ h3 {
 .hero-fx-box:hover .hero-fx-img {
   transform: scale(1.03);
 }
-
-.hero-fx-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  transition: transform 0.8s var(--ease-luxury);
-}
-.hero-fx-box:hover .hero-fx-svg {
-  transform: scale(1.03);
-}
+/* FIX: удалён мёртвый .hero-fx-svg — элемента нет в HTML */
 .hero-fx-box:hover .hero-fx-frame {
   transform: translate(-14px, -14px);
   box-shadow: 0 48px 96px rgba(26, 18, 16, 0.2);
@@ -652,10 +674,11 @@ h3 {
 
 /* ============================================================
    УСЛУГИ
+   FIX: padding использует --section-px вместо жёстких 40px
    ============================================================ */
 .services-modern {
   background: var(--color-sand);
-  padding: 130px 40px;
+  padding: 130px var(--section-px);
   border-top: 1px solid var(--color-border);
 }
 .container-fluid {
@@ -693,7 +716,6 @@ h3 {
   border-bottom: 1px solid rgba(120, 89, 79, 0.35);
   background: rgba(120, 89, 79, 0.03);
 }
-/* БАГ #3 ИСПРАВЛЕН: теперь data-label заполнен в HTML, ::before работает корректно */
 .service-strip--featured::before {
   content: attr(data-label);
   position: absolute;
@@ -719,7 +741,6 @@ h3 {
   letter-spacing: 0.1em;
   transition: color 0.3s;
 }
-/* БАГ #4 ИСПРАВЛЕН: .service-title теперь h3, сбрасываем браузерные стили */
 .service-title {
   font-family: var(--font-head);
   font-size: 2rem;
@@ -777,7 +798,7 @@ h3 {
    ============================================================ */
 .process-modern {
   background: var(--color-sand);
-  padding: 130px 40px;
+  padding: 130px var(--section-px);
   border-top: 1px solid var(--color-border);
 }
 .process-strips {
@@ -825,7 +846,7 @@ h3 {
 .portfolio-fullscreen {
   background: var(--color-dark);
   color: var(--color-sand);
-  padding: 130px 40px;
+  padding: 130px var(--section-px);
 }
 .portfolio-fullscreen .section-num {
   color: var(--color-gold);
@@ -903,7 +924,6 @@ h3 {
   margin-bottom: 16px;
   display: block;
 }
-/* БАГ #4 ИСПРАВЛЕН: .poster-info-side h3 вместо h2 */
 .poster-info-side h3 {
   font-family: var(--font-head);
   font-size: 2.7rem;
@@ -973,7 +993,7 @@ h3 {
    ============================================================ */
 .faq-modern {
   background: var(--color-sand);
-  padding: 130px 40px;
+  padding: 130px var(--section-px);
   border-top: 1px solid var(--color-border);
 }
 .faq-layout-modern {
@@ -1059,7 +1079,7 @@ h3 {
 .manifesto-section {
   background: var(--color-dark);
   color: var(--color-sand);
-  padding: 140px 40px 100px;
+  padding: 140px var(--section-px) 100px;
 }
 .container {
   max-width: 1360px;
@@ -1168,7 +1188,7 @@ h3 {
    ============================================================ */
 .site-footer {
   background: #120d0c;
-  padding: 32px 40px;
+  padding: 32px var(--section-px);
   border-top: 1px solid rgba(212, 188, 162, 0.12);
 }
 .footer-inner {
@@ -1192,7 +1212,6 @@ h3 {
 .footer-logo:hover {
   color: #fff;
 }
-
 .footer-nav {
   display: flex;
   gap: 28px;
@@ -1207,7 +1226,6 @@ h3 {
 .footer-nav a:hover {
   color: var(--color-gold);
 }
-
 .footer-copy {
   font-family: var(--font-body);
   font-size: 0.88rem;
@@ -1243,7 +1261,6 @@ h3 {
 
 /* ============================================================
    КНОПКА НАВЕРХ
-   БАГ #1 ИСПРАВЛЕН: кнопка теперь в HTML, стили без изменений
    ============================================================ */
 #top-btn {
   position: fixed;
@@ -1293,8 +1310,6 @@ h3 {
   }
 }
 
-/* БАГ #9 ИСПРАВЛЕН: телефон скрывается на том же брейкпоинте, что и nav (992px),
-   чтобы не было разрыва между скрытием телефона и появлением бургера */
 @media (max-width: 992px) {
   .nav {
     display: none;
@@ -1312,8 +1327,10 @@ h3 {
   .hero-split__container {
     grid-template-columns: 1fr;
   }
+  /* FIX: на планшете тоже используем clamp, не магические числа */
   .hero-split__left {
-    padding: 40px 32px 60px;
+    padding: clamp(24px, 5vw, 48px);
+    padding-bottom: 60px;
     text-align: center;
   }
   .hero-marquee {
@@ -1369,6 +1386,7 @@ h3 {
     justify-content: center;
   }
 }
+
 @media (max-width: 768px) {
   html {
     font-size: 16px;
@@ -1395,17 +1413,7 @@ h3 {
     font-size: 1.35rem;
     padding: 28px 0;
   }
-  .services-modern,
-  .process-modern,
-  .faq-modern,
-  .portfolio-fullscreen,
-  .manifesto-section {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  .site-footer {
-    padding: 24px;
-  }
+  /* FIX: padding теперь через --section-px, больше не нужны отдельные overrides */
   .manifesto-buttons {
     flex-direction: column;
   }
@@ -1428,9 +1436,11 @@ h3 {
     font-size: 2.1rem;
   }
 }
+
 @media (max-width: 480px) {
   .hero-split__left {
-    padding: 32px 20px 48px;
+    padding: clamp(16px, 5vw, 32px);
+    padding-bottom: 48px;
   }
   .hero-fx-box {
     width: 240px;
@@ -1470,5 +1480,4 @@ h3 {
   #cursor-trail {
     display: none;
   }
-  /* БАГ #6: marquee также должен останавливаться — обрабатывается в JS */
 }

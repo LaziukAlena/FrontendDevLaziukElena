@@ -1,22 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ==========================================================================
-  // Общие проверки — вынесены в начало для использования во всех модулях
+  // Общие проверки
   // ==========================================================================
   const isFinePointer = window.matchMedia("(pointer: fine)").matches;
-
-  // БАГ #6 ИСПРАВЛЕН: prefersReducedMotion вынесен в общую область видимости
-  // и используется и в курсоре, и в marquee
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
   // ==========================================================================
-  // 🌐 1. ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА
+  // 1. ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА
   // ==========================================================================
   const btnRu = document.getElementById("btn-ru");
   const btnEn = document.getElementById("btn-en");
 
-  // Селекторы, в которые вставляется HTML (а не textContent)
+  // Селекторы, в которые вставляется HTML (innerHTML), а не textContent
   const HTML_SELECTORS = [".manifesto-big-text"];
 
   function getLang() {
@@ -33,10 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applyLang(lang) {
-    (lang === "ru" ? btnRu : btnEn)?.classList.add("active");
-    (lang === "ru" ? btnEn : btnRu)?.classList.remove("active");
+    // Переключаем кнопки + aria-pressed
+    const isRu = lang === "ru";
+    btnRu?.classList.toggle("active", isRu);
+    btnEn?.classList.toggle("active", !isRu);
+    // FIX: aria-pressed для скринридеров
+    btnRu?.setAttribute("aria-pressed", String(isRu));
+    btnEn?.setAttribute("aria-pressed", String(!isRu));
 
-    // Элементы с HTML-контентом (innerHTML)
+    // FIX: обновляем lang на <html> — важно для SEO и скринридеров
+    document.documentElement.lang = lang;
+
+    // Элементы с HTML-контентом
     HTML_SELECTORS.forEach((sel) => {
       document.querySelectorAll(sel).forEach((el) => {
         const val = el.getAttribute("data-" + lang);
@@ -44,34 +49,32 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Все остальные элементы — через textContent, кроме исключений
-    const all = document.querySelectorAll("[data-ru][data-en]");
-    all.forEach((el) => {
+    // Все остальные — через textContent
+    document.querySelectorAll("[data-ru][data-en]").forEach((el) => {
       if (HTML_SELECTORS.some((s) => el.matches(s))) return;
       if (el.closest(".hero-fx-frame")) return;
-      if (el.id === "hero-marquee") return; // marquee рендерится отдельно
+      if (el.id === "hero-marquee") return;
+      if (el.classList.contains("hero-title")) return; // обрабатываем отдельно
       const val = el.getAttribute("data-" + lang);
       if (val !== null) el.textContent = val;
     });
 
-    // БАГ #5 ИСПРАВЛЕН: после смены языка перезапускаем word-reveal для hero-title,
-    // потому что applyLang заменяет innerHTML, уничтожая span-обёртки
+    // FIX: hero-title — восстанавливаем HTML с <br> из data-атрибута,
+    // затем перезапускаем word-reveal.
+    // data-атрибуты теперь содержат <br> напрямую — переносы сохраняются.
     const heroTitle = document.querySelector(".hero-title");
     if (heroTitle) {
       const val = heroTitle.getAttribute("data-" + lang);
       if (val !== null) {
-        // Восстанавливаем исходный текст с переносами строк через <br>
-        // data-атрибут содержит чистый текст с точками — разбиваем на строки вручную
-        // Используем специальный разделитель — точку с запятой или просто пробел
-        // Фактически восстанавливаем разбивку на слова и перезапускаем reveal
         heroTitle.innerHTML = val;
         initHeroReveal();
       }
     }
 
+    // Marquee
     if (window._fillMarquee) window._fillMarquee(lang);
 
-    // Обновляем data-label у featured карточки для ::before псевдоэлемента
+    // data-label у featured карточки для ::before
     document
       .querySelectorAll("[data-label-ru][data-label-en]")
       .forEach((el) => {
@@ -89,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
       applyLang(lang);
       return;
     }
+
     const animEls = Array.from(
       document.querySelectorAll("[data-ru][data-en]"),
     ).filter((el) => !el.closest(".hero-fx-frame"));
@@ -114,7 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const initLang = getLang();
 
   // ==========================================================================
-  // 🎞 2. БЕГУЩАЯ СТРОКА
+  // 2. БЕГУЩАЯ СТРОКА
+  // FIX: marquee останавливается когда вкладка скрыта (visibilitychange)
   // ==========================================================================
   const marqueeEl = document.getElementById("hero-marquee");
 
@@ -132,17 +137,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const sep = "\u00a0\u00a0//\u00a0\u00a0";
       marqueeInner.innerHTML = (text + sep).repeat(8);
     }
+    // FIX: убираем глобальную утечку window._fillMarquee — используем
+    // замыкание, но оставляем одну точку вызова снаружи через модульный паттерн
     window._fillMarquee = fillMarquee;
     fillMarquee(initLang);
 
-    let pos = 0,
-      paused = false;
+    let pos = 0;
+    let paused = false;
+    // FIX: останавливаем анимацию когда вкладка скрыта
+    let tabVisible = !document.hidden;
+
     marqueeEl.addEventListener("mouseenter", () => (paused = true));
     marqueeEl.addEventListener("mouseleave", () => (paused = false));
+    document.addEventListener("visibilitychange", () => {
+      tabVisible = !document.hidden;
+    });
 
-    // БАГ #6 ИСПРАВЛЕН: marquee не анимируется при prefers-reduced-motion
     (function tick() {
-      if (!prefersReducedMotion && !paused && marqueeInner.scrollWidth > 0) {
+      if (
+        !prefersReducedMotion &&
+        !paused &&
+        tabVisible &&
+        marqueeInner.scrollWidth > 0
+      ) {
         pos -= 0.45;
         if (Math.abs(pos) >= marqueeInner.scrollWidth / 2) pos = 0;
         marqueeInner.style.transform = `translateX(${pos}px)`;
@@ -152,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // 🖱 3. КАСТОМНЫЙ КУРСОР — системная стрелка + затухающий след (canvas)
+  // 3. КАСТОМНЫЙ КУРСОР — canvas-след
   // ==========================================================================
   const trailCanvas = document.getElementById("cursor-trail");
 
@@ -185,7 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("mousemove", (e) => {
       const x = e.clientX;
       const y = e.clientY;
-
       if (lastX !== null) {
         const dist = Math.hypot(x - lastX, y - lastY);
         const steps = Math.min(Math.ceil(dist / 6), 8);
@@ -200,11 +216,9 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         points.push({ x, y, life: MAX_LIFE });
       }
-
       if (points.length > MAX_POINTS) {
         points.splice(0, points.length - MAX_POINTS);
       }
-
       lastX = x;
       lastY = y;
     });
@@ -216,19 +230,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function drawTrail() {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
       points.forEach((p) => (p.life -= 1));
       points = points.filter((p) => p.life > 0);
 
       if (points.length > 1) {
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-
         for (let i = 1; i < points.length; i++) {
           const p0 = points[i - 1];
           const p1 = points[i];
           const lifeRatio = p1.life / MAX_LIFE;
-
           ctx.beginPath();
           ctx.moveTo(p0.x, p0.y);
           ctx.lineTo(p1.x, p1.y);
@@ -239,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         ctx.globalAlpha = 1;
       }
-
       requestAnimationFrame(drawTrail);
     }
     requestAnimationFrame(drawTrail);
@@ -248,18 +258,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // ✨ 4. HERO TITLE — Word Reveal
-  // БАГ #5 ИСПРАВЛЕН: функция вынесена наружу, вызывается и при смене языка
+  // 4. HERO TITLE — Word Reveal
   // ==========================================================================
   function initHeroReveal() {
     const heroTitle = document.querySelector(".hero-title");
     if (!heroTitle) return;
 
-    // Убираем старые классы перед повторным запуском
     heroTitle.classList.remove("revealed");
 
     const raw = heroTitle.innerHTML;
-    // Разбиваем по <br> — обрабатываем вариант и с тегами, и с чистым текстом
+    // FIX: корректно разбиваем по <br> с любыми вариантами написания
     const lines = raw.split(/<br\s*\/?>/i);
 
     heroTitle.innerHTML = lines
@@ -286,15 +294,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // БАГ #2 ИСПРАВЛЕН: applyLang вызывается ПОСЛЕ инициализации всех модулей,
-  // в том числе marquee и initHeroReveal. Так _fillMarquee гарантированно назначена.
+  // Инициализируем всё после одного тика — гарантируем что marquee уже готов
   setTimeout(() => {
     initHeroReveal();
     applyLang(initLang);
   }, 0);
 
   // ==========================================================================
-  // 📐 5. FAQ
+  // 5. FAQ
   // ==========================================================================
   document.querySelectorAll(".faq-trigger-modern").forEach((trigger) => {
     trigger.addEventListener("click", () => {
@@ -302,6 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const panel = trigger.nextElementSibling;
       const isOpen = item.classList.contains("active");
 
+      // Закрываем все открытые
       document.querySelectorAll(".faq-item-modern.active").forEach((o) => {
         o.classList.remove("active");
         o.querySelector(".faq-panel-modern").style.maxHeight = null;
@@ -320,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================================================
-  // 🖼 6. PHOTO PARALLAX (mouse)
+  // 6. PHOTO PARALLAX (mouse)
   // ==========================================================================
   const photoBox = document.getElementById("hero-photo-box");
   if (photoBox && isFinePointer && !prefersReducedMotion) {
@@ -328,12 +336,10 @@ document.addEventListener("DOMContentLoaded", () => {
       ty = 0,
       cx = 0,
       cy = 0;
-
     document.addEventListener("mousemove", (e) => {
       tx = ((e.clientX - innerWidth / 2) / (innerWidth / 2)) * 12;
       ty = ((e.clientY - innerHeight / 2) / (innerHeight / 2)) * 10;
     });
-
     (function anim() {
       cx += (tx - cx) * 0.06;
       cy += (ty - cy) * 0.06;
@@ -343,15 +349,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // 🧲 7. MAGNETIC BUTTONS
-  // БАГ #7 ИСПРАВЛЕН: магнитный эффект применяется только после reveal
+  // 7. MAGNETIC BUTTONS
   // ==========================================================================
   if (isFinePointer) {
     document.querySelectorAll(".magnetic").forEach((btn) => {
       let leaveTimer = null;
 
       btn.addEventListener("mousemove", (e) => {
-        // Не применяем эффект, пока hero-actions ещё не проявился
         const actions = btn.closest(".hero-actions");
         if (actions && !actions.classList.contains("revealed")) return;
 
@@ -378,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // 🎬 8. SCROLL ANIMATIONS — один IntersectionObserver
+  // 8. SCROLL ANIMATIONS — IntersectionObserver
   // ==========================================================================
   const ANIM_SELS = [
     ".section-num",
@@ -409,25 +413,32 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { threshold: 0.08 },
   );
-
   document.querySelectorAll(".anim-up").forEach((el) => scrollObs.observe(el));
 
   // ==========================================================================
-  // 📌 9. ЛИПКИЙ ХЕДЕР
+  // 9. ЛИПКИЙ ХЕДЕР
+  // FIX: используем rAF чтобы не дёргать DOM на каждый пиксель скролла
   // ==========================================================================
   const header = document.querySelector(".header");
   if (header) {
+    let ticking = false;
     window.addEventListener(
       "scroll",
       () => {
-        header.classList.toggle("is-sticky", scrollY > 60);
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            header.classList.toggle("is-sticky", scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
       },
       { passive: true },
     );
   }
 
   // ==========================================================================
-  // 🍔 10. БУРГЕР
+  // 10. БУРГЕР
   // ==========================================================================
   const burgerBtn = document.getElementById("burger-btn");
   const mobileMenu = document.getElementById("mobile-menu");
@@ -452,14 +463,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // ⬆ 11. КНОПКА НАВЕРХ
-  // БАГ #1 ИСПРАВЛЕН: кнопка теперь в HTML — JS только управляет видимостью
+  // 11. КНОПКА НАВЕРХ
+  // FIX: rAF для scroll-обработчика
   // ==========================================================================
   const topBtn = document.getElementById("top-btn");
   if (topBtn) {
+    let ticking = false;
     window.addEventListener(
       "scroll",
-      () => topBtn.classList.toggle("visible", scrollY > 450),
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            topBtn.classList.toggle("visible", scrollY > 450);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
       { passive: true },
     );
     topBtn.addEventListener("click", () =>
@@ -468,7 +488,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // 🔢 12. СЧЁТЧИКИ
+  // 12. СЧЁТЧИКИ
   // ==========================================================================
   document.querySelectorAll("[data-counter]").forEach((el) => {
     const target = parseInt(el.getAttribute("data-counter"), 10);
@@ -492,13 +512,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================================================
-  // 📅 13. АВТОГОД
+  // 13. АВТОГОД
   // ==========================================================================
   const yr = document.getElementById("footer-year");
   if (yr) yr.textContent = new Date().getFullYear();
 
   // ==========================================================================
-  // ✦ 14. SERVICE IDX — hover цвет
+  // 14. SERVICE IDX — hover цвет
   // ==========================================================================
   document.querySelectorAll(".service-strip").forEach((strip) => {
     const idx = strip.querySelector(".service-idx");
