@@ -292,9 +292,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Инициализируем всё после одного тика — гарантируем что marquee уже готов
+  // FIX: убран лишний вызов initHeroReveal() здесь.
+  // Раньше initHeroReveal() вызывался и тут, и второй раз внутри applyLang()
+  // (когда меняется innerHTML заголовка) — на старте с English locale это
+  // приводило к двойной перестройке DOM заголовка за один тик.
+  // applyLang() сама вызывает initHeroReveal() при простановке текста,
+  // так что отдельный вызов здесь не нужен.
   setTimeout(() => {
-    initHeroReveal();
     applyLang(initLang);
   }, 0);
 

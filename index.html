@@ -36,11 +36,12 @@
       property="og:description"
       content="Верстка сайтов под ключ по макетам Figma. HTML/CSS/JS, React, Vue. Лендинги от 450 BYN."
     />
-    <!-- ВАЖНО: создай файл img/og-preview.jpg (1200×630) для превью в соцсетях -->
     <meta
       property="og:image"
       content="https://laziukalena.github.io/img/og-preview.jpg"
     />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -324,6 +325,9 @@
             <div class="hero-fx-box" id="hero-photo-box">
               <div class="hero-fx-shadow" aria-hidden="true"></div>
               <div class="hero-fx-frame">
+                <!-- FIX: добавлен fetchpriority="high" — это hero-изображение
+                     above-the-fold (главный LCP-элемент страницы), явная
+                     подсказка браузеру ускоряет First/Largest Contentful Paint -->
                 <img
                   src="./img/foto.jpg"
                   alt="Елена Лазюк — frontend разработчик из Беларуси"
@@ -331,6 +335,7 @@
                   width="460"
                   height="650"
                   loading="eager"
+                  fetchpriority="high"
                   onerror="this.parentElement.classList.add('no-photo')"
                 />
               </div>
@@ -372,12 +377,6 @@
             никаких сюрпризов после старта.
           </p>
           <div class="services-list" role="list">
-            <!--
-              ОБНОВЛЕНО: переписан тег-набор (Wix/Тур → WordPress/Joomla),
-              описание уточняет, что на конструкторах делаются не только
-              лендинги, но и визитки, корпоративные сайты и магазины.
-              Цена поднята с 80 до 250 BYN — под актуальный рынок Беларуси 2026.
-            -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">01</span>
@@ -416,7 +415,6 @@
               </div>
             </article>
 
-            <!-- ОБНОВЛЕНО: цена 150 → 450 BYN -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">02</span>
@@ -453,11 +451,12 @@
               </div>
             </article>
 
-            <!-- ОБНОВЛЕНО: цена 300 → 800 BYN -->
+            <!-- FIX: убран статический data-label="Популярное" — он всё равно
+                 перезаписывается в applyLang() сразу при загрузке страницы,
+                 единственным источником правды остаются data-label-ru/-en -->
             <article
               class="service-strip service-strip--featured"
               role="listitem"
-              data-label="Популярное"
               data-label-ru="Популярное"
               data-label-en="Popular"
             >
@@ -499,7 +498,6 @@
               </div>
             </article>
 
-            <!-- ОБНОВЛЕНО: цена 450 → 1200 BYN -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">04</span>
@@ -542,7 +540,6 @@
               </div>
             </article>
 
-            <!-- ОБНОВЛЕНО: цена 35 → 50 BYN/ч -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">05</span>
@@ -976,11 +973,14 @@
         <div class="container">
           <div class="manifesto-grid">
             <div class="manifesto-left">
+              <!-- FIX: data-ru/data-en теперь содержат обычный <br> вместо
+                   экранированного &lt;br&gt;, как в hero-title — единая логика
+                   для всех элементов, которые рендерятся через innerHTML -->
               <h2
                 class="manifesto-big-text"
                 id="contacts-title"
-                data-ru="Есть проект?&lt;br&gt;Давайте обсудим."
-                data-en="Got a project?&lt;br&gt;Let's talk."
+                data-ru="Есть проект?<br>Давайте обсудим."
+                data-en="Got a project?<br>Let's talk."
               >
                 Есть проект?<br />Давайте обсудим.
               </h2>
