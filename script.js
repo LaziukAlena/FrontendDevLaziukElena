@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const isRu = lang === "ru";
     btnRu?.classList.toggle("active", isRu);
     btnEn?.classList.toggle("active", !isRu);
-    // aria-pressed для скринридеров
     btnRu?.setAttribute("aria-pressed", String(isRu));
     btnEn?.setAttribute("aria-pressed", String(!isRu));
 
@@ -59,9 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (val !== null) el.textContent = val;
     });
 
-    // hero-title — восстанавливаем HTML с <br> из data-атрибута,
-    // затем перезапускаем word-reveal.
-    // data-атрибуты теперь содержат <br> напрямую — переносы сохраняются.
+    // hero-title — восстанавливаем HTML с <br>, затем перезапускаем word-reveal
     const heroTitle = document.querySelector(".hero-title");
     if (heroTitle) {
       const val = heroTitle.getAttribute("data-" + lang);
@@ -83,6 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
           el.getAttribute("data-label-" + lang) || "",
         );
       });
+
+    // FIX: пересчёт суффиксов счётчиков при смене языка
+    // (data-suffix-ru / data-suffix-en не попадают в общий цикл [data-ru][data-en])
+    document.querySelectorAll("[data-counter]").forEach((el) => {
+      const suffix =
+        el.getAttribute("data-suffix-" + lang) ||
+        el.getAttribute("data-suffix") ||
+        "";
+      const target = parseInt(el.getAttribute("data-counter"), 10);
+      el.textContent = target + suffix;
+    });
 
     setLang(lang);
   }
@@ -142,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let pos = 0;
     let paused = false;
-    // останавливаем анимацию когда вкладка скрыта
     let tabVisible = !document.hidden;
 
     marqueeEl.addEventListener("mouseenter", () => (paused = true));
@@ -265,7 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
     heroTitle.classList.remove("revealed");
 
     const raw = heroTitle.innerHTML;
-    // корректно разбиваем по <br> с любыми вариантами написания
     const lines = raw.split(/<br\s*\/?>/i);
 
     heroTitle.innerHTML = lines
@@ -292,12 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // FIX: убран лишний вызов initHeroReveal() здесь.
-  // Раньше initHeroReveal() вызывался и тут, и второй раз внутри applyLang()
-  // (когда меняется innerHTML заголовка) — на старте с English locale это
-  // приводило к двойной перестройке DOM заголовка за один тик.
-  // applyLang() сама вызывает initHeroReveal() при простановке текста,
-  // так что отдельный вызов здесь не нужен.
   setTimeout(() => {
     applyLang(initLang);
   }, 0);
@@ -311,7 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const panel = trigger.nextElementSibling;
       const isOpen = item.classList.contains("active");
 
-      // Закрываем все открытые
       document.querySelectorAll(".faq-item-modern.active").forEach((o) => {
         o.classList.remove("active");
         o.querySelector(".faq-panel-modern").style.maxHeight = null;
@@ -419,7 +418,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 9. ЛИПКИЙ ХЕДЕР
-  // используем rAF чтобы не дёргать DOM на каждый пиксель скролла
   // ==========================================================================
   const header = document.querySelector(".header");
   if (header) {
@@ -466,7 +464,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 11. КНОПКА НАВЕРХ
-  // rAF для scroll-обработчика
   // ==========================================================================
   const topBtn = document.getElementById("top-btn");
   if (topBtn) {
@@ -491,10 +488,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 12. СЧЁТЧИКИ
+  // FIX: getSuffix() читает data-suffix-ru / data-suffix-en с учётом
+  //      текущего языка, что позволяет корректно показывать "г." / "yr."
   // ==========================================================================
   document.querySelectorAll("[data-counter]").forEach((el) => {
     const target = parseInt(el.getAttribute("data-counter"), 10);
-    const suffix = el.getAttribute("data-suffix") || "";
+    const getSuffix = () => {
+      const lang = getLang();
+      return (
+        el.getAttribute("data-suffix-" + lang) ||
+        el.getAttribute("data-suffix") ||
+        ""
+      );
+    };
     const duration = 1600;
 
     new IntersectionObserver(
@@ -505,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (function upd(now) {
           const p = Math.min((now - t0) / duration, 1);
           el.textContent =
-            Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;
+            Math.round((1 - Math.pow(1 - p, 3)) * target) + getSuffix();
           if (p < 1) requestAnimationFrame(upd);
         })(t0);
       },

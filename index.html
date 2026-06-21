@@ -1,5 +1,4 @@
 <!doctype html>
-<!-- FIX: lang обновляется через JS при смене языка -->
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -19,11 +18,9 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://laziukalena.github.io/" />
 
-    <!-- FIX: preconnect для Google Fonts — ускоряет загрузку шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- FIX: theme-color для мобильных браузеров -->
     <meta name="theme-color" content="#faf5ef" />
 
     <meta property="og:type" content="website" />
@@ -45,7 +42,6 @@
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- FAQPage Schema — расширенные сниппеты в Google -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -80,7 +76,7 @@
             "name": "Что если после запуска обнаружатся ошибки?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Каждый проект получает 7 дней бесплатной гарантийной поддержки. Если что-то сломается на каком-то устройстве или браузере — исправлю бесплатно и оперативно."
+              "text": "Каждый проект получает 6 месяцев бесплатной гарантийной поддержки. Если что-то сломается на каком-то устройстве или браузере — исправлю бесплатно и оперативно."
             }
           },
           {
@@ -164,7 +160,6 @@
         <div class="header__right">
           <a href="tel:+375295784449" class="header-phone">+375 29 578-44-49</a>
           <div class="lang-switcher" role="group" aria-label="Выбор языка">
-            <!-- FIX: добавлены aria-pressed для скринридеров -->
             <button class="lang-btn active" id="btn-ru" aria-pressed="true">
               RU
             </button>
@@ -226,15 +221,9 @@
           target="_blank"
           rel="noopener"
           class="m-link m-link--tg"
-          data-ru="Telegram"
-          data-en="Telegram"
           >Telegram</a
         >
-        <a
-          href="viber://chat?number=%2B375295784449"
-          class="m-link m-link--vb"
-          data-ru="Viber"
-          data-en="Viber"
+        <a href="viber://chat?number=%2B375295784449" class="m-link m-link--vb"
           >Viber</a
         >
       </div>
@@ -257,11 +246,7 @@
               FRONTEND РАЗРАБОТЧИК // ВЕРСТКА ПОД КЛЮЧ // REACT &amp; VUE // БЭМ
               // АДАПТИВ // FIGMA TO CODE //
             </div>
-            <!--
-              FIX: data-en теперь содержит <br> — иначе при смене языка
-              initHeroReveal не мог разбить заголовок на строки.
-              data-ru тоже приведён к единому формату с <br>.
-            -->
+
             <h1
               class="hero-title"
               data-ru="Создаю сайты,<br>которые работают<br>на вас."
@@ -269,6 +254,7 @@
             >
               Создаю сайты,<br />которые работают<br />на вас.
             </h1>
+
             <p
               class="hero-lead"
               data-ru="Верстаю с нуля по макетам Figma, исправляю баги и довожу сайты до идеала. HTML / CSS / JS / React / Vue — работаю аккуратно и в срок."
@@ -278,8 +264,10 @@
               идеала. HTML / CSS / JS / React / Vue — работаю аккуратно и в
               срок.
             </p>
+
             <div class="hero-trust">
               <div class="trust-item">
+                <!-- 30+ — суффикс не зависит от языка -->
                 <span class="trust-num" data-counter="30" data-suffix="+"
                   >30+</span
                 >
@@ -289,8 +277,13 @@
               </div>
               <div class="trust-divider" aria-hidden="true"></div>
               <div class="trust-item">
-                <span class="trust-num" data-counter="3" data-suffix="г."
-                  >3г.</span
+                <!-- FIX: языковые суффиксы г./yr. -->
+                <span
+                  class="trust-num"
+                  data-counter="2"
+                  data-suffix-ru="г."
+                  data-suffix-en="yr."
+                  >2г.</span
                 >
                 <span class="trust-label" data-ru="опыта" data-en="experience"
                   >опыта</span
@@ -298,36 +291,37 @@
               </div>
               <div class="trust-divider" aria-hidden="true"></div>
               <div class="trust-item">
-                <span class="trust-num">2ч</span>
+                <!-- FIX: не счётчик — просто текст с переводом -->
+                <span class="trust-num" data-ru="2ч" data-en="2h">2ч</span>
                 <span class="trust-label" data-ru="ответ" data-en="response"
                   >ответ</span
                 >
               </div>
             </div>
+
             <div class="hero-actions">
-              <a href="#portfolio" class="btn-journal magnetic"
-                ><span data-ru="Смотреть проекты" data-en="View Projects"
+              <a href="#portfolio" class="btn-journal magnetic">
+                <span data-ru="Смотреть проекты" data-en="View Projects"
                   >Смотреть проекты</span
-                ></a
-              >
+                >
+              </a>
               <a
                 href="https://t.me/Le_nka1988"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn-journal btn-journal--transparent magnetic"
-                ><span data-ru="Написать мне" data-en="Message Me"
-                  >Написать мне</span
-                ></a
               >
+                <span data-ru="Написать мне" data-en="Message Me"
+                  >Написать мне</span
+                >
+              </a>
             </div>
           </div>
+
           <div class="hero-split__right">
             <div class="hero-fx-box" id="hero-photo-box">
               <div class="hero-fx-shadow" aria-hidden="true"></div>
               <div class="hero-fx-frame">
-                <!-- FIX: добавлен fetchpriority="high" — это hero-изображение
-                     above-the-fold (главный LCP-элемент страницы), явная
-                     подсказка браузеру ускоряет First/Largest Contentful Paint -->
                 <img
                   src="./img/foto.jpg"
                   alt="Елена Лазюк — frontend разработчик из Беларуси"
@@ -376,7 +370,9 @@
             Выберите то, что подходит вашему проекту. Все цены фиксированные —
             никаких сюрпризов после старта.
           </p>
+
           <div class="services-list" role="list">
+            <!-- 01 -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">01</span>
@@ -415,6 +411,7 @@
               </div>
             </article>
 
+            <!-- 02 -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">02</span>
@@ -451,9 +448,7 @@
               </div>
             </article>
 
-            <!-- FIX: убран статический data-label="Популярное" — он всё равно
-                 перезаписывается в applyLang() сразу при загрузке страницы,
-                 единственным источником правды остаются data-label-ru/-en -->
+            <!-- 03 -->
             <article
               class="service-strip service-strip--featured"
               role="listitem"
@@ -498,6 +493,7 @@
               </div>
             </article>
 
+            <!-- 04 — FIX: все русские теги получили data-ru/data-en -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">04</span>
@@ -509,9 +505,9 @@
                   Интернет-магазин
                 </h3>
                 <ul class="service-tags">
-                  <li>Каталог</li>
-                  <li>Корзина</li>
-                  <li>Фильтры</li>
+                  <li data-ru="Каталог" data-en="Catalogue">Каталог</li>
+                  <li data-ru="Корзина" data-en="Cart">Корзина</li>
+                  <li data-ru="Фильтры" data-en="Filters">Фильтры</li>
                 </ul>
               </div>
               <div class="service-strip__center">
@@ -540,6 +536,7 @@
               </div>
             </article>
 
+            <!-- 05 — FIX: все русские теги получили data-ru/data-en -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
                 <span class="service-idx">05</span>
@@ -551,9 +548,9 @@
                   Доработка и баги
                 </h3>
                 <ul class="service-tags">
-                  <li>Баги</li>
-                  <li>Адаптив</li>
-                  <li>Битрикс</li>
+                  <li data-ru="Баги" data-en="Bugs">Баги</li>
+                  <li data-ru="Адаптив" data-en="Adaptive">Адаптив</li>
+                  <li data-ru="Битрикс" data-en="Bitrix">Битрикс</li>
                 </ul>
               </div>
               <div class="service-strip__center">
@@ -657,7 +654,6 @@
               <h3 data-ru="Сдача и поддержка" data-en="Launch &amp; Support">
                 Сдача и поддержка
               </h3>
-              <!-- Пример текстового блока с условиями поддержки -->
               <p
                 data-ru="Финальное тестирование на всех устройствах, загрузка на ваш хостинг и 6 месяцев бесплатной поддержки после запуска."
                 data-en="Final testing on all devices, uploading to your hosting, and 6 months of free support after launch."
@@ -723,7 +719,8 @@
                   <li>HTML5</li>
                   <li>CSS3</li>
                   <li>JavaScript</li>
-                  <li>БЭМ</li>
+                  <!-- FIX: БЭМ — русская аббревиатура, переводим -->
+                  <li data-ru="БЭМ" data-en="BEM">БЭМ</li>
                   <li>Flexbox</li>
                 </ul>
                 <div class="poster-actions">
@@ -809,7 +806,6 @@
             пишите напрямую.
           </p>
           <div class="faq-layout-modern">
-            <!-- FIX: каждая кнопка связана с панелью через aria-controls + id -->
             <div class="faq-item-modern">
               <button
                 class="faq-trigger-modern"
@@ -974,9 +970,6 @@
         <div class="container">
           <div class="manifesto-grid">
             <div class="manifesto-left">
-              <!-- FIX: data-ru/data-en теперь содержат обычный <br> вместо
-                   экранированного &lt;br&gt;, как в hero-title — единая логика
-                   для всех элементов, которые рендерятся через innerHTML -->
               <h2
                 class="manifesto-big-text"
                 id="contacts-title"
@@ -998,7 +991,12 @@
                 <a href="tel:+375295784449" class="manifesto-phone"
                   >+375 29 578-44-49</a
                 >
-                <p class="manifesto-legal">
+                <!-- НПД — аббревиатура, известная только в РБ, для EN даём расшифровку -->
+                <p
+                  class="manifesto-legal"
+                  data-ru="E. Laziuk &nbsp;·&nbsp; Солигорск, Беларусь &nbsp;·&nbsp; НПД"
+                  data-en="E. Laziuk &nbsp;·&nbsp; Soligorsk, Belarus &nbsp;·&nbsp; Self-employed"
+                >
                   E. Laziuk &nbsp;·&nbsp; Soligorsk, Belarus &nbsp;·&nbsp; НПД
                 </p>
                 <a
@@ -1048,8 +1046,11 @@
             >GitHub</a
           >
         </nav>
-        <!-- FIX: fallback год прямо в HTML — если JS не загрузится, год виден -->
-        <span class="footer-copy"
+        <!-- FIX: НПД → Self-employed для EN -->
+        <span
+          class="footer-copy"
+          data-ru="© <span id='footer-year'>2025</span> Elena Laziuk · Frontend Developer · НПД"
+          data-en="© <span id='footer-year'>2025</span> Elena Laziuk · Frontend Developer · Self-employed"
           >© <span id="footer-year">2025</span> Elena Laziuk · Frontend
           Developer · НПД</span
         >
