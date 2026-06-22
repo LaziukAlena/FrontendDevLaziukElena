@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnRu = document.getElementById("btn-ru");
   const btnEn = document.getElementById("btn-en");
 
-  // Селекторы, в которые вставляется HTML (innerHTML), а не textContent
+  // Селекторы с HTML-контентом (innerHTML вместо textContent)
   const HTML_SELECTORS = [".manifesto-big-text"];
 
   function getLang() {
@@ -30,17 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applyLang(lang) {
-    // Переключаем кнопки + aria-pressed
     const isRu = lang === "ru";
     btnRu?.classList.toggle("active", isRu);
     btnEn?.classList.toggle("active", !isRu);
     btnRu?.setAttribute("aria-pressed", String(isRu));
     btnEn?.setAttribute("aria-pressed", String(!isRu));
 
-    // обновляем lang на <html> — важно для SEO и скринридеров
     document.documentElement.lang = lang;
 
-    // Элементы с HTML-контентом
+    // Элементы с HTML-контентом (innerHTML)
     HTML_SELECTORS.forEach((sel) => {
       document.querySelectorAll(sel).forEach((el) => {
         const val = el.getAttribute("data-" + lang);
@@ -53,12 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (HTML_SELECTORS.some((s) => el.matches(s))) return;
       if (el.closest(".hero-fx-frame")) return;
       if (el.id === "hero-marquee") return;
-      if (el.classList.contains("hero-title")) return; // обрабатываем отдельно
+      if (el.classList.contains("hero-title")) return;
       const val = el.getAttribute("data-" + lang);
       if (val !== null) el.textContent = val;
     });
 
-    // hero-title — восстанавливаем HTML с <br>, затем перезапускаем word-reveal
+    // hero-title — innerHTML + word-reveal
     const heroTitle = document.querySelector(".hero-title");
     if (heroTitle) {
       const val = heroTitle.getAttribute("data-" + lang);
@@ -82,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
     // FIX: пересчёт суффиксов счётчиков при смене языка
-    // (data-suffix-ru / data-suffix-en не попадают в общий цикл [data-ru][data-en])
+    // data-suffix-ru / data-suffix-en не попадают в общий цикл [data-ru][data-en]
     document.querySelectorAll("[data-counter]").forEach((el) => {
       const suffix =
         el.getAttribute("data-suffix-" + lang) ||
@@ -127,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 2. БЕГУЩАЯ СТРОКА
-  // marquee останавливается когда вкладка скрыта (visibilitychange)
   // ==========================================================================
   const marqueeEl = document.getElementById("hero-marquee");
 
@@ -221,9 +218,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         points.push({ x, y, life: MAX_LIFE });
       }
-      if (points.length > MAX_POINTS) {
+      if (points.length > MAX_POINTS)
         points.splice(0, points.length - MAX_POINTS);
-      }
       lastX = x;
       lastY = y;
     });
@@ -237,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       points.forEach((p) => (p.life -= 1));
       points = points.filter((p) => p.life > 0);
-
       if (points.length > 1) {
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -359,7 +354,6 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("mousemove", (e) => {
         const actions = btn.closest(".hero-actions");
         if (actions && !actions.classList.contains("revealed")) return;
-
         if (leaveTimer) {
           clearTimeout(leaveTimer);
           leaveTimer = null;
@@ -488,8 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 12. СЧЁТЧИКИ
-  // FIX: getSuffix() читает data-suffix-ru / data-suffix-en с учётом
-  //      текущего языка, что позволяет корректно показывать "г." / "yr."
+  // getSuffix() читает data-suffix-ru / data-suffix-en с учётом текущего языка
   // ==========================================================================
   document.querySelectorAll("[data-counter]").forEach((el) => {
     const target = parseInt(el.getAttribute("data-counter"), 10);
@@ -521,6 +514,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
   // 13. АВТОГОД
+  // FIX: год устанавливается отдельно в #footer-year,
+  //      независимо от смены языка в .footer-copy
   // ==========================================================================
   const yr = document.getElementById("footer-year");
   if (yr) yr.textContent = new Date().getFullYear();
