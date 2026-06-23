@@ -175,6 +175,7 @@
             id="burger-btn"
             aria-label="Открыть меню"
             aria-expanded="false"
+            aria-controls="mobile-menu"
           >
             <span></span><span></span><span></span>
           </button>
@@ -182,8 +183,16 @@
       </div>
     </header>
 
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      <nav class="mobile-nav">
+    <!-- FIX: role="dialog" + aria-modal для мобильного меню -->
+    <div
+      class="mobile-menu"
+      id="mobile-menu"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Мобильное меню"
+    >
+      <nav class="mobile-nav" aria-label="Мобильное меню навигации">
         <a
           href="#services"
           class="mobile-nav__link"
@@ -220,7 +229,7 @@
         <a
           href="https://t.me/Le_nka1988"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="m-link m-link--tg"
           >Telegram</a
         >
@@ -241,6 +250,7 @@
             <div
               class="hero-marquee"
               id="hero-marquee"
+              aria-hidden="true"
               data-ru="FRONTEND РАЗРАБОТЧИК // ВЕРСТКА ПОД КЛЮЧ // REACT &amp; VUE // БЭМ // АДАПТИВ // FIGMA TO CODE //"
               data-en="FRONTEND DEVELOPER // PIXEL-PERFECT LAYOUT // REACT &amp; VUE // BEM // RESPONSIVE // FIGMA TO CODE //"
             >
@@ -274,7 +284,6 @@
               </div>
               <div class="trust-divider" aria-hidden="true"></div>
               <div class="trust-item">
-                <!-- языковой суффикс: г. / yr. -->
                 <span
                   class="trust-num"
                   data-counter="2"
@@ -288,7 +297,6 @@
               </div>
               <div class="trust-divider" aria-hidden="true"></div>
               <div class="trust-item">
-                <!-- не счётчик, просто переводимый текст -->
                 <span class="trust-num" data-ru="2ч" data-en="2h">2ч</span>
                 <span class="trust-label" data-ru="ответ" data-en="response"
                   >ответ</span
@@ -368,7 +376,7 @@
           <div class="services-list" role="list">
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
-                <span class="service-idx">01</span>
+                <span class="service-idx" aria-hidden="true">01</span>
                 <h3
                   class="service-title"
                   data-ru="Сайты на конструкторах"
@@ -376,7 +384,7 @@
                 >
                   Сайты на конструкторах
                 </h3>
-                <ul class="service-tags">
+                <ul class="service-tags" aria-label="Технологии">
                   <li>Tilda</li>
                   <li>WordPress</li>
                   <li>Joomla</li>
@@ -406,7 +414,7 @@
 
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
-                <span class="service-idx">02</span>
+                <span class="service-idx" aria-hidden="true">02</span>
                 <h3
                   class="service-title"
                   data-ru="Landing Page на коде"
@@ -414,7 +422,7 @@
                 >
                   Landing Page на коде
                 </h3>
-                <ul class="service-tags">
+                <ul class="service-tags" aria-label="Технологии">
                   <li>HTML/CSS</li>
                   <li>JS</li>
                   <li>React</li>
@@ -447,7 +455,7 @@
               data-label-en="Popular"
             >
               <div class="service-strip__left">
-                <span class="service-idx">03</span>
+                <span class="service-idx" aria-hidden="true">03</span>
                 <h3
                   class="service-title"
                   data-ru="Корпоративный сайт / SPA"
@@ -455,7 +463,7 @@
                 >
                   Корпоративный сайт / SPA
                 </h3>
-                <ul class="service-tags">
+                <ul class="service-tags" aria-label="Технологии">
                   <li>React</li>
                   <li>Vue</li>
                   <li>SEO</li>
@@ -484,10 +492,9 @@
               </div>
             </article>
 
-            <!-- FIX: русские теги переведены -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
-                <span class="service-idx">04</span>
+                <span class="service-idx" aria-hidden="true">04</span>
                 <h3
                   class="service-title"
                   data-ru="Интернет-магазин"
@@ -495,7 +502,7 @@
                 >
                   Интернет-магазин
                 </h3>
-                <ul class="service-tags">
+                <ul class="service-tags" aria-label="Технологии">
                   <li data-ru="Каталог" data-en="Catalogue">Каталог</li>
                   <li data-ru="Корзина" data-en="Cart">Корзина</li>
                   <li data-ru="Фильтры" data-en="Filters">Фильтры</li>
@@ -527,10 +534,9 @@
               </div>
             </article>
 
-            <!-- FIX: русские теги переведены -->
             <article class="service-strip" role="listitem">
               <div class="service-strip__left">
-                <span class="service-idx">05</span>
+                <span class="service-idx" aria-hidden="true">05</span>
                 <h3
                   class="service-title"
                   data-ru="Доработка и баги"
@@ -538,7 +544,7 @@
                 >
                   Доработка и баги
                 </h3>
-                <ul class="service-tags">
+                <ul class="service-tags" aria-label="Технологии">
                   <li data-ru="Баги" data-en="Bugs">Баги</li>
                   <li data-ru="Адаптив" data-en="Adaptive">Адаптив</li>
                   <li data-ru="Битрикс" data-en="Bitrix">Битрикс</li>
@@ -595,7 +601,7 @@
           </p>
           <div class="process-strips" role="list">
             <div class="p-strip" role="listitem">
-              <span class="p-strip__num">01</span>
+              <span class="p-strip__num" aria-hidden="true">01</span>
               <h3 data-ru="Заявка и анализ" data-en="Brief &amp; Analysis">
                 Заявка и анализ
               </h3>
@@ -608,7 +614,7 @@
               </p>
             </div>
             <div class="p-strip" role="listitem">
-              <span class="p-strip__num">02</span>
+              <span class="p-strip__num" aria-hidden="true">02</span>
               <h3
                 data-ru="Стоимость и предоплата"
                 data-en="Price &amp; Advance"
@@ -625,7 +631,7 @@
               </p>
             </div>
             <div class="p-strip" role="listitem">
-              <span class="p-strip__num">03</span>
+              <span class="p-strip__num" aria-hidden="true">03</span>
               <h3
                 data-ru="Разработка с демо"
                 data-en="Development &amp; Preview"
@@ -641,7 +647,7 @@
               </p>
             </div>
             <div class="p-strip" role="listitem">
-              <span class="p-strip__num">04</span>
+              <span class="p-strip__num" aria-hidden="true">04</span>
               <h3 data-ru="Сдача и поддержка" data-en="Launch &amp; Support">
                 Сдача и поддержка
               </h3>
@@ -682,35 +688,37 @@
               задачу.
             </p>
 
+            <!-- ПРОЕКТ 1: PrettyPaw -->
             <article class="portfolio-poster">
-              <div class="poster-image-side" aria-hidden="true">
+              <div class="poster-image-side">
+                <img
+                  src="./img/project-prettypaw.jpg"
+                  alt="PrettyPaw preview"
+                />
+
                 <div class="poster-stub">PRETTY PAW</div>
                 <div class="poster-img-overlay"></div>
               </div>
               <div class="poster-info-side">
                 <span class="project-tag-modern"
-                  >JavaScript / Adaptive / CSS Animations</span
+                  >HTML5 / CSS3 / JavaScript / БЭМ</span
                 >
-                <h3
-                  data-ru="Ветеринарный центр «PrettyPaw»"
-                  data-en="Veterinary Center 'PrettyPaw'"
-                >
-                  Ветеринарный центр «PrettyPaw»
+                <h3 data-ru="Зоосад «PrettyPaw»" data-en="Zoo «PrettyPaw»">
+                  Зоосад «PrettyPaw»
                 </h3>
                 <p
                   class="poster-desc"
-                  data-ru="Многостраничный коммерческий сайт с адаптивной сеткой, кастомными анимациями и валидацией форм на чистом JavaScript. Верстка под мобильные, планшет и десктоп."
-                  data-en="Multi-page commercial website with a responsive grid, custom animations, and JS form validation. Fully responsive across mobile, tablet, and desktop."
+                  data-ru="Многостраничный коммерческий сайт для зоосада. Адаптивная сетка, кастомные CSS-анимации, валидация форм на чистом JavaScript. Верстка под мобильные, планшет и десктоп."
+                  data-en="Multi-page commercial website for a zoo. Responsive grid, custom CSS animations, vanilla JS form validation. Fully responsive across mobile, tablet, and desktop."
                 >
-                  Многостраничный коммерческий сайт с адаптивной сеткой,
-                  кастомными анимациями и валидацией форм на чистом JavaScript.
-                  Верстка под мобильные, планшет и десктоп.
+                  Многостраничный коммерческий сайт для зоосада. Адаптивная
+                  сетка, кастомные CSS-анимации, валидация форм на чистом
+                  JavaScript. Верстка под мобильные, планшет и десктоп.
                 </p>
-                <ul class="poster-skills">
+                <ul class="poster-skills" aria-label="Технологии">
                   <li>HTML5</li>
                   <li>CSS3</li>
                   <li>JavaScript</li>
-                  <!-- FIX: БЭМ переведён -->
                   <li data-ru="БЭМ" data-en="BEM">БЭМ</li>
                   <li>Flexbox</li>
                 </ul>
@@ -725,7 +733,7 @@
                     >Открыть проект ↗</a
                   >
                   <a
-                    href="https://github.com/LaziukAlena"
+                    href="https://github.com/LaziukAlena/prettyPaw"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="poster-git"
@@ -735,42 +743,171 @@
               </div>
             </article>
 
+            <!-- ПРОЕКТ 2: Park Hotel -->
             <article class="portfolio-poster portfolio-poster--alt">
               <div class="poster-info-side">
-                <span class="project-tag-modern">React / API / Responsive</span>
-                <h3
-                  data-ru="React-проект — скоро"
-                  data-en="React Project — coming soon"
+                <span class="project-tag-modern"
+                  >HTML5 / CSS3 / Responsive</span
                 >
-                  React-проект — скоро
+                <h3
+                  data-ru="Парк-отель на Онежском озере"
+                  data-en="Park Hotel on Lake Onega"
+                >
+                  Парк-отель на Онежском озере
                 </h3>
                 <p
                   class="poster-desc"
-                  data-ru="Скоро здесь появится новый проект. Следите за обновлениями на GitHub."
-                  data-en="A new project is coming soon. Follow updates on GitHub."
+                  data-ru="Лендинг загородного отеля с разделами об услугах, апартаментах и формой бронирования. Адаптивная вёрстка, плавная навигация, анимированные секции."
+                  data-en="Landing page for a countryside hotel featuring amenities, apartments, and a booking form. Responsive layout, smooth navigation, animated sections."
                 >
-                  Скоро здесь появится новый проект. Следите за обновлениями на
-                  GitHub.
+                  Лендинг загородного отеля с разделами об услугах, апартаментах
+                  и формой бронирования. Адаптивная вёрстка, плавная навигация,
+                  анимированные секции.
                 </p>
-                <ul class="poster-skills">
-                  <li>React</li>
-                  <li>JavaScript</li>
-                  <li>CSS Modules</li>
+                <ul class="poster-skills" aria-label="Технологии">
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li data-ru="Адаптив" data-en="Responsive">Адаптив</li>
+                  <li>Flexbox</li>
                 </ul>
                 <div class="poster-actions">
                   <a
-                    href="https://github.com/LaziukAlena"
+                    href="https://laziukalena.github.io/Park-Hotel/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="poster-link"
-                    data-ru="Смотреть GitHub ↗"
-                    data-en="View GitHub ↗"
-                    >Смотреть GitHub ↗</a
+                    class="poster-link magnetic"
+                    data-ru="Открыть проект ↗"
+                    data-en="View Project ↗"
+                    >Открыть проект ↗</a
+                  >
+                  <a
+                    href="https://github.com/LaziukAlena/Park-Hotel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-git"
+                    >GitHub</a
                   >
                 </div>
               </div>
-              <div class="poster-image-side" aria-hidden="true">
-                <div class="poster-stub">REACT APP</div>
+              <div class="poster-image-side">
+                <img
+                  src="./img/project-park-hotel.jpg"
+                  alt="Park Hotel preview"
+                />
+
+                <div class="poster-stub">PARK HOTEL</div>
+                <div class="poster-img-overlay"></div>
+              </div>
+            </article>
+
+            <!-- ПРОЕКТ 3: Agate Restaurant -->
+            <article class="portfolio-poster">
+              <div class="poster-image-side">
+                <img
+                  src="./img/project-agate.jpg"
+                  alt="Agate Restaurant preview"
+                />
+
+                <div class="poster-stub">AGATE</div>
+                <div class="poster-img-overlay"></div>
+              </div>
+              <div class="poster-info-side">
+                <span class="project-tag-modern"
+                  >HTML5 / CSS3 / JavaScript</span
+                >
+                <h3
+                  data-ru="Ресторан авторской кухни «Agate»"
+                  data-en="Fine Dining Restaurant 'Agate'"
+                >
+                  Ресторан авторской кухни «Agate»
+                </h3>
+                <p
+                  class="poster-desc"
+                  data-ru="Элегантный сайт ресторана с меню, информацией о шеф-поваре и контактами. Минималистичный дизайн, адаптивная сетка, форма связи."
+                  data-en="Elegant restaurant website with menu, chef bio, and contact info. Minimalist design, responsive grid, contact form."
+                >
+                  Элегантный сайт ресторана с меню, информацией о шеф-поваре и
+                  контактами. Минималистичный дизайн, адаптивная сетка, форма
+                  связи.
+                </p>
+                <ul class="poster-skills" aria-label="Технологии">
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>JavaScript</li>
+                  <li>Flexbox</li>
+                </ul>
+                <div class="poster-actions">
+                  <a
+                    href="https://laziukalena.github.io/Agate/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-link magnetic"
+                    data-ru="Открыть проект ↗"
+                    data-en="View Project ↗"
+                    >Открыть проект ↗</a
+                  >
+                  <a
+                    href="https://github.com/LaziukAlena/Agate"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-git"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <!-- ПРОЕКТ 4: Профремонт (ПВХ окна) -->
+            <article class="portfolio-poster portfolio-poster--alt">
+              <div class="poster-info-side">
+                <span class="project-tag-modern"
+                  >HTML5 / CSS3 / Bootstrap / jQuery</span
+                >
+                <h3
+                  data-ru="Лендинг «Профремонт» — установка ПВХ-окон"
+                  data-en="'Profremont' Landing — PVC Window Installation"
+                >
+                  Лендинг «Профремонт» — установка ПВХ-окон
+                </h3>
+                <p
+                  class="poster-desc"
+                  data-ru="Продающий лендинг для строительной компании: таймер акции, карусели, формы заявок, отзывы. Верстка на Bootstrap с кастомными модификациями."
+                  data-en="Sales landing page for a construction company: promo timer, carousels, application forms, testimonials. Bootstrap-based layout with custom modifications."
+                >
+                  Продающий лендинг для строительной компании: таймер акции,
+                  карусели, формы заявок, отзывы. Верстка на Bootstrap с
+                  кастомными модификациями.
+                </p>
+                <ul class="poster-skills" aria-label="Технологии">
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>Bootstrap</li>
+                  <li>jQuery</li>
+                </ul>
+                <div class="poster-actions">
+                  <a
+                    href="https://laziukalena.github.io/middle_diplom/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-link magnetic"
+                    data-ru="Открыть проект ↗"
+                    data-en="View Project ↗"
+                    >Открыть проект ↗</a
+                  >
+                  <a
+                    href="https://github.com/LaziukAlena/middle_diplom"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-git"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+              <div class="poster-image-side">
+                <img src="./img/project-windows.jpg" alt="Profremont preview" />
+
+                <div class="poster-stub">PROFREM</div>
+                <div class="poster-img-overlay"></div>
               </div>
             </article>
           </div>
@@ -810,7 +947,13 @@
                 >
                 <div class="faq-icon-line" aria-hidden="true"></div>
               </button>
-              <div class="faq-panel-modern" id="faq-panel-1" role="region">
+              <!-- FIX: добавлен aria-labelledby для доступности -->
+              <div
+                class="faq-panel-modern"
+                id="faq-panel-1"
+                role="region"
+                aria-labelledby="faq-btn-1"
+              >
                 <p
                   data-ru="Лендинг на конструкторе — 3–5 дней. Лендинг на коде — 5–10 дней. Корпоративный сайт или магазин — 2–5 недель. Срок фиксируем до старта и я его держу."
                   data-en="A no-code landing — 3–5 days. A coded landing — 5–10 days. A corporate site or store — 2–5 weeks. We fix the deadline before starting and I keep it."
@@ -982,17 +1125,12 @@
                 <a href="tel:+375295784449" class="manifesto-phone"
                   >+375 29 578-44-49</a
                 >
-                <!--
-                  FIX: &nbsp; не рендерится через textContent — добавлен в HTML_SELECTORS (innerHTML).
-                  data-ru/data-en без &nbsp; — используем обычные пробелы в data-атрибутах,
-                  а CSS letter-spacing обеспечит визуальный разрыв.
-                -->
                 <p
                   class="manifesto-legal"
                   data-ru="E. Laziuk · Солигорск, Беларусь · НПД"
                   data-en="E. Laziuk · Soligorsk, Belarus · Self-employed"
                 >
-                  E. Laziuk · Soligorsk, Belarus · НПД
+                  E. Laziuk · Солигорск, Беларусь · НПД
                 </p>
                 <a
                   href="https://github.com/LaziukAlena"
@@ -1029,7 +1167,9 @@
     <!-- ФУТЕР -->
     <footer class="site-footer" role="contentinfo">
       <div class="footer-inner">
-        <a href="#" class="footer-logo">E. LAZIUK</a>
+        <a href="#" class="footer-logo" aria-label="E. Laziuk — на главную"
+          >E. LAZIUK</a
+        >
         <nav class="footer-nav" aria-label="Футер навигация">
           <a href="#services" data-ru="Услуги" data-en="Services">Услуги</a>
           <a href="#portfolio" data-ru="Проекты" data-en="Projects">Проекты</a>
@@ -1041,11 +1181,6 @@
             >GitHub</a
           >
         </nav>
-        <!--
-          FIX: год вынесен отдельно из data-атрибутов.
-          JS (раздел 13) ставит год в #footer-year.
-          При смене языка меняется только текст до/после span — через JS updateFooterYear().
-        -->
         <span class="footer-copy">
           ©&nbsp;<span id="footer-year">2025</span>&nbsp;Elena
           Laziuk&nbsp;·&nbsp;Frontend Developer&nbsp;·&nbsp;<span
