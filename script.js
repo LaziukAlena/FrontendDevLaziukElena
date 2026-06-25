@@ -517,6 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // FIX: год устанавливается отдельно в #footer-year,
   //      независимо от смены языка в .footer-copy
   // ==========================================================================
+
   const yr = document.getElementById("footer-year");
   if (yr) yr.textContent = new Date().getFullYear();
 
