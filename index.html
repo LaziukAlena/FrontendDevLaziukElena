@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500;600&display=swap"
     />
     <link rel="icon" href="./img/favicon.ico" sizes="any" />
     <link
@@ -126,7 +126,10 @@
   <body>
     <header class="header" role="banner">
       <div class="header__container">
-        <a href="#" class="logo" aria-label="Елена Лазюк — на главную"
+        <a
+          href="#"
+          class="logo js-scrolltop"
+          aria-label="Елена Лазюк — на главную"
           >E. LAZIUK</a
         >
         <nav
@@ -328,16 +331,22 @@
             <div class="hero-fx-box" id="hero-photo-box">
               <div class="hero-fx-shadow" aria-hidden="true"></div>
               <div class="hero-fx-frame">
-                <img
-                  src="./img/foto.jpg"
-                  alt="Елена Лазюк — frontend разработчик из Беларуси"
-                  class="hero-fx-img"
-                  width="460"
-                  height="650"
-                  loading="eager"
-                  fetchpriority="high"
-                  onerror="this.parentElement.classList.add('no-photo')"
-                />
+                <picture>
+                  <source srcset="./img/foto.webp" type="image/webp" />
+                  <img
+                    src="./img/foto.jpg"
+                    alt="Елена Лазюк — frontend разработчик из Беларуси"
+                    class="hero-fx-img"
+                    width="460"
+                    height="650"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    onerror="
+                      this.parentElement.parentElement.classList.add('no-photo')
+                    "
+                  />
+                </picture>
               </div>
               <div class="hero-status" aria-label="Статус">
                 <span class="status-dot" aria-hidden="true"></span>
@@ -694,11 +703,18 @@
             <!-- ПРОЕКТ 1: PrettyPaw -->
             <article class="portfolio-poster">
               <div class="poster-image-side">
-                <img
-                  src="./img/project-prettypaw.jpg"
-                  alt="PrettyPaw preview"
-                  loading="lazy"
-                />
+                <picture>
+                  <source
+                    srcset="./img/project-prettypaw.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./img/project-prettypaw.png"
+                    alt="PrettyPaw preview"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
 
                 <div class="poster-stub">PRETTY PAW</div>
                 <div class="poster-img-overlay"></div>
@@ -794,11 +810,18 @@
                 </div>
               </div>
               <div class="poster-image-side">
-                <img
-                  src="./img/project-park-hotel.jpg"
-                  alt="Park Hotel preview"
-                  loading="lazy"
-                />
+                <picture>
+                  <source
+                    srcset="./img/project-park-hotel.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./img/project-park-hotel.jpg"
+                    alt="Park Hotel preview"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
 
                 <div class="poster-stub">PARK HOTEL</div>
                 <div class="poster-img-overlay"></div>
@@ -808,11 +831,15 @@
             <!-- ПРОЕКТ 3: Agate Restaurant -->
             <article class="portfolio-poster">
               <div class="poster-image-side">
-                <img
-                  src="./img/project-agate.jpg"
-                  alt="Agate Restaurant preview"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset="./img/project-agate.webp" type="image/webp" />
+                  <img
+                    src="./img/project-agate.png"
+                    alt="Agate Restaurant preview"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
 
                 <div class="poster-stub">AGATE</div>
                 <div class="poster-img-overlay"></div>
@@ -910,11 +937,18 @@
                 </div>
               </div>
               <div class="poster-image-side">
-                <img
-                  src="./img/project-windows.jpg"
-                  alt="Profremont preview"
-                  loading="lazy"
-                />
+                <picture>
+                  <source
+                    srcset="./img/project-windows.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./img/project-windows.jpg"
+                    alt="Profremont preview"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
 
                 <div class="poster-stub">PROFREM</div>
                 <div class="poster-img-overlay"></div>
@@ -1177,7 +1211,10 @@
     <!-- ФУТЕР -->
     <footer class="site-footer" role="contentinfo">
       <div class="footer-inner">
-        <a href="#" class="footer-logo" aria-label="E. Laziuk — на главную"
+        <a
+          href="#"
+          class="footer-logo js-scrolltop"
+          aria-label="E. Laziuk — на главную"
           >E. LAZIUK</a
         >
         <nav class="footer-nav" aria-label="Футер навигация">

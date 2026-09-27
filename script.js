@@ -6,6 +6,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
+  const isMobileOS = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  // ==========================================================================
+  // 0. ЛОГОТИП — скролл наверх без прыжка на "#"
+  // ==========================================================================
+  document.querySelectorAll(".js-scrolltop").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  // ==========================================================================
+  // 0.1 VIBER — на десктопе без приложения ссылка ничего не делает,
+  // на десктопе уводим на tel:, чтобы клик не выглядел мёртвым
+  // ==========================================================================
+  if (!isMobileOS) {
+    document.querySelectorAll('a[href^="viber://"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "tel:+375295784449";
+      });
+    });
+  }
 
   // ==========================================================================
   // 1. ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА
@@ -230,6 +254,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function drawTrail() {
+      if (document.hidden) {
+        requestAnimationFrame(drawTrail);
+        return;
+      }
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       points.forEach((p) => (p.life -= 1));
       points = points.filter((p) => p.life > 0);
