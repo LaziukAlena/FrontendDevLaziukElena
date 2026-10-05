@@ -1492,3 +1492,26 @@ h3 {
     display: none;
   }
 }
+
+/* Список «что реализовано» в карточке проекта */
+.poster-features {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+}
+.poster-features li {
+  position: relative;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #cdc3bb;
+}
+.poster-features li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-gold);
+}

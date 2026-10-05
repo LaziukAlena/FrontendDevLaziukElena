@@ -846,7 +846,7 @@
               </div>
               <div class="poster-info-side">
                 <span class="project-tag-modern"
-                  >HTML5 / CSS3 / JavaScript</span
+                  >HTML5 / SCSS / БЭМ / Адаптив</span
                 >
                 <h3
                   data-ru="Ресторан авторской кухни «Agate»"
@@ -856,18 +856,65 @@
                 </h3>
                 <p
                   class="poster-desc"
-                  data-ru="Элегантный сайт ресторана с меню, информацией о шеф-поваре и контактами. Минималистичный дизайн, адаптивная сетка, форма связи."
-                  data-en="Elegant restaurant website with menu, chef bio, and contact info. Minimalist design, responsive grid, contact form."
+                  data-ru="Одностраничный сайт ресторана авторской кухни: баннер, блок о ресторане, фотогалерея, избранные блюда осеннего меню, шеф-повар и контакты. Адаптивная верстка на Flexbox и CSS Grid, стили на SCSS с БЭМ-именованием. Без JavaScript — всё на HTML и CSS."
+                  data-en="One-page website for a fine dining restaurant: hero banner, about block, photo gallery, featured autumn-menu dishes, chef profile and contacts. Responsive layout on Flexbox and CSS Grid, styles in SCSS with BEM naming. No JavaScript — pure HTML and CSS."
                 >
-                  Элегантный сайт ресторана с меню, информацией о шеф-поваре и
-                  контактами. Минималистичный дизайн, адаптивная сетка, форма
-                  связи.
+                  Одностраничный сайт ресторана авторской кухни: баннер, блок о
+                  ресторане, фотогалерея, избранные блюда осеннего меню,
+                  шеф-повар и контакты. Адаптивная верстка на Flexbox и CSS
+                  Grid, стили на SCSS с БЭМ-именованием. Без JavaScript — всё на
+                  HTML и CSS.
                 </p>
+                <ul class="poster-features" aria-label="Что реализовано">
+                  <li
+                    data-ru="Разметка: семантический HTML5 (header, nav, main, section, article, footer), БЭМ — блоки, элементы и модификаторы (dishe--red, button--white)."
+                    data-en="Markup: semantic HTML5 (header, nav, main, section, article, footer), BEM — blocks, elements and modifiers (dishe--red, button--white)."
+                  >
+                    Разметка: семантический HTML5 (header, nav, main, section,
+                    article, footer), БЭМ — блоки, элементы и модификаторы
+                    (dishe--red, button--white).
+                  </li>
+                  <li
+                    data-ru="Стили: SCSS, около 25 партиалов, подключённых через @use, переменные цветов, вложенность; компиляция в CSS с source map."
+                    data-en="Styles: SCSS, about 25 partials loaded with @use, colour variables, nesting; compiled to CSS with a source map."
+                  >
+                    Стили: SCSS, около 25 партиалов, подключённых через @use,
+                    переменные цветов, вложенность; компиляция в CSS с source
+                    map.
+                  </li>
+                  <li
+                    data-ru="Адаптив: Flexbox и CSS Grid (фотогалерея в 2 колонки), брейкпоинты 1440 / 1250 / 1024 / 768 / 480 px, отдельные фоновые изображения под каждую ширину, clamp() для заголовка."
+                    data-en="Responsive: Flexbox and CSS Grid (2-column photo gallery), breakpoints 1440 / 1250 / 1024 / 768 / 480 px, separate hero backgrounds per width, clamp() for the heading."
+                  >
+                    Адаптив: Flexbox и CSS Grid (фотогалерея в 2 колонки),
+                    брейкпоинты 1440 / 1250 / 1024 / 768 / 480 px, отдельные
+                    фоновые изображения под каждую ширину, clamp() для
+                    заголовка.
+                  </li>
+                  <li
+                    data-ru="Детали: бейджи HOT! / NEW! / HIT! на карточках блюд через ::before и CSS-переменные, hover- и focus-эффекты, плавный скролл, кнопка «наверх» на SVG."
+                    data-en="Details: HOT! / NEW! / HIT! badges on dish cards via ::before and CSS variables, hover and focus effects, smooth scroll, SVG back-to-top button."
+                  >
+                    Детали: бейджи HOT! / NEW! / HIT! на карточках блюд через
+                    ::before и CSS-переменные, hover- и focus-эффекты, плавный
+                    скролл, кнопка «наверх» на SVG.
+                  </li>
+                  <li
+                    data-ru='Доступность и скорость: aria-label у навигации и иконок, :focus-visible, prefers-reduced-motion, loading="lazy" у изображений, preconnect для шрифтов.'
+                    data-en="Accessibility and speed: aria-labels on navigation and icons, :focus-visible, prefers-reduced-motion, lazy-loaded images, font preconnect."
+                  >
+                    Доступность и скорость: aria-label у навигации и иконок,
+                    :focus-visible, prefers-reduced-motion, loading="lazy" у
+                    изображений, preconnect для шрифтов.
+                  </li>
+                </ul>
                 <ul class="poster-skills" aria-label="Технологии">
                   <li>HTML5</li>
                   <li>CSS3</li>
-                  <li>JavaScript</li>
+                  <li>SCSS</li>
+                  <li data-ru="БЭМ" data-en="BEM">БЭМ</li>
                   <li>Flexbox</li>
+                  <li>CSS Grid</li>
                 </ul>
                 <div class="poster-actions">
                   <a
@@ -952,6 +999,111 @@
 
                 <div class="poster-stub">PROFREM</div>
                 <div class="poster-img-overlay"></div>
+              </div>
+            </article>
+
+            <!-- ПРОЕКТ 5: KUGOO -->
+            <article class="portfolio-poster">
+              <div class="poster-image-side">
+                <picture>
+                  <source srcset="./img/project-kugoo.webp" type="image/webp" />
+                  <img
+                    src="./img/project-kugoo.png"
+                    alt="KUGOO preview"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+
+                <div class="poster-stub">KUGOO</div>
+                <div class="poster-img-overlay"></div>
+              </div>
+              <div class="poster-info-side">
+                <span class="project-tag-modern"
+                  >HTML5 / CSS3 / JavaScript (ES6+)</span
+                >
+                <h3
+                  data-ru="KUGOO — запись на тест-драйв электросамокатов"
+                  data-en="KUGOO — Electric Scooter Test-Drive Landing"
+                >
+                  KUGOO — запись на тест-драйв электросамокатов
+                </h3>
+                <p
+                  class="poster-desc"
+                  data-ru="Лендинг магазина электросамокатов: каталог моделей, запись на тест-драйв, корзина, избранное и сравнение. Адаптивная верстка для телефона, планшета и десктопа. Вся интерактивность написана на чистом JavaScript — без библиотек и бэкенда (данные корзины хранятся в браузере)."
+                  data-en="Landing page for an electric scooter shop: model catalogue, test-drive booking, cart, favourites and comparison. Responsive layout for mobile, tablet and desktop. All interactivity is written in vanilla JavaScript — no libraries and no backend (cart data is stored in the browser)."
+                >
+                  Лендинг магазина электросамокатов: каталог моделей, запись на
+                  тест-драйв, корзина, избранное и сравнение. Адаптивная верстка
+                  для телефона, планшета и десктопа. Вся интерактивность
+                  написана на чистом JavaScript — без библиотек и бэкенда
+                  (данные корзины хранятся в браузере).
+                </p>
+                <ul class="poster-features" aria-label="Что реализовано">
+                  <li
+                    data-ru="Верстка: семантический HTML5, Flexbox, CSS Grid (сетка моделей через auto-fit), normalize.css, SVG-спрайт иконок."
+                    data-en="Markup: semantic HTML5, Flexbox, CSS Grid (auto-fit model grid), normalize.css, SVG icon sprite."
+                  >
+                    Верстка: семантический HTML5, Flexbox, CSS Grid (сетка
+                    моделей через auto-fit), normalize.css, SVG-спрайт иконок.
+                  </li>
+                  <li
+                    data-ru="Адаптив: брейкпоинты от 1400 до 576 px, clamp() для заголовков, бургер-меню на планшетах и телефонах."
+                    data-en="Responsive: breakpoints from 1400 to 576 px, clamp() for headings, burger menu on tablets and phones."
+                  >
+                    Адаптив: брейкпоинты от 1400 до 576 px, clamp() для
+                    заголовков, бургер-меню на планшетах и телефонах.
+                  </li>
+                  <li
+                    data-ru="Формы: модальное окно с фокус-ловушкой и закрытием по Esc, маска телефона +7 с сохранением позиции курсора и проверкой номера."
+                    data-en="Forms: modal with focus trap and Esc to close, +7 phone mask that keeps the caret position, phone number validation."
+                  >
+                    Формы: модальное окно с фокус-ловушкой и закрытием по Esc,
+                    маска телефона +7 с сохранением позиции курсора и проверкой
+                    номера.
+                  </li>
+                  <li
+                    data-ru="Магазин на JS: корзина, избранное и сравнение с сохранением в localStorage, живой поиск по каталогу, оформление заказа."
+                    data-en="Shop logic in JS: cart, favourites and comparison saved in localStorage, live catalogue search, checkout form."
+                  >
+                    Магазин на JS: корзина, избранное и сравнение с сохранением
+                    в localStorage, живой поиск по каталогу, оформление заказа.
+                  </li>
+                  <li
+                    data-ru="Анимации: появление блоков при скролле (IntersectionObserver), индикатор прокрутки, кнопка «наверх»; учтён prefers-reduced-motion."
+                    data-en="Animations: scroll reveal (IntersectionObserver), scroll progress bar, back-to-top button; prefers-reduced-motion respected."
+                  >
+                    Анимации: появление блоков при скролле
+                    (IntersectionObserver), индикатор прокрутки, кнопка
+                    «наверх»; учтён prefers-reduced-motion.
+                  </li>
+                </ul>
+                <ul class="poster-skills" aria-label="Технологии">
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>JavaScript</li>
+                  <li>Flexbox</li>
+                  <li>CSS Grid</li>
+                  <li>localStorage</li>
+                </ul>
+                <div class="poster-actions">
+                  <a
+                    href="https://laziukalena.github.io/Kugoo/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-link magnetic"
+                    data-ru="Открыть проект ↗"
+                    data-en="View Project ↗"
+                    >Открыть проект ↗</a
+                  >
+                  <a
+                    href="https://github.com/LaziukAlena/Kugoo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="poster-git"
+                    >GitHub</a
+                  >
+                </div>
               </div>
             </article>
           </div>
