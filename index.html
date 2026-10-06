@@ -835,7 +835,7 @@
             <article class="portfolio-poster portfolio-poster--alt">
               <div class="poster-info-side">
                 <span class="project-tag-modern"
-                  >HTML5 / CSS3 / Responsive</span
+                  >HTML5 / CSS3 / JavaScript</span
                 >
                 <h3
                   data-ru="Парк-отель на Онежском озере"
@@ -845,18 +845,80 @@
                 </h3>
                 <p
                   class="poster-desc"
-                  data-ru="Лендинг загородного отеля с разделами об услугах, апартаментах и формой бронирования. Адаптивная вёрстка, плавная навигация, анимированные секции."
-                  data-en="Landing page for a countryside hotel featuring amenities, apartments, and a booking form. Responsive layout, smooth navigation, animated sections."
+                  data-ru="Одностраничный сайт загородного парк-отеля на Онежском озере: о нас, развлечения, три типа апартаментов с ценами и форма бронирования. Адаптивная верстка на Flexbox и CSS Grid, форма с проверкой на JavaScript и демо-отправкой (без бэкенда)."
+                  data-en="One-page website for a countryside park hotel on Lake Onega: about, activities, three apartment types with prices and a booking form. Responsive layout on Flexbox and CSS Grid, form with JavaScript validation and a demo submit (no backend)."
                 >
-                  Лендинг загородного отеля с разделами об услугах, апартаментах
-                  и формой бронирования. Адаптивная вёрстка, плавная навигация,
-                  анимированные секции.
+                  Одностраничный сайт загородного парк-отеля на Онежском озере:
+                  о нас, развлечения, три типа апартаментов с ценами и форма
+                  бронирования. Адаптивная верстка на Flexbox и CSS Grid, форма
+                  с проверкой на JavaScript и демо-отправкой (без бэкенда).
                 </p>
+                <ul class="poster-features" aria-label="Что реализовано">
+                  <li
+                    data-ru="Разметка: семантический HTML5 (header, nav, main, section, article, footer), форма с label, fieldset и legend, статус отправки с aria-live."
+                    data-en="Markup: semantic HTML5 (header, nav, main, section, article, footer), form with label, fieldset and legend, submit status with aria-live."
+                  >
+                    Разметка: семантический HTML5 (header, nav, main, section,
+                    article, footer), форма с label, fieldset и legend, статус
+                    отправки с aria-live.
+                  </li>
+                  <li
+                    data-ru="Стили: CSS-переменные для цветов, clamp() для шрифтов и отступов, CSS Grid для карточек (3 колонки → 1), Flexbox для навигации."
+                    data-en="Styles: CSS variables for colours, clamp() for fonts and spacing, CSS Grid for cards (3 columns → 1), Flexbox for navigation."
+                  >
+                    Стили: CSS-переменные для цветов, clamp() для шрифтов и
+                    отступов, CSS Grid для карточек (3 колонки → 1), Flexbox для
+                    навигации.
+                  </li>
+                  <li
+                    data-ru="Адаптив: брейкпоинты 1440 / 1024 / 768 / 508 px, отдельные фоны первого экрана под каждую ширину, меню в колонку на узких экранах."
+                    data-en="Responsive: breakpoints 1440 / 1024 / 768 / 508 px, separate hero backgrounds per width, stacked menu on narrow screens."
+                  >
+                    Адаптив: брейкпоинты 1440 / 1024 / 768 / 508 px, отдельные
+                    фоны первого экрана под каждую ширину, меню в колонку на
+                    узких экранах.
+                  </li>
+                  <li
+                    data-ru="Форма бронирования: email, имя, даты заезда и выезда, тип апартаментов; novalidate и собственная проверка на JS с понятными сообщениями об ошибках и успехе."
+                    data-en="Booking form: email, name, check-in and check-out dates, apartment type; novalidate with custom JS validation and clear error and success messages."
+                  >
+                    Форма бронирования: email, имя, даты заезда и выезда, тип
+                    апартаментов; novalidate и собственная проверка на JS с
+                    понятными сообщениями об ошибках и успехе.
+                  </li>
+                  <li
+                    data-ru="JavaScript (ES6+): дата заезда не раньше сегодняшней, выезд позже заезда; FormData, async/await и try/catch/finally для демо-отправки, блокировка кнопки на время отправки, локальная дата без сдвига часового пояса."
+                    data-en="JavaScript (ES6+): check-in not earlier than today, check-out after check-in; FormData, async/await and try/catch/finally for the demo submit, button locked while sending, local date without timezone shift."
+                  >
+                    JavaScript (ES6+): дата заезда не раньше сегодняшней, выезд
+                    позже заезда; FormData, async/await и try/catch/finally для
+                    демо-отправки, блокировка кнопки на время отправки,
+                    локальная дата без сдвига часового пояса.
+                  </li>
+                  <li
+                    data-ru="Детали: иконки Font Awesome, бейдж VIP через ::before, плашка с ценой поверх фото, кнопка «наверх», появляющаяся при прокрутке, width и height у изображений против сдвигов макета."
+                    data-en="Details: Font Awesome icons, VIP badge via ::before, price tag over the photo, back-to-top button shown on scroll, width and height on images to prevent layout shift."
+                  >
+                    Детали: иконки Font Awesome, бейдж VIP через ::before,
+                    плашка с ценой поверх фото, кнопка «наверх», появляющаяся
+                    при прокрутке, width и height у изображений против сдвигов
+                    макета.
+                  </li>
+                  <li
+                    data-ru="Доступность: aria-label у навигации и иконок, :focus-visible, prefers-reduced-motion."
+                    data-en="Accessibility: aria-labels on navigation and icons, :focus-visible, prefers-reduced-motion."
+                  >
+                    Доступность: aria-label у навигации и иконок,
+                    :focus-visible, prefers-reduced-motion.
+                  </li>
+                </ul>
                 <ul class="poster-skills" aria-label="Технологии">
                   <li>HTML5</li>
                   <li>CSS3</li>
-                  <li data-ru="Адаптив" data-en="Responsive">Адаптив</li>
+                  <li>JavaScript</li>
                   <li>Flexbox</li>
+                  <li>CSS Grid</li>
+                  <li>Font Awesome</li>
                 </ul>
                 <div class="poster-actions">
                   <a
@@ -895,7 +957,6 @@
                 <div class="poster-img-overlay"></div>
               </div>
             </article>
-
             <!-- ПРОЕКТ 3: Agate Restaurant -->
             <article class="portfolio-poster">
               <div class="poster-image-side">
