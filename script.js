@@ -103,6 +103,20 @@ document.addEventListener("DOMContentLoaded", () => {
         );
       });
 
+    // Подписи для скринридеров, alt и meta description
+    document
+      .querySelectorAll("[data-aria-ru][data-aria-en]")
+      .forEach((el) =>
+        el.setAttribute("aria-label", el.getAttribute("data-aria-" + lang)),
+      );
+    document
+      .querySelectorAll("[data-alt-ru][data-alt-en]")
+      .forEach((el) =>
+        el.setAttribute("alt", el.getAttribute("data-alt-" + lang)),
+      );
+    const metaDesc = document.querySelector("meta[data-desc-ru][data-desc-en]");
+    if (metaDesc) metaDesc.content = metaDesc.getAttribute("data-desc-" + lang);
+
     // FIX: пересчёт суффиксов счётчиков при смене языка
     // data-suffix-ru / data-suffix-en не попадают в общий цикл [data-ru][data-en]
     document.querySelectorAll("[data-counter]").forEach((el) => {
