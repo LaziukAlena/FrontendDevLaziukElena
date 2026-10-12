@@ -175,13 +175,25 @@ document.addEventListener("DOMContentLoaded", () => {
     marqueeEl.innerHTML = "";
     marqueeEl.appendChild(marqueeInner);
 
+    // Ширину измеряем один раз (и при resize / загрузке шрифтов), а не каждый кадр:
+    // чтение scrollWidth сразу после записи transform вызывало принудительную компоновку.
+    let halfWidth = 0;
+    const measureMarquee = () => {
+      halfWidth = marqueeInner.scrollWidth / 2;
+    };
+
     function fillMarquee(lang) {
       const text = lang === "en" ? marqueeEN : marqueeRU;
       const sep = "\u00a0\u00a0//\u00a0\u00a0";
       marqueeInner.innerHTML = (text + sep).repeat(8);
+      measureMarquee();
     }
     window._fillMarquee = fillMarquee;
     fillMarquee(initLang);
+    window.addEventListener("resize", measureMarquee);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measureMarquee);
+    }
 
     let pos = 0;
     let paused = false;
@@ -194,14 +206,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     (function tick() {
-      if (
-        !prefersReducedMotion &&
-        !paused &&
-        tabVisible &&
-        marqueeInner.scrollWidth > 0
-      ) {
+      if (!prefersReducedMotion && !paused && tabVisible && halfWidth > 0) {
         pos -= 0.45;
-        if (Math.abs(pos) >= marqueeInner.scrollWidth / 2) pos = 0;
+        if (Math.abs(pos) >= halfWidth) pos = 0;
         marqueeInner.style.transform = `translateX(${pos}px)`;
       }
       requestAnimationFrame(tick);
@@ -443,8 +450,22 @@ document.addEventListener("DOMContentLoaded", () => {
     (entries, obs) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          e.target.classList.add("in-view");
-          obs.unobserve(e.target);
+          const el = e.target;
+          el.classList.add("in-view");
+          obs.unobserve(el);
+
+          // .anim-up.in-view держит transform: translateY(0) и перебивает hover-подъём
+          // карточек. Когда появление закончилось, снимаем служебные классы.
+          const cleanup = () => {
+            el.classList.remove("anim-up", "in-view", "d1", "d2", "d3", "d4");
+            el.removeEventListener("transitionend", onEnd);
+            clearTimeout(timer);
+          };
+          const onEnd = (ev) => {
+            if (ev.target === el && ev.propertyName === "transform") cleanup();
+          };
+          const timer = setTimeout(cleanup, 1500); // запасной вариант без transitionend
+          el.addEventListener("transitionend", onEnd);
         }
       });
     },
@@ -481,13 +502,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (burgerBtn && mobileMenu) {
     function toggleMenu(force) {
-      const open =
-        force !== undefined ? force : !burgerBtn.classList.contains("open");
+      const wasOpen = burgerBtn.classList.contains("open");
+      const open = force !== undefined ? force : !wasOpen;
+      if (open === wasOpen) return; // Escape при закрытом меню ничего не делает
       burgerBtn.classList.toggle("open", open);
       burgerBtn.setAttribute("aria-expanded", String(open));
       mobileMenu.classList.toggle("open", open);
-      mobileMenu.setAttribute("aria-hidden", String(!open));
       document.body.style.overflow = open ? "hidden" : "";
+      // role="dialog": переносим фокус внутрь и возвращаем на кнопку при закрытии
+      if (open) mobileMenu.querySelector("a")?.focus();
+      else burgerBtn.focus();
     }
     burgerBtn.addEventListener("click", () => toggleMenu());
     mobileMenu
@@ -575,4 +599,90 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     strip.addEventListener("mouseleave", () => (idx.style.color = ""));
   });
+});
+
+// ==========================================================================
+// ПЛАВНОЕ РАСКРЫТИЕ «ТЕХНИЧЕСКИХ ДЕТАЛЕЙ» В КАРТОЧКАХ ПРОЕКТОВ
+// <details> по умолчанию открывается мгновенно — анимируем высоту сами.
+// ==========================================================================
+(() => {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const DURATION = 380;
+  const EASING = "cubic-bezier(0.22, 0.61, 0.36, 1)";
+
+  const init = () => {
+    document.querySelectorAll(".poster-details").forEach((details) => {
+      const summary = details.querySelector("summary");
+      if (!summary || !details.animate) return;
+
+      let animation = null;
+
+      const run = (from, to, onDone) => {
+        if (animation) animation.cancel();
+        details.style.overflow = "hidden";
+        animation = details.animate(
+          { height: [from + "px", to + "px"] },
+          { duration: DURATION, easing: EASING },
+        );
+        animation.onfinish = () => {
+          details.style.overflow = "";
+          animation = null;
+          if (onDone) onDone();
+        };
+        animation.oncancel = () => {
+          details.style.overflow = "";
+        };
+      };
+
+      // высота закрытого блока = summary + рамки
+      const collapsedHeight = () =>
+        summary.offsetHeight + (details.offsetHeight - details.clientHeight);
+
+      summary.addEventListener("click", (e) => {
+        if (reduceMotion.matches) return; // без анимации — стандартное поведение
+        e.preventDefault();
+
+        if (details.open) {
+          run(details.offsetHeight, collapsedHeight(), () => {
+            details.open = false;
+          });
+        } else {
+          const from = details.offsetHeight;
+          details.open = true;
+          run(from, details.offsetHeight);
+        }
+      });
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+// ==========================================================================
+// ФОНОВАЯ ДОГРУЗКА КАРТИНОК ПРОЕКТОВ
+// loading="lazy" ускоряет первый экран, но картинки карточек начинают качаться
+// только рядом с экраном и «выскакивают» уже после появления карточки.
+// Когда страница загружена и браузер свободен, докачиваем их заранее.
+// ==========================================================================
+window.addEventListener("load", () => {
+  // в режиме экономии трафика ничего не форсируем
+  if (navigator.connection && navigator.connection.saveData) return;
+
+  const preload = () => {
+    document
+      .querySelectorAll('#portfolio img[loading="lazy"]')
+      .forEach((img) => {
+        img.loading = "eager";
+      });
+  };
+
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(preload, { timeout: 2500 });
+  } else {
+    setTimeout(preload, 1200);
+  }
 });

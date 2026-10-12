@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title
-      data-ru="Елена Лазюк — Frontend разработчик | Верстка сайтов, React, Vue | Беларусь"
-      data-en="Elena Laziuk — Frontend Developer | Website Layout, React, Vue | Belarus"
+      data-ru="Елена Лазюк — Frontend-разработчик | Верстка сайтов | Беларусь"
+      data-en="Elena Laziuk — Frontend Developer | Website Layout | Belarus"
     >
-      Елена Лазюк — Frontend разработчик | Верстка сайтов, React, Vue | Беларусь
+      Елена Лазюк — Frontend-разработчик | Верстка сайтов | Беларусь
     </title>
     <meta
       name="description"
@@ -21,13 +21,25 @@
     />
     <meta name="author" content="Елена Лазюк" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://laziukalena.github.io/" />
+    <link rel="canonical" href="https://lenacode.by/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- шрифты подгружаются без блокировки отрисовки (display=swap показывает текст сразу) -->
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      />
+    </noscript>
     <link rel="icon" href="./img/favicon.ico" sizes="any" />
     <link
       rel="icon"
@@ -38,7 +50,7 @@
     <link rel="apple-touch-icon" href="./img/favicon-180.png" />
     <meta name="theme-color" content="#faf5ef" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://laziukalena.github.io/" />
+    <meta property="og:url" content="https://lenacode.by/" />
     <meta
       property="og:title"
       content="Елена Лазюк — Frontend разработчик | Верстка сайтов"
@@ -49,11 +61,20 @@
     />
     <meta
       property="og:image"
-      content="https://laziukalena.github.io/img/og-preview.jpg"
+      content="https://lenacode.by/img/og-preview.jpg"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="ru_RU" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta
+      property="og:site_name"
+      content="Елена Лазюк — Frontend разработчик"
+    />
+    <meta
+      property="og:image:alt"
+      content="Елена Лазюк — Frontend разработчик, верстка сайтов"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json">
       {
@@ -117,7 +138,10 @@
         "@type": "Person",
         "name": "Елена Лазюк",
         "jobTitle": "Frontend Developer",
-        "url": "https://laziukalena.github.io/",
+        "url": "https://lenacode.by/",
+        "image": "https://lenacode.by/img/foto-920.webp",
+        "telephone": "+375295784449",
+        "knowsLanguage": ["ru", "en"],
         "sameAs": ["https://github.com/LaziukAlena", "https://t.me/Le_nka1988"],
         "address": {
           "@type": "PostalAddress",
@@ -129,19 +153,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="header" role="banner">
+    <header class="header">
       <div class="header__container">
         <a
           href="#"
           class="logo js-scrolltop"
-          aria-label="Елена Лазюк — на главную"
-          data-aria-ru="Елена Лазюк — на главную"
-          data-aria-en="Elena Laziuk — home"
+          aria-label="E. Laziuk — на главную"
+          data-aria-ru="E. Laziuk — на главную"
+          data-aria-en="E. Laziuk — home"
           >E. LAZIUK</a
         >
         <nav
           class="nav"
-          role="navigation"
           aria-label="Основное меню"
           data-aria-ru="Основное меню"
           data-aria-en="Main menu"
@@ -184,20 +207,31 @@
             data-aria-ru="Выбор языка"
             data-aria-en="Language selection"
           >
-            <button class="lang-btn active" id="btn-ru" aria-pressed="true">
+            <button
+              type="button"
+              class="lang-btn active"
+              id="btn-ru"
+              aria-pressed="true"
+            >
               RU
             </button>
             <span class="lang-divider" aria-hidden="true">/</span>
-            <button class="lang-btn" id="btn-en" aria-pressed="false">
+            <button
+              type="button"
+              class="lang-btn"
+              id="btn-en"
+              aria-pressed="false"
+            >
               EN
             </button>
           </div>
           <button
+            type="button"
             class="burger"
             id="burger-btn"
-            aria-label="Открыть меню"
-            data-aria-ru="Открыть меню"
-            data-aria-en="Open menu"
+            aria-label="Меню"
+            data-aria-ru="Меню"
+            data-aria-en="Menu"
             aria-expanded="false"
             aria-controls="mobile-menu"
           >
@@ -210,7 +244,6 @@
     <div
       class="mobile-menu"
       id="mobile-menu"
-      aria-hidden="true"
       role="dialog"
       aria-modal="true"
       aria-label="Мобильное меню"
@@ -361,7 +394,11 @@
               <div class="hero-fx-shadow" aria-hidden="true"></div>
               <div class="hero-fx-frame">
                 <picture>
-                  <source srcset="./img/foto.webp" type="image/webp" />
+                  <source
+                    srcset="./img/foto-460.webp 460w, ./img/foto-920.webp 920w"
+                    sizes="(max-width: 768px) 70vw, 460px"
+                    type="image/webp"
+                  />
                   <img
                     src="./img/foto.jpg"
                     alt="Елена Лазюк — frontend разработчик из Беларуси"
@@ -379,12 +416,7 @@
                   />
                 </picture>
               </div>
-              <div
-                class="hero-status"
-                aria-label="Статус"
-                data-aria-ru="Статус"
-                data-aria-en="Status"
-              >
+              <div class="hero-status">
                 <span class="status-dot" aria-hidden="true"></span>
                 <span
                   data-ru="Доступна для проектов"
@@ -771,7 +803,9 @@
                   />
                   <img
                     src="./img/project-prettypaw.png"
-                    alt="PrettyPaw preview"
+                    alt="Скриншот сайта зоосада PrettyPaw"
+                    data-alt-ru="Скриншот сайта зоосада PrettyPaw"
+                    data-alt-en="Screenshot of the PrettyPaw zoo website"
                     loading="lazy"
                     decoding="async"
                   />
@@ -791,6 +825,15 @@
                   Зоосад «PrettyPaw»
                 </h3>
                 <p
+                  class="poster-result"
+                  data-ru="Посетитель знакомится с зоосадом, его историей, добрыми делами и вакансиями на двух страницах — с видеофоном и плавными анимациями."
+                  data-en="Visitors explore the zoo, its history, good deeds and job openings across two pages — with a video background and smooth animations."
+                >
+                  Посетитель знакомится с зоосадом, его историей, добрыми делами
+                  и вакансиями на двух страницах — с видеофоном и плавными
+                  анимациями.
+                </p>
+                <p
                   class="poster-desc"
                   data-ru="Многостраничный сайт зоосада: главная и страница с разделами «О зоосаде», «История», «Добрые дела» и «Карьера». Адаптивная верстка под мобильные, планшет и десктоп, видеофон, слайдеры и анимации на GSAP. Сборка на Webpack, стили на SCSS с БЭМ-именованием."
                   data-en="Multi-page zoo website: a home page and a content page with «About», «History», «Good deeds» and «Careers» sections. Responsive layout for mobile, tablet and desktop, video background, sliders and GSAP animations. Built with Webpack, styled with SCSS using BEM naming."
@@ -801,77 +844,85 @@
                   анимации на GSAP. Сборка на Webpack, стили на SCSS с
                   БЭМ-именованием.
                 </p>
-                <ul
-                  class="poster-features"
-                  aria-label="Что реализовано"
-                  data-aria-ru="Что реализовано"
-                  data-aria-en="What was implemented"
-                >
-                  <li
-                    data-ru="Сборка: Webpack 5 (режимы dev и prod, dev-сервер), Babel, PostCSS (postcss-preset-env), CSS отдельным файлом, объединение media-запросов, генерация фавиконок, две HTML-страницы через HtmlWebpackPlugin; в prod-сборке изображения сжимаются (mozjpeg, pngquant)."
-                    data-en="Build: Webpack 5 (dev and prod modes, dev server), Babel, PostCSS (postcss-preset-env), extracted CSS, merged media queries, favicon generation, two HTML pages via HtmlWebpackPlugin; images are compressed in the prod build (mozjpeg, pngquant)."
+                <details class="poster-details">
+                  <summary
+                    data-ru="Технические детали"
+                    data-en="Technical details"
                   >
-                    Сборка: Webpack 5 (режимы dev и prod, dev-сервер), Babel,
-                    PostCSS (postcss-preset-env), CSS отдельным файлом,
-                    объединение media-запросов, генерация фавиконок, две
-                    HTML-страницы через HtmlWebpackPlugin; в prod-сборке
-                    изображения сжимаются (mozjpeg, pngquant).
-                  </li>
-                  <li
-                    data-ru="Изображения и деплой: WebP создаётся отдельным скриптом на imagemin-webp (npm run webp), публикация на GitHub Pages командой npm run deploy (gh-pages)."
-                    data-en="Images and deploy: WebP is generated by a separate imagemin-webp script (npm run webp), published to GitHub Pages with npm run deploy (gh-pages)."
+                    Технические детали
+                  </summary>
+                  <ul
+                    class="poster-features"
+                    aria-label="Что реализовано"
+                    data-aria-ru="Что реализовано"
+                    data-aria-en="What was implemented"
                   >
-                    Изображения и деплой: WebP создаётся отдельным скриптом на
-                    imagemin-webp (npm run webp), публикация на GitHub Pages
-                    командой npm run deploy (gh-pages).
-                  </li>
-                  <li
-                    data-ru="Верстка: семантический HTML5, БЭМ, SCSS с партиалами через @use, переменные и миксины для брейкпоинтов (mobile-first), Flexbox и CSS Grid (grid-template-areas в блоках «О зоосаде», «Карьера» и футере)."
-                    data-en="Markup: semantic HTML5, BEM, SCSS partials loaded with @use, variables and breakpoint mixins (mobile-first), Flexbox and CSS Grid (grid-template-areas in the About, Careers and footer blocks)."
-                  >
-                    Верстка: семантический HTML5, БЭМ, SCSS с партиалами через
-                    @use, переменные и миксины для брейкпоинтов (mobile-first),
-                    Flexbox и CSS Grid (grid-template-areas в блоках «О
-                    зоосаде», «Карьера» и футере).
-                  </li>
-                  <li
-                    data-ru="Адаптив: брейкпоинты 576 / 768 / 1024 / 1240 / 1600 px (min-width), &lt;picture&gt; с WebP и JPG для четырёх диапазонов ширины экрана, lazy-loading изображений на главной странице."
-                    data-en="Responsive: breakpoints 576 / 768 / 1024 / 1240 / 1600 px (min-width), &lt;picture&gt; with WebP and JPG for four screen-width ranges, lazy-loaded images on the home page."
-                  >
-                    Адаптив: брейкпоинты 576 / 768 / 1024 / 1240 / 1600 px
-                    (min-width), &lt;picture&gt; с WebP и JPG для четырёх
-                    диапазонов ширины экрана, lazy-loading изображений на
-                    главной странице.
-                  </li>
-                  <li
-                    data-ru="Интерактив: слайдеры на Swiper (автопрокрутка каждые 3,5 с, пагинация, цикл); мобильное меню до 1240 px на GSAP-таймлайне — пункты выезжают с боков; от 1024 px при наведении на карточки локаций GSAP раскрывает описание и плавно меняет фон с предзагрузкой изображений."
-                    data-en="Interactivity: Swiper sliders (autoplay every 3.5 s, pagination, loop); mobile menu below 1240 px on a GSAP timeline — items slide in from the sides; from 1024 px, hovering a location card makes GSAP reveal the description and fade the background with preloaded images."
-                  >
-                    Интерактив: слайдеры на Swiper (автопрокрутка каждые 3,5 с,
-                    пагинация, цикл); мобильное меню до 1240 px на
-                    GSAP-таймлайне — пункты выезжают с боков; от 1024 px при
-                    наведении на карточки локаций GSAP раскрывает описание и
-                    плавно меняет фон с предзагрузкой изображений.
-                  </li>
-                  <li
-                    data-ru="Навигация: разделы второй страницы переключаются по хэшу в адресной строке на JS (hashchange) без перезагрузки; без хэша открывается первая секция; активный пункт подсвечивается в обоих меню."
-                    data-en="Navigation: sections of the second page switch via the URL hash in JS (hashchange) without reloading; the first section opens when there is no hash; the active item is highlighted in both menus."
-                  >
-                    Навигация: разделы второй страницы переключаются по хэшу в
-                    адресной строке на JS (hashchange) без перезагрузки; без
-                    хэша открывается первая секция; активный пункт
-                    подсвечивается в обоих меню.
-                  </li>
-                  <li
-                    data-ru="Детали: видеофон с источниками WebM и MP4, кнопка «наверх» появляется после половины экрана, адаптивное поведение через matchMedia, JS разбит на ES-модули (sliders, menuControl, locationHover, pageControl и др.)."
-                    data-en="Details: video background with WebM and MP4 sources, back-to-top button shown after half a screen of scrolling, responsive behaviour via matchMedia, JS split into ES modules (sliders, menuControl, locationHover, pageControl, etc.)."
-                  >
-                    Детали: видеофон с источниками WebM и MP4, кнопка «наверх»
-                    появляется после половины экрана, адаптивное поведение через
-                    matchMedia, JS разбит на ES-модули (sliders, menuControl,
-                    locationHover, pageControl и др.).
-                  </li>
-                </ul>
+                    <li
+                      data-ru="Сборка: Webpack 5 (режимы dev и prod, dev-сервер), Babel, PostCSS (postcss-preset-env), CSS отдельным файлом, объединение media-запросов, генерация фавиконок, две HTML-страницы через HtmlWebpackPlugin; в prod-сборке изображения сжимаются (mozjpeg, pngquant)."
+                      data-en="Build: Webpack 5 (dev and prod modes, dev server), Babel, PostCSS (postcss-preset-env), extracted CSS, merged media queries, favicon generation, two HTML pages via HtmlWebpackPlugin; images are compressed in the prod build (mozjpeg, pngquant)."
+                    >
+                      Сборка: Webpack 5 (режимы dev и prod, dev-сервер), Babel,
+                      PostCSS (postcss-preset-env), CSS отдельным файлом,
+                      объединение media-запросов, генерация фавиконок, две
+                      HTML-страницы через HtmlWebpackPlugin; в prod-сборке
+                      изображения сжимаются (mozjpeg, pngquant).
+                    </li>
+                    <li
+                      data-ru="Изображения и деплой: WebP создаётся отдельным скриптом на imagemin-webp (npm run webp), публикация на GitHub Pages командой npm run deploy (gh-pages)."
+                      data-en="Images and deploy: WebP is generated by a separate imagemin-webp script (npm run webp), published to GitHub Pages with npm run deploy (gh-pages)."
+                    >
+                      Изображения и деплой: WebP создаётся отдельным скриптом на
+                      imagemin-webp (npm run webp), публикация на GitHub Pages
+                      командой npm run deploy (gh-pages).
+                    </li>
+                    <li
+                      data-ru="Верстка: семантический HTML5, БЭМ, SCSS с партиалами через @use, переменные и миксины для брейкпоинтов (mobile-first), Flexbox и CSS Grid (grid-template-areas в блоках «О зоосаде», «Карьера» и футере)."
+                      data-en="Markup: semantic HTML5, BEM, SCSS partials loaded with @use, variables and breakpoint mixins (mobile-first), Flexbox and CSS Grid (grid-template-areas in the About, Careers and footer blocks)."
+                    >
+                      Верстка: семантический HTML5, БЭМ, SCSS с партиалами через
+                      @use, переменные и миксины для брейкпоинтов
+                      (mobile-first), Flexbox и CSS Grid (grid-template-areas в
+                      блоках «О зоосаде», «Карьера» и футере).
+                    </li>
+                    <li
+                      data-ru="Адаптив: брейкпоинты 576 / 768 / 1024 / 1240 / 1600 px (min-width), &lt;picture&gt; с WebP и JPG для четырёх диапазонов ширины экрана, lazy-loading изображений на главной странице."
+                      data-en="Responsive: breakpoints 576 / 768 / 1024 / 1240 / 1600 px (min-width), &lt;picture&gt; with WebP and JPG for four screen-width ranges, lazy-loaded images on the home page."
+                    >
+                      Адаптив: брейкпоинты 576 / 768 / 1024 / 1240 / 1600 px
+                      (min-width), &lt;picture&gt; с WebP и JPG для четырёх
+                      диапазонов ширины экрана, lazy-loading изображений на
+                      главной странице.
+                    </li>
+                    <li
+                      data-ru="Интерактив: слайдеры на Swiper (автопрокрутка каждые 3,5 с, пагинация, цикл); мобильное меню до 1240 px на GSAP-таймлайне — пункты выезжают с боков; от 1024 px при наведении на карточки локаций GSAP раскрывает описание и плавно меняет фон с предзагрузкой изображений."
+                      data-en="Interactivity: Swiper sliders (autoplay every 3.5 s, pagination, loop); mobile menu below 1240 px on a GSAP timeline — items slide in from the sides; from 1024 px, hovering a location card makes GSAP reveal the description and fade the background with preloaded images."
+                    >
+                      Интерактив: слайдеры на Swiper (автопрокрутка каждые 3,5
+                      с, пагинация, цикл); мобильное меню до 1240 px на
+                      GSAP-таймлайне — пункты выезжают с боков; от 1024 px при
+                      наведении на карточки локаций GSAP раскрывает описание и
+                      плавно меняет фон с предзагрузкой изображений.
+                    </li>
+                    <li
+                      data-ru="Навигация: разделы второй страницы переключаются по хэшу в адресной строке на JS (hashchange) без перезагрузки; без хэша открывается первая секция; активный пункт подсвечивается в обоих меню."
+                      data-en="Navigation: sections of the second page switch via the URL hash in JS (hashchange) without reloading; the first section opens when there is no hash; the active item is highlighted in both menus."
+                    >
+                      Навигация: разделы второй страницы переключаются по хэшу в
+                      адресной строке на JS (hashchange) без перезагрузки; без
+                      хэша открывается первая секция; активный пункт
+                      подсвечивается в обоих меню.
+                    </li>
+                    <li
+                      data-ru="Детали: видеофон с источниками WebM и MP4, кнопка «наверх» появляется после половины экрана, адаптивное поведение через matchMedia, JS разбит на ES-модули (sliders, menuControl, locationHover, pageControl и др.)."
+                      data-en="Details: video background with WebM and MP4 sources, back-to-top button shown after half a screen of scrolling, responsive behaviour via matchMedia, JS split into ES modules (sliders, menuControl, locationHover, pageControl, etc.)."
+                    >
+                      Детали: видеофон с источниками WebM и MP4, кнопка «наверх»
+                      появляется после половины экрана, адаптивное поведение
+                      через matchMedia, JS разбит на ES-модули (sliders,
+                      menuControl, locationHover, pageControl и др.).
+                    </li>
+                  </ul>
+                </details>
                 <ul
                   class="poster-skills"
                   aria-label="Технологии"
@@ -920,6 +971,14 @@
                   Парк-отель на Онежском озере
                 </h3>
                 <p
+                  class="poster-result"
+                  data-ru="За минуту выбрать тип апартаментов и оставить заявку на бронирование: форма сама проверяет даты и контакты."
+                  data-en="Pick an apartment type and send a booking request in a minute: the form checks dates and contact details for you."
+                >
+                  За минуту выбрать тип апартаментов и оставить заявку на
+                  бронирование: форма сама проверяет даты и контакты.
+                </p>
+                <p
                   class="poster-desc"
                   data-ru="Одностраничный сайт загородного парк-отеля на Онежском озере: о нас, развлечения, три типа апартаментов с ценами и форма бронирования. Адаптивная верстка на Flexbox и CSS Grid, форма с проверкой на JavaScript и демо-отправкой (без бэкенда)."
                   data-en="One-page website for a countryside park hotel on Lake Onega: about, activities, three apartment types with prices and a booking form. Responsive layout on Flexbox and CSS Grid, form with JavaScript validation and a demo submit (no backend)."
@@ -929,70 +988,78 @@
                   бронирования. Адаптивная верстка на Flexbox и CSS Grid, форма
                   с проверкой на JavaScript и демо-отправкой (без бэкенда).
                 </p>
-                <ul
-                  class="poster-features"
-                  aria-label="Что реализовано"
-                  data-aria-ru="Что реализовано"
-                  data-aria-en="What was implemented"
-                >
-                  <li
-                    data-ru="Разметка: семантический HTML5 (header, nav, main, section, article, footer), форма с label, fieldset и legend, статус отправки с aria-live."
-                    data-en="Markup: semantic HTML5 (header, nav, main, section, article, footer), form with label, fieldset and legend, submit status with aria-live."
+                <details class="poster-details">
+                  <summary
+                    data-ru="Технические детали"
+                    data-en="Technical details"
                   >
-                    Разметка: семантический HTML5 (header, nav, main, section,
-                    article, footer), форма с label, fieldset и legend, статус
-                    отправки с aria-live.
-                  </li>
-                  <li
-                    data-ru="Стили: CSS-переменные для цветов, clamp() для шрифтов и отступов, CSS Grid для карточек (3 колонки → 1), Flexbox для навигации."
-                    data-en="Styles: CSS variables for colours, clamp() for fonts and spacing, CSS Grid for cards (3 columns → 1), Flexbox for navigation."
+                    Технические детали
+                  </summary>
+                  <ul
+                    class="poster-features"
+                    aria-label="Что реализовано"
+                    data-aria-ru="Что реализовано"
+                    data-aria-en="What was implemented"
                   >
-                    Стили: CSS-переменные для цветов, clamp() для шрифтов и
-                    отступов, CSS Grid для карточек (3 колонки → 1), Flexbox для
-                    навигации.
-                  </li>
-                  <li
-                    data-ru="Адаптив: брейкпоинты 1440 / 1024 / 768 / 508 px, отдельные фоны первого экрана под каждую ширину, меню в колонку на узких экранах."
-                    data-en="Responsive: breakpoints 1440 / 1024 / 768 / 508 px, separate hero backgrounds per width, stacked menu on narrow screens."
-                  >
-                    Адаптив: брейкпоинты 1440 / 1024 / 768 / 508 px, отдельные
-                    фоны первого экрана под каждую ширину, меню в колонку на
-                    узких экранах.
-                  </li>
-                  <li
-                    data-ru="Форма бронирования: email, имя, даты заезда и выезда, тип апартаментов; novalidate и собственная проверка на JS с понятными сообщениями об ошибках и успехе."
-                    data-en="Booking form: email, name, check-in and check-out dates, apartment type; novalidate with custom JS validation and clear error and success messages."
-                  >
-                    Форма бронирования: email, имя, даты заезда и выезда, тип
-                    апартаментов; novalidate и собственная проверка на JS с
-                    понятными сообщениями об ошибках и успехе.
-                  </li>
-                  <li
-                    data-ru="JavaScript (ES6+): дата заезда не раньше сегодняшней, выезд позже заезда; FormData, async/await и try/catch/finally для демо-отправки, блокировка кнопки на время отправки, локальная дата без сдвига часового пояса."
-                    data-en="JavaScript (ES6+): check-in not earlier than today, check-out after check-in; FormData, async/await and try/catch/finally for the demo submit, button locked while sending, local date without timezone shift."
-                  >
-                    JavaScript (ES6+): дата заезда не раньше сегодняшней, выезд
-                    позже заезда; FormData, async/await и try/catch/finally для
-                    демо-отправки, блокировка кнопки на время отправки,
-                    локальная дата без сдвига часового пояса.
-                  </li>
-                  <li
-                    data-ru="Детали: иконки Font Awesome, бейдж VIP через ::before, плашка с ценой поверх фото, кнопка «наверх», появляющаяся при прокрутке, width и height у изображений против сдвигов макета."
-                    data-en="Details: Font Awesome icons, VIP badge via ::before, price tag over the photo, back-to-top button shown on scroll, width and height on images to prevent layout shift."
-                  >
-                    Детали: иконки Font Awesome, бейдж VIP через ::before,
-                    плашка с ценой поверх фото, кнопка «наверх», появляющаяся
-                    при прокрутке, width и height у изображений против сдвигов
-                    макета.
-                  </li>
-                  <li
-                    data-ru="Доступность: aria-label у навигации и иконок, :focus-visible, prefers-reduced-motion."
-                    data-en="Accessibility: aria-labels on navigation and icons, :focus-visible, prefers-reduced-motion."
-                  >
-                    Доступность: aria-label у навигации и иконок,
-                    :focus-visible, prefers-reduced-motion.
-                  </li>
-                </ul>
+                    <li
+                      data-ru="Разметка: семантический HTML5 (header, nav, main, section, article, footer), форма с label, fieldset и legend, статус отправки с aria-live."
+                      data-en="Markup: semantic HTML5 (header, nav, main, section, article, footer), form with label, fieldset and legend, submit status with aria-live."
+                    >
+                      Разметка: семантический HTML5 (header, nav, main, section,
+                      article, footer), форма с label, fieldset и legend, статус
+                      отправки с aria-live.
+                    </li>
+                    <li
+                      data-ru="Стили: CSS-переменные для цветов, clamp() для шрифтов и отступов, CSS Grid для карточек (3 колонки → 1), Flexbox для навигации."
+                      data-en="Styles: CSS variables for colours, clamp() for fonts and spacing, CSS Grid for cards (3 columns → 1), Flexbox for navigation."
+                    >
+                      Стили: CSS-переменные для цветов, clamp() для шрифтов и
+                      отступов, CSS Grid для карточек (3 колонки → 1), Flexbox
+                      для навигации.
+                    </li>
+                    <li
+                      data-ru="Адаптив: брейкпоинты 1440 / 1024 / 768 / 508 px, отдельные фоны первого экрана под каждую ширину, меню в колонку на узких экранах."
+                      data-en="Responsive: breakpoints 1440 / 1024 / 768 / 508 px, separate hero backgrounds per width, stacked menu on narrow screens."
+                    >
+                      Адаптив: брейкпоинты 1440 / 1024 / 768 / 508 px, отдельные
+                      фоны первого экрана под каждую ширину, меню в колонку на
+                      узких экранах.
+                    </li>
+                    <li
+                      data-ru="Форма бронирования: email, имя, даты заезда и выезда, тип апартаментов; novalidate и собственная проверка на JS с понятными сообщениями об ошибках и успехе."
+                      data-en="Booking form: email, name, check-in and check-out dates, apartment type; novalidate with custom JS validation and clear error and success messages."
+                    >
+                      Форма бронирования: email, имя, даты заезда и выезда, тип
+                      апартаментов; novalidate и собственная проверка на JS с
+                      понятными сообщениями об ошибках и успехе.
+                    </li>
+                    <li
+                      data-ru="JavaScript (ES6+): дата заезда не раньше сегодняшней, выезд позже заезда; FormData, async/await и try/catch/finally для демо-отправки, блокировка кнопки на время отправки, локальная дата без сдвига часового пояса."
+                      data-en="JavaScript (ES6+): check-in not earlier than today, check-out after check-in; FormData, async/await and try/catch/finally for the demo submit, button locked while sending, local date without timezone shift."
+                    >
+                      JavaScript (ES6+): дата заезда не раньше сегодняшней,
+                      выезд позже заезда; FormData, async/await и
+                      try/catch/finally для демо-отправки, блокировка кнопки на
+                      время отправки, локальная дата без сдвига часового пояса.
+                    </li>
+                    <li
+                      data-ru="Детали: иконки Font Awesome, бейдж VIP через ::before, плашка с ценой поверх фото, кнопка «наверх», появляющаяся при прокрутке, width и height у изображений против сдвигов макета."
+                      data-en="Details: Font Awesome icons, VIP badge via ::before, price tag over the photo, back-to-top button shown on scroll, width and height on images to prevent layout shift."
+                    >
+                      Детали: иконки Font Awesome, бейдж VIP через ::before,
+                      плашка с ценой поверх фото, кнопка «наверх», появляющаяся
+                      при прокрутке, width и height у изображений против сдвигов
+                      макета.
+                    </li>
+                    <li
+                      data-ru="Доступность: aria-label у навигации и иконок, :focus-visible, prefers-reduced-motion."
+                      data-en="Accessibility: aria-labels on navigation and icons, :focus-visible, prefers-reduced-motion."
+                    >
+                      Доступность: aria-label у навигации и иконок,
+                      :focus-visible, prefers-reduced-motion.
+                    </li>
+                  </ul>
+                </details>
                 <ul
                   class="poster-skills"
                   aria-label="Технологии"
@@ -1033,7 +1100,9 @@
                   />
                   <img
                     src="./img/project-park-hotel.jpg"
-                    alt="Park Hotel preview"
+                    alt="Скриншот сайта Парк-отеля"
+                    data-alt-ru="Скриншот сайта Парк-отеля"
+                    data-alt-en="Screenshot of the Park Hotel website"
                     loading="lazy"
                     decoding="async"
                   />
@@ -1051,7 +1120,9 @@
                   <source srcset="./img/project-agate.webp" type="image/webp" />
                   <img
                     src="./img/project-agate.png"
-                    alt="Agate Restaurant preview"
+                    alt="Скриншот сайта ресторана Agate"
+                    data-alt-ru="Скриншот сайта ресторана Agate"
+                    data-alt-en="Screenshot of the Agate restaurant website"
                     loading="lazy"
                     decoding="async"
                   />
@@ -1074,6 +1145,14 @@
                   Ресторан авторской кухни «Agate»
                 </h3>
                 <p
+                  class="poster-result"
+                  data-ru="Лёгкая страница без скриптов: атмосфера ресторана, блюда осеннего меню, шеф-повар и контакты."
+                  data-en="A light page without scripts: the restaurant's atmosphere, autumn-menu dishes, the chef and contacts."
+                >
+                  Лёгкая страница без скриптов: атмосфера ресторана, блюда
+                  осеннего меню, шеф-повар и контакты.
+                </p>
+                <p
                   class="poster-desc"
                   data-ru="Одностраничный сайт ресторана авторской кухни: баннер, блок о ресторане, фотогалерея, избранные блюда осеннего меню, шеф-повар и контакты. Адаптивная верстка на Flexbox и CSS Grid, стили на SCSS с БЭМ-именованием. Без JavaScript — всё на HTML и CSS."
                   data-en="One-page website for a fine dining restaurant: hero banner, about block, photo gallery, featured autumn-menu dishes, chef profile and contacts. Responsive layout on Flexbox and CSS Grid, styles in SCSS with BEM naming. No JavaScript — pure HTML and CSS."
@@ -1084,54 +1163,62 @@
                   Grid, стили на SCSS с БЭМ-именованием. Без JavaScript — всё на
                   HTML и CSS.
                 </p>
-                <ul
-                  class="poster-features"
-                  aria-label="Что реализовано"
-                  data-aria-ru="Что реализовано"
-                  data-aria-en="What was implemented"
-                >
-                  <li
-                    data-ru="Разметка: семантический HTML5 (header, nav, main, section, article, footer), БЭМ — блоки, элементы и модификаторы (dishe--red, button--white)."
-                    data-en="Markup: semantic HTML5 (header, nav, main, section, article, footer), BEM — blocks, elements and modifiers (dishe--red, button--white)."
+                <details class="poster-details">
+                  <summary
+                    data-ru="Технические детали"
+                    data-en="Technical details"
                   >
-                    Разметка: семантический HTML5 (header, nav, main, section,
-                    article, footer), БЭМ — блоки, элементы и модификаторы
-                    (dishe--red, button--white).
-                  </li>
-                  <li
-                    data-ru="Стили: SCSS, около 25 партиалов, подключённых через @use, переменные цветов, вложенность; компиляция в CSS с source map."
-                    data-en="Styles: SCSS, about 25 partials loaded with @use, colour variables, nesting; compiled to CSS with a source map."
+                    Технические детали
+                  </summary>
+                  <ul
+                    class="poster-features"
+                    aria-label="Что реализовано"
+                    data-aria-ru="Что реализовано"
+                    data-aria-en="What was implemented"
                   >
-                    Стили: SCSS, около 25 партиалов, подключённых через @use,
-                    переменные цветов, вложенность; компиляция в CSS с source
-                    map.
-                  </li>
-                  <li
-                    data-ru="Адаптив: Flexbox и CSS Grid (фотогалерея в 2 колонки), брейкпоинты 1440 / 1250 / 1024 / 768 / 480 px, отдельные фоновые изображения под каждую ширину, clamp() для заголовка."
-                    data-en="Responsive: Flexbox and CSS Grid (2-column photo gallery), breakpoints 1440 / 1250 / 1024 / 768 / 480 px, separate hero backgrounds per width, clamp() for the heading."
-                  >
-                    Адаптив: Flexbox и CSS Grid (фотогалерея в 2 колонки),
-                    брейкпоинты 1440 / 1250 / 1024 / 768 / 480 px, отдельные
-                    фоновые изображения под каждую ширину, clamp() для
-                    заголовка.
-                  </li>
-                  <li
-                    data-ru="Детали: бейджи HOT! / NEW! / HIT! на карточках блюд через ::before и CSS-переменные, hover- и focus-эффекты, плавный скролл, кнопка «наверх» на SVG."
-                    data-en="Details: HOT! / NEW! / HIT! badges on dish cards via ::before and CSS variables, hover and focus effects, smooth scroll, SVG back-to-top button."
-                  >
-                    Детали: бейджи HOT! / NEW! / HIT! на карточках блюд через
-                    ::before и CSS-переменные, hover- и focus-эффекты, плавный
-                    скролл, кнопка «наверх» на SVG.
-                  </li>
-                  <li
-                    data-ru='Доступность и скорость: aria-label у навигации и иконок, :focus-visible, prefers-reduced-motion, loading="lazy" у изображений, preconnect для шрифтов.'
-                    data-en="Accessibility and speed: aria-labels on navigation and icons, :focus-visible, prefers-reduced-motion, lazy-loaded images, font preconnect."
-                  >
-                    Доступность и скорость: aria-label у навигации и иконок,
-                    :focus-visible, prefers-reduced-motion, loading="lazy" у
-                    изображений, preconnect для шрифтов.
-                  </li>
-                </ul>
+                    <li
+                      data-ru="Разметка: семантический HTML5 (header, nav, main, section, article, footer), БЭМ — блоки, элементы и модификаторы (dishe--red, button--white)."
+                      data-en="Markup: semantic HTML5 (header, nav, main, section, article, footer), BEM — blocks, elements and modifiers (dishe--red, button--white)."
+                    >
+                      Разметка: семантический HTML5 (header, nav, main, section,
+                      article, footer), БЭМ — блоки, элементы и модификаторы
+                      (dishe--red, button--white).
+                    </li>
+                    <li
+                      data-ru="Стили: SCSS, около 25 партиалов, подключённых через @use, переменные цветов, вложенность; компиляция в CSS с source map."
+                      data-en="Styles: SCSS, about 25 partials loaded with @use, colour variables, nesting; compiled to CSS with a source map."
+                    >
+                      Стили: SCSS, около 25 партиалов, подключённых через @use,
+                      переменные цветов, вложенность; компиляция в CSS с source
+                      map.
+                    </li>
+                    <li
+                      data-ru="Адаптив: Flexbox и CSS Grid (фотогалерея в 2 колонки), брейкпоинты 1440 / 1250 / 1024 / 768 / 480 px, отдельные фоновые изображения под каждую ширину, clamp() для заголовка."
+                      data-en="Responsive: Flexbox and CSS Grid (2-column photo gallery), breakpoints 1440 / 1250 / 1024 / 768 / 480 px, separate hero backgrounds per width, clamp() for the heading."
+                    >
+                      Адаптив: Flexbox и CSS Grid (фотогалерея в 2 колонки),
+                      брейкпоинты 1440 / 1250 / 1024 / 768 / 480 px, отдельные
+                      фоновые изображения под каждую ширину, clamp() для
+                      заголовка.
+                    </li>
+                    <li
+                      data-ru="Детали: бейджи HOT! / NEW! / HIT! на карточках блюд через ::before и CSS-переменные, hover- и focus-эффекты, плавный скролл, кнопка «наверх» на SVG."
+                      data-en="Details: HOT! / NEW! / HIT! badges on dish cards via ::before and CSS variables, hover and focus effects, smooth scroll, SVG back-to-top button."
+                    >
+                      Детали: бейджи HOT! / NEW! / HIT! на карточках блюд через
+                      ::before и CSS-переменные, hover- и focus-эффекты, плавный
+                      скролл, кнопка «наверх» на SVG.
+                    </li>
+                    <li
+                      data-ru='Доступность и скорость: aria-label у навигации и иконок, :focus-visible, prefers-reduced-motion, loading="lazy" у изображений, preconnect для шрифтов.'
+                      data-en="Accessibility and speed: aria-labels on navigation and icons, :focus-visible, prefers-reduced-motion, lazy-loaded images, font preconnect."
+                    >
+                      Доступность и скорость: aria-label у навигации и иконок,
+                      :focus-visible, prefers-reduced-motion, loading="lazy" у
+                      изображений, preconnect для шрифтов.
+                    </li>
+                  </ul>
+                </details>
                 <ul
                   class="poster-skills"
                   aria-label="Технологии"
@@ -1179,6 +1266,14 @@
                   «Профремонт» — сайт компании: окна, балконы, шкафы и кухни
                 </h3>
                 <p
+                  class="poster-result"
+                  data-ru="Сайт, который собирает заявки: вызов замерщика и звонка, калькулятор стоимости остекления балконов и таймер акции."
+                  data-en="A site built to collect leads: measurement and callback requests, a balcony glazing cost calculator and a promo countdown."
+                >
+                  Сайт, который собирает заявки: вызов замерщика и звонка,
+                  калькулятор стоимости остекления балконов и таймер акции.
+                </p>
+                <p
                   class="poster-desc"
                   data-ru="Многостраничный сайт строительной компании в Минске: установка ПВХ-окон, остекление балконов, шкафы-купе и кухни. Адаптивная верстка на Bootstrap 3 и собственном CSS, скрипты на чистом JavaScript (ES-модули, без jQuery); отправка заявок работает в демо-режиме."
                   data-en="Multi-page website for a construction company in Minsk: PVC windows, balcony glazing, wardrobes and kitchens. Responsive layout on Bootstrap 3 and custom CSS, scripts in vanilla JavaScript (ES modules, no jQuery); lead submission runs in demo mode."
@@ -1189,65 +1284,74 @@
                   JavaScript (ES-модули, без jQuery); отправка заявок работает в
                   демо-режиме.
                 </p>
-                <ul
-                  class="poster-features"
-                  aria-label="Что реализовано"
-                  data-aria-ru="Что реализовано"
-                  data-aria-en="What was implemented"
-                >
-                  <li
-                    data-ru="Структура: три страницы («Окна», «Балконы», «Шкафы-купе и кухни») с общей шапкой, меню, формами и картой Яндекс.Карт; сетка и навбар на Bootstrap 3, собственный style.css, animate.css."
-                    data-en="Structure: three pages (Windows, Balconies, Wardrobes and Kitchens) with a shared header, menu, forms and a Yandex Map; Bootstrap 3 grid and navbar, custom style.css, animate.css."
+                <details class="poster-details">
+                  <summary
+                    data-ru="Технические детали"
+                    data-en="Technical details"
                   >
-                    Структура: три страницы («Окна», «Балконы», «Шкафы-купе и
-                    кухни») с общей шапкой, меню, формами и картой Яндекс.Карт;
-                    сетка и навбар на Bootstrap 3, собственный style.css,
-                    animate.css.
-                  </li>
-                  <li
-                    data-ru="Адаптив: брейкпоинты от 1850 до 480 px, мобильное меню на чистом JS (бургер с aria-expanded), карточки услуг на flex с разной раскладкой для телефона, планшета и десктопа."
-                    data-en="Responsive: breakpoints from 1850 to 480 px, mobile menu in vanilla JS (burger with aria-expanded), service cards on flex with different layouts for phone, tablet and desktop."
+                    Технические детали
+                  </summary>
+                  <ul
+                    class="poster-features"
+                    aria-label="Что реализовано"
+                    data-aria-ru="Что реализовано"
+                    data-aria-en="What was implemented"
                   >
-                    Адаптив: брейкпоинты от 1850 до 480 px, мобильное меню на
-                    чистом JS (бургер с aria-expanded), карточки услуг на flex с
-                    разной раскладкой для телефона, планшета и десктопа.
-                  </li>
-                  <li
-                    data-ru="JavaScript: 11 ES-модулей без jQuery — слайдеры, модальные окна, формы, маска телефона, таймер, калькулятор, лайтбокс, анимации."
-                    data-en="JavaScript: 11 ES modules, no jQuery — sliders, modals, forms, phone mask, timer, calculator, lightbox, animations."
-                  >
-                    JavaScript: 11 ES-модулей без jQuery — слайдеры, модальные
-                    окна, формы, маска телефона, таймер, калькулятор, лайтбокс,
-                    анимации.
-                  </li>
-                  <li
-                    data-ru="Слайдеры: «Выгоды» (3 слайда на экране, на телефоне 1) и «Услуги» (2 или 1) на translateX с пересчётом при изменении размера окна, стрелки доступны с клавиатуры."
-                    data-en="Sliders: Benefits (3 slides, 1 on mobile) and Services (2 or 1) built on translateX and recalculated on resize; arrows are keyboard accessible."
-                  >
-                    Слайдеры: «Выгоды» (3 слайда на экране, на телефоне 1) и
-                    «Услуги» (2 или 1) на translateX с пересчётом при изменении
-                    размера окна, стрелки доступны с клавиатуры.
-                  </li>
-                  <li
-                    data-ru="Формы и окна: два модальных окна (заказ звонка и акция, вызов замерщика с названием услуги), закрытие по Esc и клику на фон; проверка имени, маска телефона +375 (XX) XXX-XX-XX, fetch-запрос (демо) и сообщения об ошибке и успехе."
-                    data-en="Forms and modals: two modals (callback and promo, measurement request with the service name), closed with Esc or a click on the backdrop; name check, +375 (XX) XXX-XX-XX phone mask, demo fetch request and error and success messages."
-                  >
-                    Формы и окна: два модальных окна (заказ звонка и акция,
-                    вызов замерщика с названием услуги), закрытие по Esc и клику
-                    на фон; проверка имени, маска телефона +375 (XX) XXX-XX-XX,
-                    fetch-запрос (демо) и сообщения об ошибке и успехе.
-                  </li>
-                  <li
-                    data-ru="Интерактив: таймер акции с дедлайном в localStorage, калькулятор стоимости остекления на странице балконов (площадь × тип × материал), лайтбокс для сертификатов и фото работ, анимации при скролле на IntersectionObserver, кнопка «наверх»."
-                    data-en="Interactivity: promo countdown with the deadline in localStorage, glazing cost calculator on the balconies page (area × type × material), lightbox for certificates and work photos, scroll animations with IntersectionObserver, back-to-top button."
-                  >
-                    Интерактив: таймер акции с дедлайном в localStorage,
-                    калькулятор стоимости остекления на странице балконов
-                    (площадь × тип × материал), лайтбокс для сертификатов и фото
-                    работ, анимации при скролле на IntersectionObserver, кнопка
-                    «наверх».
-                  </li>
-                </ul>
+                    <li
+                      data-ru="Структура: три страницы («Окна», «Балконы», «Шкафы-купе и кухни») с общей шапкой, меню, формами и картой Яндекс.Карт; сетка и навбар на Bootstrap 3, собственный style.css, animate.css."
+                      data-en="Structure: three pages (Windows, Balconies, Wardrobes and Kitchens) with a shared header, menu, forms and a Yandex Map; Bootstrap 3 grid and navbar, custom style.css, animate.css."
+                    >
+                      Структура: три страницы («Окна», «Балконы», «Шкафы-купе и
+                      кухни») с общей шапкой, меню, формами и картой
+                      Яндекс.Карт; сетка и навбар на Bootstrap 3, собственный
+                      style.css, animate.css.
+                    </li>
+                    <li
+                      data-ru="Адаптив: брейкпоинты от 1850 до 480 px, мобильное меню на чистом JS (бургер с aria-expanded), карточки услуг на flex с разной раскладкой для телефона, планшета и десктопа."
+                      data-en="Responsive: breakpoints from 1850 to 480 px, mobile menu in vanilla JS (burger with aria-expanded), service cards on flex with different layouts for phone, tablet and desktop."
+                    >
+                      Адаптив: брейкпоинты от 1850 до 480 px, мобильное меню на
+                      чистом JS (бургер с aria-expanded), карточки услуг на flex
+                      с разной раскладкой для телефона, планшета и десктопа.
+                    </li>
+                    <li
+                      data-ru="JavaScript: 11 ES-модулей без jQuery — слайдеры, модальные окна, формы, маска телефона, таймер, калькулятор, лайтбокс, анимации."
+                      data-en="JavaScript: 11 ES modules, no jQuery — sliders, modals, forms, phone mask, timer, calculator, lightbox, animations."
+                    >
+                      JavaScript: 11 ES-модулей без jQuery — слайдеры, модальные
+                      окна, формы, маска телефона, таймер, калькулятор,
+                      лайтбокс, анимации.
+                    </li>
+                    <li
+                      data-ru="Слайдеры: «Выгоды» (3 слайда на экране, на телефоне 1) и «Услуги» (2 или 1) на translateX с пересчётом при изменении размера окна, стрелки доступны с клавиатуры."
+                      data-en="Sliders: Benefits (3 slides, 1 on mobile) and Services (2 or 1) built on translateX and recalculated on resize; arrows are keyboard accessible."
+                    >
+                      Слайдеры: «Выгоды» (3 слайда на экране, на телефоне 1) и
+                      «Услуги» (2 или 1) на translateX с пересчётом при
+                      изменении размера окна, стрелки доступны с клавиатуры.
+                    </li>
+                    <li
+                      data-ru="Формы и окна: два модальных окна (заказ звонка и акция, вызов замерщика с названием услуги), закрытие по Esc и клику на фон; проверка имени, маска телефона +375 (XX) XXX-XX-XX, fetch-запрос (демо) и сообщения об ошибке и успехе."
+                      data-en="Forms and modals: two modals (callback and promo, measurement request with the service name), closed with Esc or a click on the backdrop; name check, +375 (XX) XXX-XX-XX phone mask, demo fetch request and error and success messages."
+                    >
+                      Формы и окна: два модальных окна (заказ звонка и акция,
+                      вызов замерщика с названием услуги), закрытие по Esc и
+                      клику на фон; проверка имени, маска телефона +375 (XX)
+                      XXX-XX-XX, fetch-запрос (демо) и сообщения об ошибке и
+                      успехе.
+                    </li>
+                    <li
+                      data-ru="Интерактив: таймер акции с дедлайном в localStorage, калькулятор стоимости остекления на странице балконов (площадь × тип × материал), лайтбокс для сертификатов и фото работ, анимации при скролле на IntersectionObserver, кнопка «наверх»."
+                      data-en="Interactivity: promo countdown with the deadline in localStorage, glazing cost calculator on the balconies page (area × type × material), lightbox for certificates and work photos, scroll animations with IntersectionObserver, back-to-top button."
+                    >
+                      Интерактив: таймер акции с дедлайном в localStorage,
+                      калькулятор стоимости остекления на странице балконов
+                      (площадь × тип × материал), лайтбокс для сертификатов и
+                      фото работ, анимации при скролле на IntersectionObserver,
+                      кнопка «наверх».
+                    </li>
+                  </ul>
+                </details>
 
                 <ul
                   class="poster-skills"
@@ -1289,7 +1393,9 @@
                   />
                   <img
                     src="./img/project-windows.jpg"
-                    alt="Profremont preview"
+                    alt="Скриншот сайта компании «Профремонт»"
+                    data-alt-ru="Скриншот сайта компании «Профремонт»"
+                    data-alt-en="Screenshot of the Profremont company website"
                     loading="lazy"
                     decoding="async"
                   />
@@ -1307,7 +1413,9 @@
                   <source srcset="./img/project-kugoo.webp" type="image/webp" />
                   <img
                     src="./img/project-kugoo.png"
-                    alt="KUGOO preview"
+                    alt="Скриншот лендинга KUGOO"
+                    data-alt-ru="Скриншот лендинга KUGOO"
+                    data-alt-en="Screenshot of the KUGOO landing page"
                     loading="lazy"
                     decoding="async"
                   />
@@ -1327,6 +1435,14 @@
                   KUGOO — запись на тест-драйв электросамокатов
                 </h3>
                 <p
+                  class="poster-result"
+                  data-ru="Витрина электросамокатов: выбрать модель, добавить в корзину, избранное или сравнение и записаться на тест-драйв."
+                  data-en="An e-scooter showcase: choose a model, add it to the cart, favourites or comparison and book a test drive."
+                >
+                  Витрина электросамокатов: выбрать модель, добавить в корзину,
+                  избранное или сравнение и записаться на тест-драйв.
+                </p>
+                <p
                   class="poster-desc"
                   data-ru="Лендинг магазина электросамокатов: каталог моделей, запись на тест-драйв, корзина, избранное и сравнение. Адаптивная верстка для телефона, планшета и десктопа. Вся интерактивность написана на чистом JavaScript — без библиотек и бэкенда (данные корзины хранятся в браузере)."
                   data-en="Landing page for an electric scooter shop: model catalogue, test-drive booking, cart, favourites and comparison. Responsive layout for mobile, tablet and desktop. All interactivity is written in vanilla JavaScript — no libraries and no backend (cart data is stored in the browser)."
@@ -1337,50 +1453,59 @@
                   написана на чистом JavaScript — без библиотек и бэкенда
                   (данные корзины хранятся в браузере).
                 </p>
-                <ul
-                  class="poster-features"
-                  aria-label="Что реализовано"
-                  data-aria-ru="Что реализовано"
-                  data-aria-en="What was implemented"
-                >
-                  <li
-                    data-ru="Верстка: семантический HTML5, Flexbox, CSS Grid (сетка моделей через auto-fit), normalize.css, SVG-спрайт иконок."
-                    data-en="Markup: semantic HTML5, Flexbox, CSS Grid (auto-fit model grid), normalize.css, SVG icon sprite."
+                <details class="poster-details">
+                  <summary
+                    data-ru="Технические детали"
+                    data-en="Technical details"
                   >
-                    Верстка: семантический HTML5, Flexbox, CSS Grid (сетка
-                    моделей через auto-fit), normalize.css, SVG-спрайт иконок.
-                  </li>
-                  <li
-                    data-ru="Адаптив: брейкпоинты от 1400 до 576 px, clamp() для заголовков, бургер-меню на планшетах и телефонах."
-                    data-en="Responsive: breakpoints from 1400 to 576 px, clamp() for headings, burger menu on tablets and phones."
+                    Технические детали
+                  </summary>
+                  <ul
+                    class="poster-features"
+                    aria-label="Что реализовано"
+                    data-aria-ru="Что реализовано"
+                    data-aria-en="What was implemented"
                   >
-                    Адаптив: брейкпоинты от 1400 до 576 px, clamp() для
-                    заголовков, бургер-меню на планшетах и телефонах.
-                  </li>
-                  <li
-                    data-ru="Формы: модальное окно с фокус-ловушкой и закрытием по Esc, маска телефона +7 с сохранением позиции курсора и проверкой номера."
-                    data-en="Forms: modal with focus trap and Esc to close, +7 phone mask that keeps the caret position, phone number validation."
-                  >
-                    Формы: модальное окно с фокус-ловушкой и закрытием по Esc,
-                    маска телефона +7 с сохранением позиции курсора и проверкой
-                    номера.
-                  </li>
-                  <li
-                    data-ru="Магазин на JS: корзина, избранное и сравнение с сохранением в localStorage, живой поиск по каталогу, оформление заказа."
-                    data-en="Shop logic in JS: cart, favourites and comparison saved in localStorage, live catalogue search, checkout form."
-                  >
-                    Магазин на JS: корзина, избранное и сравнение с сохранением
-                    в localStorage, живой поиск по каталогу, оформление заказа.
-                  </li>
-                  <li
-                    data-ru="Анимации: появление блоков при скролле (IntersectionObserver), индикатор прокрутки, кнопка «наверх»; учтён prefers-reduced-motion."
-                    data-en="Animations: scroll reveal (IntersectionObserver), scroll progress bar, back-to-top button; prefers-reduced-motion respected."
-                  >
-                    Анимации: появление блоков при скролле
-                    (IntersectionObserver), индикатор прокрутки, кнопка
-                    «наверх»; учтён prefers-reduced-motion.
-                  </li>
-                </ul>
+                    <li
+                      data-ru="Верстка: семантический HTML5, Flexbox, CSS Grid (сетка моделей через auto-fit), normalize.css, SVG-спрайт иконок."
+                      data-en="Markup: semantic HTML5, Flexbox, CSS Grid (auto-fit model grid), normalize.css, SVG icon sprite."
+                    >
+                      Верстка: семантический HTML5, Flexbox, CSS Grid (сетка
+                      моделей через auto-fit), normalize.css, SVG-спрайт иконок.
+                    </li>
+                    <li
+                      data-ru="Адаптив: брейкпоинты от 1400 до 576 px, clamp() для заголовков, бургер-меню на планшетах и телефонах."
+                      data-en="Responsive: breakpoints from 1400 to 576 px, clamp() for headings, burger menu on tablets and phones."
+                    >
+                      Адаптив: брейкпоинты от 1400 до 576 px, clamp() для
+                      заголовков, бургер-меню на планшетах и телефонах.
+                    </li>
+                    <li
+                      data-ru="Формы: модальное окно с фокус-ловушкой и закрытием по Esc, маска телефона +7 с сохранением позиции курсора и проверкой номера."
+                      data-en="Forms: modal with focus trap and Esc to close, +7 phone mask that keeps the caret position, phone number validation."
+                    >
+                      Формы: модальное окно с фокус-ловушкой и закрытием по Esc,
+                      маска телефона +7 с сохранением позиции курсора и
+                      проверкой номера.
+                    </li>
+                    <li
+                      data-ru="Магазин на JS: корзина, избранное и сравнение с сохранением в localStorage, живой поиск по каталогу, оформление заказа."
+                      data-en="Shop logic in JS: cart, favourites and comparison saved in localStorage, live catalogue search, checkout form."
+                    >
+                      Магазин на JS: корзина, избранное и сравнение с
+                      сохранением в localStorage, живой поиск по каталогу,
+                      оформление заказа.
+                    </li>
+                    <li
+                      data-ru="Анимации: появление блоков при скролле (IntersectionObserver), индикатор прокрутки, кнопка «наверх»; учтён prefers-reduced-motion."
+                      data-en="Animations: scroll reveal (IntersectionObserver), scroll progress bar, back-to-top button; prefers-reduced-motion respected."
+                    >
+                      Анимации: появление блоков при скролле
+                      (IntersectionObserver), индикатор прокрутки, кнопка
+                      «наверх»; учтён prefers-reduced-motion.
+                    </li>
+                  </ul>
+                </details>
                 <ul
                   class="poster-skills"
                   aria-label="Технологии"
@@ -1428,6 +1553,14 @@
                   Aliance Production — корпоративный сайт производителя химии
                 </h3>
                 <p
+                  class="poster-result"
+                  data-ru="Корпоративный сайт производителя: клиент знакомится с услугами и марками, а заявка сразу приходит менеджеру в Telegram."
+                  data-en="A corporate site for a manufacturer: clients explore services and brands, and a lead goes straight to the manager's Telegram."
+                >
+                  Корпоративный сайт производителя: клиент знакомится с услугами
+                  и марками, а заявка сразу приходит менеджеру в Telegram.
+                </p>
+                <p
                   class="poster-desc"
                   data-ru="Многостраничный корпоративный сайт компании по контрактному производству бытовой и автомобильной химии, косметики и аэрозолей, с собственными торговыми марками и блогом. Серверная часть на PHP: шаблоны и обработчик заявок с отправкой в Telegram. Адаптивная верстка, слайдеры на Swiper. Тексты и логотипы клиентов — заглушки."
                   data-en="Multi-page corporate website for a company that makes household and car chemicals, cosmetics and aerosols under contract, with its own trademarks and a blog. PHP back end: templates and a lead handler that sends to Telegram. Responsive layout, Swiper sliders. Texts and client logos are placeholders."
@@ -1439,66 +1572,75 @@
                   отправкой в Telegram. Адаптивная верстка, слайдеры на Swiper.
                   Тексты и логотипы клиентов — заглушки.
                 </p>
-                <ul
-                  class="poster-features"
-                  aria-label="Что реализовано"
-                  data-aria-ru="Что реализовано"
-                  data-aria-en="What was implemented"
-                >
-                  <li
-                    data-ru="Структура: 10 страниц (главная, о компании, контрактное производство, страница продукции, торговые марки, страница бренда, блог, статья, контакты, политика конфиденциальности) и страница 404."
-                    data-en="Structure: 10 pages (home, about, contract manufacturing, product page, trademarks, brand page, blog, article, contacts, privacy policy) and a 404 page."
+                <details class="poster-details">
+                  <summary
+                    data-ru="Технические детали"
+                    data-en="Technical details"
                   >
-                    Структура: 10 страниц (главная, о компании, контрактное
-                    производство, страница продукции, торговые марки, страница
-                    бренда, блог, статья, контакты, политика конфиденциальности)
-                    и страница 404.
-                  </li>
-                  <li
-                    data-ru="PHP-шаблоны: общие header-page.php и footer.php и 16 блоков в template-parts (хлебные крошки, шаги, карточки, слайдеры, блог и др.); страницы собираются из блоков и настраиваются переменными — заголовок, стиль шапки, списки."
-                    data-en="PHP templates: shared header-page.php and footer.php plus 16 blocks in template-parts (breadcrumbs, steps, cards, sliders, blog, etc.); pages are assembled from blocks and configured with variables — title, header style, lists."
+                    Технические детали
+                  </summary>
+                  <ul
+                    class="poster-features"
+                    aria-label="Что реализовано"
+                    data-aria-ru="Что реализовано"
+                    data-aria-en="What was implemented"
                   >
-                    PHP-шаблоны: общие header-page.php и footer.php и 16 блоков
-                    в template-parts (хлебные крошки, шаги, карточки, слайдеры,
-                    блог и др.); страницы собираются из блоков и настраиваются
-                    переменными — заголовок, стиль шапки, списки.
-                  </li>
-                  <li
-                    data-ru="Заявки: две формы (секция «Хотите сотрудничать?» и модальное окно), проверка в Just-Validate, отправка через fetch на handler.php, который передаёт заявку в Telegram-бот менеджера; окно «Спасибо за заявку»."
-                    data-en="Leads: two forms (a call-to-action section and a modal), Just-Validate checks, fetch to handler.php, which passes the lead to the manager's Telegram bot; a thank-you modal."
-                  >
-                    Заявки: две формы (секция «Хотите сотрудничать?» и модальное
-                    окно), проверка в Just-Validate, отправка через fetch на
-                    handler.php, который передаёт заявку в Telegram-бот
-                    менеджера; окно «Спасибо за заявку».
-                  </li>
-                  <li
-                    data-ru="JavaScript без фреймворков: 4 слайдера на Swiper с брейкпоинтами, мобильное меню, шапка меняет высоту и тему при прокрутке, модальные окна (Esc и клик по фону), маска телефона +7 (XXX) XXX-XX-XX."
-                    data-en="Vanilla JavaScript: 4 Swiper sliders with breakpoints, mobile menu, a header that changes height and theme on scroll, modals (Esc and click on the backdrop), +7 (XXX) XXX-XX-XX phone mask."
-                  >
-                    JavaScript без фреймворков: 4 слайдера на Swiper с
-                    брейкпоинтами, мобильное меню, шапка меняет высоту и тему
-                    при прокрутке, модальные окна (Esc и клик по фону), маска
-                    телефона +7 (XXX) XXX-XX-XX.
-                  </li>
-                  <li
-                    data-ru="Верстка и скорость: SVG-спрайт иконок, &lt;picture&gt; с WebP и запасным форматом, lazy-loading, preload шрифта и стилей с запасом на noscript, defer у скриптов, динамический &lt;title&gt;."
-                    data-en="Markup and speed: SVG icon sprite, &lt;picture&gt; with WebP and a fallback, lazy-loading, font and style preload with a noscript fallback, deferred scripts, dynamic &lt;title&gt;."
-                  >
-                    Верстка и скорость: SVG-спрайт иконок, &lt;picture&gt; с
-                    WebP и запасным форматом, lazy-loading, preload шрифта и
-                    стилей с запасом на noscript, defer у скриптов, динамический
-                    &lt;title&gt;.
-                  </li>
-                  <li
-                    data-ru="Оформление: три варианта шапки (светлая, тёмная, с фоновым изображением) выбираются переменной $header_style, логотип в светлой и тёмной версиях."
-                    data-en="Look: three header variants (light, dark, with a background image) chosen by the $header_style variable, light and dark logo versions."
-                  >
-                    Оформление: три варианта шапки (светлая, тёмная, с фоновым
-                    изображением) выбираются переменной $header_style, логотип в
-                    светлой и тёмной версиях.
-                  </li>
-                </ul>
+                    <li
+                      data-ru="Структура: 10 страниц (главная, о компании, контрактное производство, страница продукции, торговые марки, страница бренда, блог, статья, контакты, политика конфиденциальности) и страница 404."
+                      data-en="Structure: 10 pages (home, about, contract manufacturing, product page, trademarks, brand page, blog, article, contacts, privacy policy) and a 404 page."
+                    >
+                      Структура: 10 страниц (главная, о компании, контрактное
+                      производство, страница продукции, торговые марки, страница
+                      бренда, блог, статья, контакты, политика
+                      конфиденциальности) и страница 404.
+                    </li>
+                    <li
+                      data-ru="PHP-шаблоны: общие header-page.php и footer.php и 16 блоков в template-parts (хлебные крошки, шаги, карточки, слайдеры, блог и др.); страницы собираются из блоков и настраиваются переменными — заголовок, стиль шапки, списки."
+                      data-en="PHP templates: shared header-page.php and footer.php plus 16 blocks in template-parts (breadcrumbs, steps, cards, sliders, blog, etc.); pages are assembled from blocks and configured with variables — title, header style, lists."
+                    >
+                      PHP-шаблоны: общие header-page.php и footer.php и 16
+                      блоков в template-parts (хлебные крошки, шаги, карточки,
+                      слайдеры, блог и др.); страницы собираются из блоков и
+                      настраиваются переменными — заголовок, стиль шапки,
+                      списки.
+                    </li>
+                    <li
+                      data-ru="Заявки: две формы (секция «Хотите сотрудничать?» и модальное окно), проверка в Just-Validate, отправка через fetch на handler.php, который передаёт заявку в Telegram-бот менеджера; окно «Спасибо за заявку»."
+                      data-en="Leads: two forms (a call-to-action section and a modal), Just-Validate checks, fetch to handler.php, which passes the lead to the manager's Telegram bot; a thank-you modal."
+                    >
+                      Заявки: две формы (секция «Хотите сотрудничать?» и
+                      модальное окно), проверка в Just-Validate, отправка через
+                      fetch на handler.php, который передаёт заявку в
+                      Telegram-бот менеджера; окно «Спасибо за заявку».
+                    </li>
+                    <li
+                      data-ru="JavaScript без фреймворков: 4 слайдера на Swiper с брейкпоинтами, мобильное меню, шапка меняет высоту и тему при прокрутке, модальные окна (Esc и клик по фону), маска телефона +7 (XXX) XXX-XX-XX."
+                      data-en="Vanilla JavaScript: 4 Swiper sliders with breakpoints, mobile menu, a header that changes height and theme on scroll, modals (Esc and click on the backdrop), +7 (XXX) XXX-XX-XX phone mask."
+                    >
+                      JavaScript без фреймворков: 4 слайдера на Swiper с
+                      брейкпоинтами, мобильное меню, шапка меняет высоту и тему
+                      при прокрутке, модальные окна (Esc и клик по фону), маска
+                      телефона +7 (XXX) XXX-XX-XX.
+                    </li>
+                    <li
+                      data-ru="Верстка и скорость: SVG-спрайт иконок, &lt;picture&gt; с WebP и запасным форматом, lazy-loading, preload шрифта и стилей с запасом на noscript, defer у скриптов, динамический &lt;title&gt;."
+                      data-en="Markup and speed: SVG icon sprite, &lt;picture&gt; with WebP and a fallback, lazy-loading, font and style preload with a noscript fallback, deferred scripts, dynamic &lt;title&gt;."
+                    >
+                      Верстка и скорость: SVG-спрайт иконок, &lt;picture&gt; с
+                      WebP и запасным форматом, lazy-loading, preload шрифта и
+                      стилей с запасом на noscript, defer у скриптов,
+                      динамический &lt;title&gt;.
+                    </li>
+                    <li
+                      data-ru="Оформление: три варианта шапки (светлая, тёмная, с фоновым изображением) выбираются переменной $header_style, логотип в светлой и тёмной версиях."
+                      data-en="Look: three header variants (light, dark, with a background image) chosen by the $header_style variable, light and dark logo versions."
+                    >
+                      Оформление: три варианта шапки (светлая, тёмная, с фоновым
+                      изображением) выбираются переменной $header_style, логотип
+                      в светлой и тёмной версиях.
+                    </li>
+                  </ul>
+                </details>
                 <ul
                   class="poster-skills"
                   aria-label="Технологии"
@@ -1540,7 +1682,9 @@
                   />
                   <img
                     src="./img/project-aliance.png"
-                    alt="Aliance Production preview"
+                    alt="Скриншот сайта Aliance Production"
+                    data-alt-ru="Скриншот сайта Aliance Production"
+                    data-alt-en="Screenshot of the Aliance Production website"
                     loading="lazy"
                     decoding="async"
                   />
@@ -1576,7 +1720,9 @@
           <div class="faq-layout-modern">
             <div class="faq-item-modern">
               <button
+                type="button"
                 class="faq-trigger-modern"
+                id="faq-btn-1"
                 aria-expanded="false"
                 aria-controls="faq-panel-1"
               >
@@ -1585,7 +1731,7 @@
                   data-en="How long does development take?"
                   >Сколько времени занимает разработка?</span
                 >
-                <div class="faq-icon-line" aria-hidden="true"></div>
+                <span class="faq-icon-line" aria-hidden="true"></span>
               </button>
               <!-- FIX: добавлен aria-labelledby для доступности -->
               <div
@@ -1607,7 +1753,9 @@
 
             <div class="faq-item-modern">
               <button
+                type="button"
                 class="faq-trigger-modern"
+                id="faq-btn-2"
                 aria-expanded="false"
                 aria-controls="faq-panel-2"
               >
@@ -1616,9 +1764,14 @@
                   data-en="Do you work legally? How does payment work?"
                   >Вы работаете официально? Как происходит оплата?</span
                 >
-                <div class="faq-icon-line" aria-hidden="true"></div>
+                <span class="faq-icon-line" aria-hidden="true"></span>
               </button>
-              <div class="faq-panel-modern" id="faq-panel-2" role="region">
+              <div
+                class="faq-panel-modern"
+                id="faq-panel-2"
+                role="region"
+                aria-labelledby="faq-btn-2"
+              >
                 <p
                   data-ru="Да, работаю официально как плательщик Налога на профессиональный доход (НПД) в Беларуси. После предоплаты (30–50%) отправляю официальный чек с QR-кодом от налоговой — подходит для любой бухгалтерии."
                   data-en="Yes, I work legally in Belarus as a professional income tax (NPD) payer. After the advance (30–50%) I send an official receipt with a QR code from the Tax Authority — accepted by any accountant."
@@ -1633,7 +1786,9 @@
 
             <div class="faq-item-modern">
               <button
+                type="button"
                 class="faq-trigger-modern"
+                id="faq-btn-3"
                 aria-expanded="false"
                 aria-controls="faq-panel-3"
               >
@@ -1642,9 +1797,14 @@
                   data-en="Do I need a Figma design to get started?"
                   >Нужен ли мне макет в Figma для старта?</span
                 >
-                <div class="faq-icon-line" aria-hidden="true"></div>
+                <span class="faq-icon-line" aria-hidden="true"></span>
               </button>
-              <div class="faq-panel-modern" id="faq-panel-3" role="region">
+              <div
+                class="faq-panel-modern"
+                id="faq-panel-3"
+                role="region"
+                aria-labelledby="faq-btn-3"
+              >
                 <p
                   data-ru="Нет, макет не обязателен. Если у вас есть только идея или примеры понравившихся сайтов — этого достаточно для начала. Я помогу сформулировать задачу и предложу референсы по стилю."
                   data-en="No, a design file is not required. If you only have an idea or examples of sites you like — that's enough to start. I'll help shape the brief and suggest style references."
@@ -1658,7 +1818,9 @@
 
             <div class="faq-item-modern">
               <button
+                type="button"
                 class="faq-trigger-modern"
+                id="faq-btn-4"
                 aria-expanded="false"
                 aria-controls="faq-panel-4"
               >
@@ -1667,9 +1829,14 @@
                   data-en="What if bugs appear after launch?"
                   >Что если после запуска обнаружатся ошибки?</span
                 >
-                <div class="faq-icon-line" aria-hidden="true"></div>
+                <span class="faq-icon-line" aria-hidden="true"></span>
               </button>
-              <div class="faq-panel-modern" id="faq-panel-4" role="region">
+              <div
+                class="faq-panel-modern"
+                id="faq-panel-4"
+                role="region"
+                aria-labelledby="faq-btn-4"
+              >
                 <p
                   data-ru="Каждый проект получает 6 месяцев бесплатной гарантийной поддержки. Если что-то сломается на каком-то устройстве или браузере — исправлю бесплатно и оперативно."
                   data-en="Each project includes 6 months of free warranty support. If something breaks on any device or browser, I will fix it quickly and free of charge."
@@ -1683,7 +1850,9 @@
 
             <div class="faq-item-modern">
               <button
+                type="button"
                 class="faq-trigger-modern"
+                id="faq-btn-5"
                 aria-expanded="false"
                 aria-controls="faq-panel-5"
               >
@@ -1692,9 +1861,14 @@
                   data-en="Do you work with international clients?"
                   >Работаете ли вы с зарубежными клиентами?</span
                 >
-                <div class="faq-icon-line" aria-hidden="true"></div>
+                <span class="faq-icon-line" aria-hidden="true"></span>
               </button>
-              <div class="faq-panel-modern" id="faq-panel-5" role="region">
+              <div
+                class="faq-panel-modern"
+                id="faq-panel-5"
+                role="region"
+                aria-labelledby="faq-btn-5"
+              >
                 <p
                   data-ru="Да, работаю с клиентами из Беларуси, России и Европы. Общаюсь на русском и английском языках. Расчёт возможен в BYN, USD или EUR."
                   data-en="Yes, I work with clients from Belarus, Russia, and Europe. I communicate in Russian and English. Payment is possible in BYN, USD, or EUR."
@@ -1708,7 +1882,9 @@
 
             <div class="faq-item-modern">
               <button
+                type="button"
                 class="faq-trigger-modern"
+                id="faq-btn-6"
                 aria-expanded="false"
                 aria-controls="faq-panel-6"
               >
@@ -1717,9 +1893,14 @@
                   data-en="Can I edit the site myself after launch?"
                   >Смогу ли я сам редактировать сайт после сдачи?</span
                 >
-                <div class="faq-icon-line" aria-hidden="true"></div>
+                <span class="faq-icon-line" aria-hidden="true"></span>
               </button>
-              <div class="faq-panel-modern" id="faq-panel-6" role="region">
+              <div
+                class="faq-panel-modern"
+                id="faq-panel-6"
+                role="region"
+                aria-labelledby="faq-btn-6"
+              >
                 <p
                   data-ru="На конструкторах (Tilda, WordPress) — легко, там всё визуально. Для сайтов на коде я пишу понятную структуру и оставляю инструкцию по редактированию текстов. Для больших проектов можем подключить CMS."
                   data-en="On no-code platforms (Tilda, WordPress) — easily, it's all visual. For coded sites I write clear structure and provide an editing guide. For larger projects we can integrate a CMS."
@@ -1805,7 +1986,7 @@
     </main>
 
     <!-- ФУТЕР -->
-    <footer class="site-footer" role="contentinfo">
+    <footer class="site-footer">
       <div class="footer-inner">
         <a
           href="#"
@@ -1844,6 +2025,7 @@
     </footer>
 
     <button
+      type="button"
       id="top-btn"
       aria-label="Прокрутить наверх"
       data-aria-ru="Прокрутить наверх"

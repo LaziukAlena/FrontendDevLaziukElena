@@ -274,16 +274,20 @@ h3 {
   justify-content: center;
   gap: 48px;
   opacity: 0;
+  visibility: hidden; /* закрытое меню не попадает в Tab-порядок и скрыто от скринридеров */
   pointer-events: none;
   transform: translateY(-16px);
   transition:
     opacity 0.5s var(--ease-luxury),
-    transform 0.5s var(--ease-luxury);
+    transform 0.5s var(--ease-luxury),
+    visibility 0s linear 0.5s;
 }
 .mobile-menu.open {
   opacity: 1;
+  visibility: visible;
   pointer-events: all;
   transform: translateY(0);
+  transition-delay: 0s;
 }
 .mobile-nav {
   display: flex;
@@ -1242,7 +1246,7 @@ h3 {
 .footer-copy {
   font-family: var(--font-body);
   font-size: 0.88rem;
-  color: #7a6f6c;
+  color: #8f8481; /* контраст 5.3:1 на тёмном фоне (было 3.97) */
 }
 
 /* ============================================================
@@ -1514,4 +1518,55 @@ h3 {
   position: absolute;
   left: 0;
   color: var(--color-gold);
+}
+
+/* Короткая «клиентская» строка и раскрывающиеся технические детали в карточке проекта */
+.poster-result {
+  margin: 0 0 18px;
+  padding-left: 14px;
+  border-left: 2px solid var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #f3ece5;
+}
+
+.poster-details {
+  margin: 0 0 24px;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  border-bottom: 1px solid rgb(255 255 255 / 14%);
+}
+.poster-details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  cursor: pointer;
+  list-style: none;
+}
+.poster-details > summary::-webkit-details-marker {
+  display: none;
+}
+.poster-details > summary::after {
+  content: "+";
+  font-size: 1.3rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+.poster-details[open] > summary::after {
+  transform: rotate(45deg);
+}
+.poster-details .poster-features {
+  margin: 0 0 16px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .poster-details > summary::after {
+    transition: none;
+  }
 }
