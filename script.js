@@ -181,19 +181,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const measureMarquee = () => {
       halfWidth = marqueeInner.scrollWidth / 2;
     };
+    // ResizeObserver вызывает измерение уже ПОСЛЕ раскладки браузера: никакой принудительной
+    // компоновки при старте (раньше первое чтение scrollWidth заставляло считать всю страницу).
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(measureMarquee).observe(marqueeInner);
+    } else {
+      requestAnimationFrame(measureMarquee);
+    }
 
     function fillMarquee(lang) {
       const text = lang === "en" ? marqueeEN : marqueeRU;
       const sep = "\u00a0\u00a0//\u00a0\u00a0";
       marqueeInner.innerHTML = (text + sep).repeat(8);
-      measureMarquee();
     }
     window._fillMarquee = fillMarquee;
     fillMarquee(initLang);
-    window.addEventListener("resize", measureMarquee);
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(measureMarquee);
-    }
 
     let pos = 0;
     let paused = false;
@@ -669,8 +671,14 @@ document.addEventListener("DOMContentLoaded", () => {
 // Когда страница загружена и браузер свободен, докачиваем их заранее.
 // ==========================================================================
 window.addEventListener("load", () => {
-  // в режиме экономии трафика ничего не форсируем
-  if (navigator.connection && navigator.connection.saveData) return;
+  // в режиме экономии трафика и на медленной сети ничего не форсируем
+  const conn = navigator.connection;
+  if (
+    conn &&
+    (conn.saveData || (conn.effectiveType && conn.effectiveType !== "4g"))
+  ) {
+    return;
+  }
 
   const preload = () => {
     document
