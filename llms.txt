@@ -1,0 +1,24 @@
+# Elena Laziuk — Frontend Developer
+
+> Freelance frontend developer from Belarus. Turnkey website layout from Figma designs (HTML/CSS/JS, React, Vue, Bitrix24), responsive layout, bug fixing. Landing pages from 450 BYN. Works in Russian and English.
+
+The portfolio page (https://lenacode.by/) is a single page with sections: services and prices, work process, projects, FAQ and contacts. It has a RU/EN language switch.
+
+## Contacts
+
+- [Telegram](https://t.me/Le_nka1988): fastest way to reach me
+- [GitHub](https://github.com/LaziukAlena): source code of the projects
+- Phone: +375 29 578-44-49
+
+## Projects
+
+- [PrettyPaw](https://laziukalena.github.io/prettyPaw/): multi-page zoo website with a video background, Swiper sliders and GSAP animations; built with Webpack and SCSS
+- [Park Hotel](https://laziukalena.github.io/Park-Hotel/): one-page hotel website with a booking form validated in JavaScript
+- [Agate](https://laziukalena.github.io/Agate/): one-page restaurant website in HTML and SCSS, no JavaScript
+- [Profremont](https://laziukalena.github.io/middle_diplom/): three-page website for a windows and balconies company; Bootstrap 3, vanilla JavaScript, calculator and lead forms
+- [KUGOO](https://laziukalena.github.io/kugoo/): e-scooter landing page with cart, favourites, comparison and test-drive booking
+- [Aliance Production](https://test.lenacode.by/): corporate website on PHP templates; leads are sent to a Telegram bot
+
+## Optional
+
+- [Sitemap](https://lenacode.by/sitemap.xml)

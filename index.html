@@ -22,24 +22,6 @@
     <meta name="author" content="Елена Лазюк" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://lenacode.by/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- шрифты подгружаются без блокировки отрисовки (display=swap показывает текст сразу) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500;600&display=swap"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500;600&display=swap"
-      />
-    </noscript>
     <link rel="icon" href="./img/favicon.ico" sizes="any" />
     <link
       rel="icon"
@@ -453,8 +435,8 @@
             Выберите то, что подходит вашему проекту. Все цены фиксированные —
             никаких сюрпризов после старта.
           </p>
-          <div class="services-list" role="list">
-            <article class="service-strip" role="listitem">
+          <ul class="services-list">
+            <li class="service-strip">
               <div class="service-strip__left">
                 <span class="service-idx" aria-hidden="true">01</span>
                 <h3
@@ -495,9 +477,9 @@
                   >3–5 дней</span
                 >
               </div>
-            </article>
+            </li>
 
-            <article class="service-strip" role="listitem">
+            <li class="service-strip">
               <div class="service-strip__left">
                 <span class="service-idx" aria-hidden="true">02</span>
                 <h3
@@ -536,11 +518,10 @@
                   >5–10 дней</span
                 >
               </div>
-            </article>
+            </li>
 
-            <article
+            <li
               class="service-strip service-strip--featured"
-              role="listitem"
               data-label-ru="Популярное"
               data-label-en="Popular"
             >
@@ -585,9 +566,9 @@
                   >2–4 недели</span
                 >
               </div>
-            </article>
+            </li>
 
-            <article class="service-strip" role="listitem">
+            <li class="service-strip">
               <div class="service-strip__left">
                 <span class="service-idx" aria-hidden="true">04</span>
                 <h3
@@ -632,9 +613,9 @@
                   >3–5 недель</span
                 >
               </div>
-            </article>
+            </li>
 
-            <article class="service-strip" role="listitem">
+            <li class="service-strip">
               <div class="service-strip__left">
                 <span class="service-idx" aria-hidden="true">05</span>
                 <h3
@@ -676,8 +657,8 @@
                   >от 1 дня</span
                 >
               </div>
-            </article>
-          </div>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -704,8 +685,8 @@
             Прозрачный процесс от первого сообщения до запуска. Никаких
             сюрпризов.
           </p>
-          <div class="process-strips" role="list">
-            <div class="p-strip" role="listitem">
+          <ul class="process-strips">
+            <li class="p-strip">
               <span class="p-strip__num" aria-hidden="true">01</span>
               <h3 data-ru="Заявка и анализ" data-en="Brief &amp; Analysis">
                 Заявка и анализ
@@ -717,8 +698,8 @@
                 Пишете в Telegram или Viber. Я изучаю задачу, задаю уточняющие
                 вопросы и предлагаю оптимальное решение под ваш бюджет.
               </p>
-            </div>
-            <div class="p-strip" role="listitem">
+            </li>
+            <li class="p-strip">
               <span class="p-strip__num" aria-hidden="true">02</span>
               <h3
                 data-ru="Стоимость и предоплата"
@@ -734,8 +715,8 @@
                 (НПД). Предоплата 30–50% — вы получаете официальный чек с
                 QR-кодом.
               </p>
-            </div>
-            <div class="p-strip" role="listitem">
+            </li>
+            <li class="p-strip">
               <span class="p-strip__num" aria-hidden="true">03</span>
               <h3
                 data-ru="Разработка с демо"
@@ -750,8 +731,8 @@
                 Пишу чистый код и сразу разворачиваю демо-ссылку. Вы видите
                 прогресс в реальном времени и можете вносить правки до финала.
               </p>
-            </div>
-            <div class="p-strip" role="listitem">
+            </li>
+            <li class="p-strip">
               <span class="p-strip__num" aria-hidden="true">04</span>
               <h3 data-ru="Сдача и поддержка" data-en="Launch &amp; Support">
                 Сдача и поддержка
@@ -763,8 +744,8 @@
                 Финальное тестирование на всех устройствах, загрузка на ваш
                 хостинг и 6 месяцев бесплатной поддержки после запуска.
               </p>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </section>
 
