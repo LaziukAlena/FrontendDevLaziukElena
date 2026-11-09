@@ -1,6 +1,6 @@
 # Elena Laziuk — Frontend Developer
 
-> Freelance frontend developer from Belarus. Turnkey website layout from Figma designs (HTML/CSS/JS, React, Vue, Bitrix24), responsive layout, bug fixing. Landing pages from 450 BYN. Works in Russian and English.
+> Freelance frontend developer from Belarus. Turnkey website layout from Figma designs (HTML/CSS/JS, React, Vue, Bitrix24), responsive layout, bug fixing. Landing pages from 350 BYN. Works in Russian and English.
 
 The portfolio page (https://lenacode.by/) is a single page with sections: services and prices, work process, projects, FAQ and contacts. It has a RU/EN language switch.
 
